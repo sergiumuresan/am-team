@@ -1,15 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace TheAMTeam.App
+﻿namespace TheAMTeam.App
 {
-    class Program
+    internal class Program
     {
         static void Main(string[] args)
         {
+            Example.Example.Execute();
+
+            //Add your code here
         }
     }
 }
