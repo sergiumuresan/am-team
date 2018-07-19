@@ -4,9 +4,7 @@
     {
         static void Main(string[] args)
         {
-            Example.Example.Execute();
-
-            //Add your code here
+            AlexLazarean.TeamExecute.Execute();   
         }
     }
 }

@@ -4,8 +4,18 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="4150d8758f644bc894f9a95ba661264b" Name="Diagram1">
+      <Diagram DiagramId="4150d8758f644bc894f9a95ba661264b" Name="Diagram1" ZoomLevel="73">
         <EntityTypeShape EntityType="AMTeamModel.TestEntity" Width="1.5" PointX="0.75" PointY="0.75" />
+        <EntityTypeShape EntityType="AMTeamModel.Match" Width="1.5" PointX="5.625" PointY="1" />
+        <EntityTypeShape EntityType="AMTeamModel.Team" Width="1.5" PointX="3.375" PointY="1.25" />
+        <AssociationConnector Association="AMTeamModel.FirstTeamId" />
+        <AssociationConnector Association="AMTeamModel.SecondTeamId" />
+        <EntityTypeShape EntityType="AMTeamModel.CompetitionType" Width="1.5" PointX="3.375" PointY="5.625" />
+        <EntityTypeShape EntityType="AMTeamModel.Nationality" Width="1.5" PointX="6.375" PointY="5.625" />
+        <EntityTypeShape EntityType="AMTeamModel.Player" Width="1.5" PointX="8.625" PointY="1" />
+        <AssociationConnector Association="AMTeamModel.CompId" />
+        <AssociationConnector Association="AMTeamModel.NationalityId" />
+        <AssociationConnector Association="AMTeamModel.Team1" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
