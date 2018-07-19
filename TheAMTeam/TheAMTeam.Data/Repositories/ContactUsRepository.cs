@@ -59,9 +59,9 @@ namespace TheAMTeam.Data.Repositories
                     dbContactUs = context.ContactUs.FirstOrDefault(c => c.FormId == contact.FormId);
                     if(dbContactUs != null)
                     {
-                        dbContactUs = contact;
                         context.ContactUs.Attach(contact);
-                        context.Entry(contact).State = System.Data.Entity.EntityState.Modified;                     
+                        context.Entry(contact).State = System.Data.Entity.EntityState.Modified;            
+                        //sau modificare atribute
                         context.SaveChanges();
                     }
                     context.SaveChanges();

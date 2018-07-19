@@ -54,7 +54,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Example\Example.cs" />
-    <Compile Include="PaulGal\ContactUs.cs" />
+    <Compile Include="PaulGal\Contact.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
