@@ -6,6 +6,9 @@ MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TheAMTeam.Web", "TheAMTeam.Web\TheAMTeam.Web.csproj", "{B45A7B51-EEC0-4E11-8612-7C44FB6FF036}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TheAMTeam.App", "TheAMTeam.App\TheAMTeam.App.csproj", "{823F0DC8-737B-41B6-A51F-C4FE14B1F4CD}"
+	ProjectSection(ProjectDependencies) = postProject
+		{3AB6E127-E363-423F-B289-8363EF343E19} = {3AB6E127-E363-423F-B289-8363EF343E19}
+	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TheAMTeam.Data", "TheAMTeam.Data\TheAMTeam.Data.csproj", "{3AB6E127-E363-423F-B289-8363EF343E19}"
 EndProject
