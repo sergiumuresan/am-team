@@ -54,6 +54,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Example\Example.cs" />
+    <Compile Include="PaulGal\ContactUs.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -65,7 +66,6 @@
     <Folder Include="AdrianBarbus\" />
     <Folder Include="AlexLazarean\" />
     <Folder Include="IosuaSipos\" />
-    <Folder Include="PaulGal\" />
     <Folder Include="TeodorDumitriu\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

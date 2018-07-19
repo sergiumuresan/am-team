@@ -23,6 +23,7 @@ namespace TheAMTeam.Data.Repositories
             catch (Exception ex)
             {
                 //todo exeption handling
+                Console.Write(ex);
                 throw;
             }
 
@@ -42,6 +43,7 @@ namespace TheAMTeam.Data.Repositories
             }
             catch(Exception ex)
             {
+                Console.Write(ex);
                 throw;
             }
             return dbContactUs;
@@ -66,6 +68,7 @@ namespace TheAMTeam.Data.Repositories
                 }
             }catch(Exception ex)
             {
+                Console.Write(ex);
                 throw;
             }
             return contact;
@@ -86,11 +89,12 @@ namespace TheAMTeam.Data.Repositories
                 }
             }catch(Exception ex)
             {
+                Console.Write(ex);
                 throw;
             }
             return dbContact != null ? true : false;
         }
-        public List<ContactU> GetAll(int id)
+        public List<ContactU> GetAll()
         {
             List<ContactU> dbContactUs;
             try
@@ -103,6 +107,7 @@ namespace TheAMTeam.Data.Repositories
             }
             catch (Exception ex)
             {
+                Console.Write(ex);
                 throw;
             }
             return dbContactUs;

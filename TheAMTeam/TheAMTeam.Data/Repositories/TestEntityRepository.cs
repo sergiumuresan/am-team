@@ -19,6 +19,7 @@ namespace TheAMTeam.Data.Repositories
             catch (Exception ex)
             {
                 //todo exeption handling
+                Console.Write(ex);
                 throw;
             }
 
