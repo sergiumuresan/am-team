@@ -4,9 +4,9 @@
     {
         static void Main(string[] args)
         {
-            Example.Example.Execute();
+            AdrianBarbus.App.Execute();
 
-            //Add your code here
+            
         }
     }
 }

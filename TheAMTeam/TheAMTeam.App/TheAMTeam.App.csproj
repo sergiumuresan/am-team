@@ -53,6 +53,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AdrianBarbus\App.cs" />
     <Compile Include="Example\Example.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -62,7 +63,6 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="AdrianBarbus\" />
     <Folder Include="AlexLazarean\" />
     <Folder Include="IosuaSipos\" />
     <Folder Include="PaulGal\" />
