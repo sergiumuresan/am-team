@@ -8,6 +8,7 @@ namespace TheAMTeam.App.Example
         private static readonly TestEntityRepository _testEntityRepository = new TestEntityRepository();
         public static void Execute()
         {
+
             var testEntity = CreateTestEntity();
             var savedTestEntity = SaveTestEntity(testEntity);
         }
