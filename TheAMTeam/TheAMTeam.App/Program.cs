@@ -7,6 +7,8 @@
             Example.Example.Execute();
 
             //Add your code here
+
+            TeodorDumitriu.MainTask.Execute();
         }
     }
 }
