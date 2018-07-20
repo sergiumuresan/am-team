@@ -13,14 +13,13 @@ namespace TheAMTeam.DataAccessLayer.Repositories
             {
                 using (var context = new AppContext())
                 {
-                    //Create a new entry in table, and get the new object
                     dbTestEntity = context.TestEntities.Add(testEntity);
                     context.SaveChanges();
                 }
             }
             catch (Exception ex)
             {
-                //todo exeption handling
+                Console.Write(ex);
                 throw;
             }
 
