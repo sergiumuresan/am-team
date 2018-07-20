@@ -3,8 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using TheAMTeam.Data;
-using TheAMTeam.Data.Repositories;
+//using TheAMTeam.Data;
+//using TheAMTeam.Data.Repositories;
+using TheAMTeam.DataAccesLayer.Repositories;
+using TheAMTeam.DataAccessLayer.Entities;
 
 namespace TheAMTeam.App.AlexLazarean
 {
@@ -14,7 +16,7 @@ namespace TheAMTeam.App.AlexLazarean
 
         public static void PrintTeams(Team t)
         {
-            Console.WriteLine(t.Name + " " + t.TeamId);
+            Console.WriteLine(t.Name + " " + t.Id);
         }
 
         public static void Execute()
@@ -22,7 +24,7 @@ namespace TheAMTeam.App.AlexLazarean
 
             Team team = new Team
             {
-                TeamId = 4,
+                Id = 4,
                 Name = "Fc Ceva",
                 City = "Cluj",
                 Coach = "X"
@@ -58,8 +60,7 @@ namespace TheAMTeam.App.AlexLazarean
 
                 }
                 caseSwitch = Int32.Parse(Console.ReadLine());
-            }
-            
+            } 
         }
     }
 }
