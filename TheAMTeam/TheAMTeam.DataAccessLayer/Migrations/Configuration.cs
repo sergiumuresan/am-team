@@ -1,5 +1,4 @@
-﻿using System;
-using System.Data.Entity.Migrations;
+﻿using System.Data.Entity.Migrations;
 using TheAMTeam.DataAccessLayer.Context;
 using TheAMTeam.DataAccessLayer.Entities;
 

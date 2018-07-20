@@ -11,7 +11,7 @@ namespace TheAMTeam.DataAccessLayer.Migrations
                 "dbo.TestEntities",
                 c => new
                     {
-                        Id = c.Guid(nullable: false, identity: true),
+                        Id = c.Int(nullable: false, identity: true),
                         Message = c.String(),
                     })
                 .PrimaryKey(t => t.Id);

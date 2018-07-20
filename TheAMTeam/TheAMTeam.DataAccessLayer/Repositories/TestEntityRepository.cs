@@ -1,6 +1,6 @@
 ﻿using System;
-using TheAMTeam.DataAccessLayer.Context;
 using TheAMTeam.DataAccessLayer.Entities;
+using AppContext = TheAMTeam.DataAccessLayer.Context.AppContext;
 
 namespace TheAMTeam.DataAccessLayer.Repositories
 {
