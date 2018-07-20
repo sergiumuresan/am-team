@@ -64,9 +64,9 @@
     <Compile Include="Migrations\201807201132494_AddedMigrationDateAndCRUD.Designer.cs">
       <DependentUpon>201807201132494_AddedMigrationDateAndCRUD.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201807201142488_AddedMigrationForeignKey.cs" />
-    <Compile Include="Migrations\201807201142488_AddedMigrationForeignKey.Designer.cs">
-      <DependentUpon>201807201142488_AddedMigrationForeignKey.cs</DependentUpon>
+    <Compile Include="Migrations\201807201220175_AddedMigrationForeignKey.cs" />
+    <Compile Include="Migrations\201807201220175_AddedMigrationForeignKey.Designer.cs">
+      <DependentUpon>201807201220175_AddedMigrationForeignKey.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -87,8 +87,8 @@
     <EmbeddedResource Include="Migrations\201807201132494_AddedMigrationDateAndCRUD.resx">
       <DependentUpon>201807201132494_AddedMigrationDateAndCRUD.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201807201142488_AddedMigrationForeignKey.resx">
-      <DependentUpon>201807201142488_AddedMigrationForeignKey.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201807201220175_AddedMigrationForeignKey.resx">
+      <DependentUpon>201807201220175_AddedMigrationForeignKey.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

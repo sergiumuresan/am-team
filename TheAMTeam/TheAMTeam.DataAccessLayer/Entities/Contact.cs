@@ -19,7 +19,9 @@ namespace TheAMTeam.DataAccessLayer.Entities
         public string Phone { get; set; }
         public string UserMessage { get; set; }
         public DateTime MessageDate { get; set; }
-        
-        public Department DepartmentId { get; set; }
+
+        public int DepartmentId { get; set; }
+        [ForeignKey("DepartmentId")]
+        public Department Department { get; set; }
     }
 }

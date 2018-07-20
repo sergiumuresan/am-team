@@ -13,7 +13,7 @@ namespace TheAMTeam.DataAccessLayer.Migrations
         
         string IMigrationMetadata.Id
         {
-            get { return "201807201142488_AddedMigrationForeignKey"; }
+            get { return "201807201220175_AddedMigrationForeignKey"; }
         }
         
         string IMigrationMetadata.Source
