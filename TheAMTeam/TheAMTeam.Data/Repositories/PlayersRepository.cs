@@ -22,7 +22,7 @@ namespace TheAMTeam.Data.Repositories
             }
             catch (Exception ex)
             {
-                //todo exeption handling
+                Console.WriteLine(ex);
                 throw;
             }
 
@@ -91,6 +91,7 @@ namespace TheAMTeam.Data.Repositories
                         Player dbPlayer = context.Players.Find(id);
                         context.Players.Remove(dbPlayer);
                         context.SaveChanges();
+                        Console.WriteLine("Line {0} deleted!", id);
                         return true;
                     }
                     return false;

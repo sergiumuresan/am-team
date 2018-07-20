@@ -1,4 +1,6 @@
-﻿namespace TheAMTeam.App
+﻿using System;
+
+namespace TheAMTeam.App
 {
     internal class Program
     {
@@ -9,6 +11,7 @@
             //Add your code here
 
             TeodorDumitriu.MainTask.Execute();
+            Console.ReadKey();
         }
     }
 }
