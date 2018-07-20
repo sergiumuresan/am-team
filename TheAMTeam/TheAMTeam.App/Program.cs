@@ -7,7 +7,7 @@ namespace TheAMTeam.App
     {
         static void Main(string[] args)
         {
-            PaulGal.Contact.Execute();
+            PaulGal.ContactUs.Execute();
 
             //Add your code here
 

@@ -3,14 +3,15 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using TheAMTeam.Data;
-using TheAMTeam.Data.Repositories;
+using TheAMTeam.DataAccessLayer;
+using TheAMTeam.DataAccessLayer.Entities;
+using TheAMTeam.DataAccessLayer.Repositories;
 
 namespace TheAMTeam.App.PaulGal
 {
-    public class Contact
+    public class ContactUs
     {
-        private static readonly ContactUsRepository _contactUsRepository = new ContactUsRepository();
+        private static readonly ContactRepository _contactUsRepository = new ContactRepository();
 
         public static void Execute()
         {
@@ -20,6 +21,7 @@ namespace TheAMTeam.App.PaulGal
             int op = 0;
             do
             {
+                Console.WriteLine(">>");
                 op = System.Int32.Parse(System.Console.ReadLine());
 
                 switch (op)
@@ -27,7 +29,7 @@ namespace TheAMTeam.App.PaulGal
                     case 1:
                         //1.Get all the values from the chosen table
 
-                        foreach (ContactU c in _contactUsRepository.GetAll()) 
+                        foreach (Contact c in _contactUsRepository.GetAll()) 
                         {
                             PrintContactUs(c);
                         }
@@ -46,8 +48,8 @@ namespace TheAMTeam.App.PaulGal
                     case 4:
                         //4.Update the record with Id = 4
 
-                        ContactU contact = _contactUsRepository.GetById(4);
-                        contact.ContactName = "Dan";
+                        Contact contact = _contactUsRepository.GetById(4);
+                        contact.Name = "Dan";
 
                         _contactUsRepository.Update(contact);
                         break;
@@ -61,13 +63,13 @@ namespace TheAMTeam.App.PaulGal
 
         }
         
-        private static ContactU CreateContactUs()
+        private static Contact CreateContactUs()
         {
-            var contactUs = new ContactU
+            var contactUs = new Contact
             {
-                ContactName = "John",
+                Name = "John",
                 Email = "John@yahoo.com",
-                Phone = 725012542,
+                Phone = "0760601212",
                 UserMessage="Mesaj",
                 MessageDate=DateTime.Now
             };
@@ -75,16 +77,16 @@ namespace TheAMTeam.App.PaulGal
             return contactUs;
         }
         
-        private static ContactU SaveContactUs(ContactU contactUs)
+        private static Contact SaveContactUs(Contact contactUs)
         {
             var savedContactUs = _contactUsRepository.Add(contactUs);
 
             return savedContactUs;
         }
 
-        private static void PrintContactUs(ContactU contact)
+        private static void PrintContactUs(Contact contact)
         {
-            Console.WriteLine(contact.FormId + " " + contact.ContactName + " " + contact.Email);
+            Console.WriteLine(contact.Id + " " + contact.Name + " " + contact.Email);
         }
         
     }
