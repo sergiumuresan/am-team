@@ -54,18 +54,19 @@ namespace TheAMTeam.Data.Repositories
             try
             {
                 using (var context = new AMTeamEntities())
-                {
+                {                   
                     int id = newPlayer.PlayerId;
                     Player dbPlayer = context.Players.Find(id);
+
 
                     dbPlayer.BirthDate = newPlayer.BirthDate;
                     dbPlayer.Name = newPlayer.Name;
                     dbPlayer.NameAlias = newPlayer.NameAlias;
-                    dbPlayer.Nationality = newPlayer.Nationality;
+                    //dbPlayer.Nationality = newPlayer.Nationality;
                     dbPlayer.NationalityId = newPlayer.NationalityId;
                     dbPlayer.PlayerId = newPlayer.PlayerId;
-                    dbPlayer.Team = newPlayer.Team;
-                    dbPlayer.Team1 = newPlayer.Team1;
+                    //dbPlayer.Team = newPlayer.Team;
+                    //dbPlayer.Team1 = newPlayer.Team1;
                     dbPlayer.TshirtNO = newPlayer.TshirtNO;
 
                     context.SaveChanges();
@@ -94,6 +95,7 @@ namespace TheAMTeam.Data.Repositories
                         Console.WriteLine("Line {0} deleted!", id);
                         return true;
                     }
+                    Console.WriteLine("Line {0} already deleted!", id);
                     return false;
                 }
             }

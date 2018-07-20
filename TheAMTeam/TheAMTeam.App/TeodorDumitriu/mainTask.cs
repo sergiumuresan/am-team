@@ -15,18 +15,28 @@ namespace TheAMTeam.App.TeodorDumitriu
         {
             int[] i = { 1, 2, 3, 4, 5, 0 };
 
-            var player = new Player();
-            player.NationalityId = 1;
-            player.Name = "Teo";
-            
-            
+            var player = new Player
+            {
+                Name = "Teo",
+                NameAlias = "Teo",
+                Team = 2,
+                TshirtNO = 7,
+                NationalityId = 2
+                
+            };        
+                                 
 
             foreach (var item in i)
             {
                 if (item == 1) PrintAll();
                 else if (item == 2) GetAnyById(22);
-                //else if (item == 3) _playersRepository.Create(player);
-                //else if (item == 4) _playersRepository.Update(player);
+                else if (item == 3) _playersRepository.Create(player);
+                else if (item == 4)
+                {
+                    Player playerNew = _playersRepository.GetById(23);
+                    playerNew.Name = "Updated";
+                    _playersRepository.Update(playerNew);
+                }
                 else if (item == 5) _playersRepository.Delete(29);    
             }
         }
