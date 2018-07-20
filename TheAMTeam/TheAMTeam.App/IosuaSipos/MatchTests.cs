@@ -1,10 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using TheAMTeam.Data;
-using TheAMTeam.Data.Repositories;
+using TheAMTeam.DataAccessLayer.Repositories;
+using TheAMTeam.DataAccessLayer.Entities;
 
 namespace TheAMTeam.App.IosuaSipos
 {
@@ -32,7 +28,7 @@ namespace TheAMTeam.App.IosuaSipos
                 SecondTeamId = 2,
                 FirstTeamScore = 2,
                 SecondTeamScore = 1,
-                Match_date = DateTime.Now,
+                MatchDate = DateTime.Now,
                 CompId = 1
             };
 
@@ -55,7 +51,7 @@ namespace TheAMTeam.App.IosuaSipos
                         PrintMatch(_testMatchRepository.Add(match));
                         break;
                     case 4:
-                        match = _testMatchRepository.GetById(4);
+                        match = _testMatchRepository.GetById(2);
                         match.SecondTeamScore = 3;
                         //PrintMatch(_testMatchRepository.Update(match));
                         _testMatchRepository.Update(match);

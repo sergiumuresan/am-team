@@ -52,7 +52,7 @@
       <HintPath>..\TheAMTeam.Data\bin\Debug\TheAMTeam.Data.dll</HintPath>
     </Reference>
     <Reference Include="TheAMTeam.DataAccessLayer">
-      <HintPath>..\TheAMTeam.DataAccessLayer\bin\Debug\TheAMTeam.DataAccessLayer.dll</HintPath>
+      <HintPath>..\TheAMTeam.DataAccessLayer\obj\Debug\TheAMTeam.DataAccessLayer.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>

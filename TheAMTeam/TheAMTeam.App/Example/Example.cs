@@ -1,13 +1,13 @@
-﻿using TheAMTeam.DataAccessLayer.Entities;
-using TheAMTeam.DataAccessLayer.Repositories;
+﻿using TheAMTeam.Data;
+using TheAMTeam.Data.Repositories;
 
 namespace TheAMTeam.App.Example
 {
     public static class Example
     {
         private static readonly TestEntityRepository _testEntityRepository = new TestEntityRepository();
-        public static void Execute()
-        {
+            public static void Execute()
+            {
 
             var testEntity = CreateTestEntity();
             var savedTestEntity = SaveTestEntity(testEntity);

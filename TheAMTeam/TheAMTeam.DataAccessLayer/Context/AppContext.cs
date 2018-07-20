@@ -10,5 +10,10 @@ namespace TheAMTeam.DataAccessLayer.Context
         }
         public DbSet<TestEntity> TestEntities { get; set; }
 
+        public DbSet<Match> Matches { get; set; }
+        public DbSet<Team>  Teams { get; set; }
+
+        public DbSet<CompetitionType> CompetitionTypes { get; set; }
+
     }
 }
