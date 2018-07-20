@@ -1,5 +1,5 @@
-﻿using TheAMTeam.Data;
-using TheAMTeam.Data.Repositories;
+﻿using TheAMTeam.DataAccessLayer.Entities;
+using TheAMTeam.DataAccessLayer.Repositories;
 
 namespace TheAMTeam.App.Example
 {
