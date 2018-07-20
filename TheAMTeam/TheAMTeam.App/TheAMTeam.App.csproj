@@ -48,9 +48,6 @@
     <Reference Include="System.Data" />
     <Reference Include="System.Net.Http" />
     <Reference Include="System.Xml" />
-    <Reference Include="TheAMTeam.Data">
-      <HintPath>..\TheAMTeam.Data\bin\Debug\TheAMTeam.Data.dll</HintPath>
-    </Reference>
     <Reference Include="TheAMTeam.DataAccessLayer">
       <HintPath>..\TheAMTeam.DataAccessLayer\bin\Debug\TheAMTeam.DataAccessLayer.dll</HintPath>
     </Reference>

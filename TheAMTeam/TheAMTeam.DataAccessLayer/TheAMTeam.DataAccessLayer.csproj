@@ -49,13 +49,34 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Context\AppContext.cs" />
+    <Compile Include="Entities\Nationality.cs" />
+    <Compile Include="Entities\Player.cs" />
+    <Compile Include="Entities\Team.cs" />
+    <Compile Include="Entities\Test.cs" />
     <Compile Include="Entities\TestEntity.cs" />
     <Compile Include="Migrations\201807200703030_Initial.cs" />
     <Compile Include="Migrations\201807200703030_Initial.Designer.cs">
       <DependentUpon>201807200703030_Initial.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201807200908347_TestTeo.cs" />
+    <Compile Include="Migrations\201807200908347_TestTeo.Designer.cs">
+      <DependentUpon>201807200908347_TestTeo.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201807201211376_AllDone.cs" />
+    <Compile Include="Migrations\201807201211376_AllDone.Designer.cs">
+      <DependentUpon>201807201211376_AllDone.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201807201226526_AddedTeamMatchesNationalitiesWithForeignKeys.cs" />
+    <Compile Include="Migrations\201807201226526_AddedTeamMatchesNationalitiesWithForeignKeys.Designer.cs">
+      <DependentUpon>201807201226526_AddedTeamMatchesNationalitiesWithForeignKeys.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201807201235099_AddedTeamMatchesNationalitiesWithForeignKeysResolvedBugs.cs" />
+    <Compile Include="Migrations\201807201235099_AddedTeamMatchesNationalitiesWithForeignKeysResolvedBugs.Designer.cs">
+      <DependentUpon>201807201235099_AddedTeamMatchesNationalitiesWithForeignKeysResolvedBugs.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Repositories\PlayersRepository.cs" />
     <Compile Include="Repositories\TestEntityRepository.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -65,6 +86,18 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201807200703030_Initial.resx">
       <DependentUpon>201807200703030_Initial.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201807200908347_TestTeo.resx">
+      <DependentUpon>201807200908347_TestTeo.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201807201211376_AllDone.resx">
+      <DependentUpon>201807201211376_AllDone.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201807201226526_AddedTeamMatchesNationalitiesWithForeignKeys.resx">
+      <DependentUpon>201807201226526_AddedTeamMatchesNationalitiesWithForeignKeys.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201807201235099_AddedTeamMatchesNationalitiesWithForeignKeysResolvedBugs.resx">
+      <DependentUpon>201807201235099_AddedTeamMatchesNationalitiesWithForeignKeysResolvedBugs.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
