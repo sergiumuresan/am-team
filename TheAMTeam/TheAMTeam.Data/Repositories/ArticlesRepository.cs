@@ -35,7 +35,7 @@ namespace TheAMTeam.Data.Repositories
             {
                 using (var context = new AMTeamEntities())
                 {
-                    dbArticle = context.Articles.FirstOrDefault(c => c.ArticleId == Id);
+                    dbArticle = context.Articles.SingleOrDefault(c => c.ArticleId == Id);
                     context.SaveChanges();
                 }
             }
@@ -81,7 +81,8 @@ namespace TheAMTeam.Data.Repositories
                     dbArticle = context.Articles.FirstOrDefault(c => c.ArticleId == id);
                     context.Articles.Remove(dbArticle);
                     context.SaveChanges();
-                    
+
+                    return context.SaveChanges() > 0 ? true : false;
                 }
             }
             catch (Exception ex)
@@ -89,7 +90,7 @@ namespace TheAMTeam.Data.Repositories
                 Console.Write(ex);
                 throw;
             }
-            return dbArticle != null ? true : false;
+            
         }
 
         public List<Article> GetAll()

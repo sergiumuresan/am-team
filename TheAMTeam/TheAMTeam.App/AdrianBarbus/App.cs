@@ -10,8 +10,9 @@ namespace TheAMTeam.App.AdrianBarbus
 
         public static void PrintArticle(Article a)
         {
-            Console.WriteLine("ID:"+a.ArticleId+";  Author:"+a.Author);
+            Console.WriteLine($"ID:{a.ArticleId}  Author:{a.Author}");
         }
+        
 
         public static void Execute()
         {
@@ -54,7 +55,8 @@ namespace TheAMTeam.App.AdrianBarbus
                         }
                         break;
                     case 2:
-                        PrintArticle(articlesRepository.GetById(5));
+                        var entity = articlesRepository.GetById(5);
+                        PrintArticle(entity);
                         break;
                     case 3:
                         articlesRepository.Add(article);
