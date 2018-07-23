@@ -26,5 +26,10 @@ namespace TheAMTeam.Data
         }
     
         public virtual DbSet<TestEntity> TestEntities { get; set; }
+        public virtual DbSet<CompetitionType> CompetitionTypes { get; set; }
+        public virtual DbSet<Match> Matches { get; set; }
+        public virtual DbSet<Nationality> Nationalities { get; set; }
+        public virtual DbSet<Player> Players { get; set; }
+        public virtual DbSet<Team> Teams { get; set; }
     }
 }

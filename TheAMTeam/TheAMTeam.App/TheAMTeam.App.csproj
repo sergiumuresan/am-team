@@ -52,11 +52,12 @@
       <HintPath>..\TheAMTeam.Data\bin\Debug\TheAMTeam.Data.dll</HintPath>
     </Reference>
     <Reference Include="TheAMTeam.DataAccessLayer">
-      <HintPath>..\TheAMTeam.DataAccessLayer\bin\Debug\TheAMTeam.DataAccessLayer.dll</HintPath>
+      <HintPath>..\TheAMTeam.DataAccessLayer\obj\Debug\TheAMTeam.DataAccessLayer.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Example\Example.cs" />
+    <Compile Include="IosuaSipos\MatchTests.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -67,7 +68,6 @@
   <ItemGroup>
     <Folder Include="AdrianBarbus\" />
     <Folder Include="AlexLazarean\" />
-    <Folder Include="IosuaSipos\" />
     <Folder Include="PaulGal\" />
     <Folder Include="TeodorDumitriu\" />
   </ItemGroup>
