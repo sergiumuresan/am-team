@@ -37,7 +37,7 @@ namespace TheAMTeam.Data.Repositories
             {
                 using(var context = new AMTeamEntities())
                 {
-                    dbContactUs = context.ContactUs.FirstOrDefault(c => c.FormId == id);
+                    dbContactUs = context.ContactUs.SingleOrDefault(c => c.FormId == id);
                     context.SaveChanges();
                 }
             }
@@ -56,7 +56,7 @@ namespace TheAMTeam.Data.Repositories
             {
                 using(var context = new AMTeamEntities())
                 {
-                    dbContactUs = context.ContactUs.FirstOrDefault(c => c.FormId == contact.FormId);
+                    dbContactUs = context.ContactUs.SingleOrDefault(c => c.FormId == contact.FormId);
                     if(dbContactUs != null)
                     {
                         context.ContactUs.Attach(contact);
@@ -77,14 +77,15 @@ namespace TheAMTeam.Data.Repositories
         public bool Delete(int id)
         {
             ContactU dbContact;
+            int saved;
             try
             {
                 using(var context = new AMTeamEntities())
                 {
-                    dbContact = context.ContactUs.FirstOrDefault(c => c.FormId == id);
+                    dbContact = context.ContactUs.SingleOrDefault(c => c.FormId == id);
 
                     context.ContactUs.Remove(dbContact);
-                    context.SaveChanges();
+                    saved = context.SaveChanges();
                     
                 }
             }catch(Exception ex)
@@ -92,7 +93,7 @@ namespace TheAMTeam.Data.Repositories
                 Console.Write(ex);
                 throw;
             }
-            return dbContact != null ? true : false;
+            return saved == 1 ? true : false;
         }
         public List<ContactU> GetAll()
         {

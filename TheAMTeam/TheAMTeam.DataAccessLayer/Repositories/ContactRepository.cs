@@ -40,7 +40,7 @@ namespace TheAMTeam.DataAccessLayer.Repositories
             {
                 using (var context = new AppContext())
                 {
-                    dbContactUs = context.Contacts.FirstOrDefault(c => c.Id == id);
+                    dbContactUs = context.Contacts.SingleOrDefault(c => c.Id == id);
                     context.SaveChanges();
                 }
             }
@@ -59,7 +59,7 @@ namespace TheAMTeam.DataAccessLayer.Repositories
             {
                 using (var context = new AppContext())
                 {
-                    dbContactUs = context.Contacts.FirstOrDefault(c => c.Id == contact.Id);
+                    dbContactUs = context.Contacts.SingleOrDefault(c => c.Id == contact.Id);
                     if (dbContactUs != null)
                     {
                         //context.Contacts.Attach(contact);
@@ -90,7 +90,7 @@ namespace TheAMTeam.DataAccessLayer.Repositories
             {
                 using (var context = new AppContext())
                 {
-                    dbContact = context.Contacts.FirstOrDefault(c => c.Id == id);
+                    dbContact = context.Contacts.SingleOrDefault(c => c.Id == id);
 
                     context.Contacts.Remove(dbContact);
                     context.SaveChanges();

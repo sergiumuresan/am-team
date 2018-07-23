@@ -15,8 +15,6 @@ namespace TheAMTeam.App.PaulGal
 
         public static void Execute()
         {
-            //var contactU = CreateContactUs();
-            //var savedContactU = SaveContactUs(contactU);
             
             int op = 0;
             do
@@ -36,8 +34,8 @@ namespace TheAMTeam.App.PaulGal
                         break;
                     case 2:
                         //2.Get only the record with Id = 2
-                        
-                        PrintContactUs(_contactUsRepository.GetById(2));
+                        var entity = _contactUsRepository.GetById(2);
+                        PrintContactUs(entity);
 
                         break;
                     case 3:
@@ -71,7 +69,8 @@ namespace TheAMTeam.App.PaulGal
                 Email = "John@yahoo.com",
                 Phone = "0760601212",
                 UserMessage="Mesaj",
-                MessageDate=DateTime.Now
+                MessageDate=DateTime.Now,
+                DepartmentId = 3
             };
 
             return contactUs;
@@ -86,7 +85,7 @@ namespace TheAMTeam.App.PaulGal
 
         private static void PrintContactUs(Contact contact)
         {
-            Console.WriteLine(contact.Id + " " + contact.Name + " " + contact.Email);
+            Console.WriteLine($"{contact.Id} {contact.Name} {contact.Email}");
         }
         
     }
