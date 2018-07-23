@@ -10,5 +10,9 @@ namespace TheAMTeam.DataAccessLayer.Context
         }
         public DbSet<TestEntity> TestEntities { get; set; }
 
+        public DbSet<Contact> Contacts { get; set; }
+
+        public DbSet<Department> Departments { get; set; }
+
     }
 }
