@@ -6,7 +6,8 @@
         {
             Example.Example.Execute();
 
-            //Add your code here
+            AdrianBarbus.App.Execute();
+            
         }
     }
 }

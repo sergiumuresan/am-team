@@ -5,6 +5,25 @@
     <!-- SSDL content -->
     <edmx:StorageModels>
     <Schema Namespace="AMTeamModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Articles">
+          <Key>
+            <PropertyRef Name="ArticleId" />
+          </Key>
+          <Property Name="ArticleId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Title" Type="varchar" MaxLength="15" Nullable="false" />
+          <Property Name="Author" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="PublishedDate" Type="date" Nullable="false" />
+          <Property Name="Content" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="ImageURL" Type="varchar" MaxLength="200" />
+          <Property Name="Category" Type="int" />
+        </EntityType>
+        <EntityType Name="Categories">
+          <Key>
+            <PropertyRef Name="CategoryId" />
+          </Key>
+          <Property Name="CategoryId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="15" />
+        </EntityType>
         <EntityType Name="TestEntities">
           <Key>
             <PropertyRef Name="Id" />
@@ -12,8 +31,26 @@
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Message" Type="varchar(max)" />
         </EntityType>
+        <Association Name="Category">
+          <End Role="Categories" Type="Self.Categories" Multiplicity="0..1" />
+          <End Role="Articles" Type="Self.Articles" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Categories">
+              <PropertyRef Name="CategoryId" />
+            </Principal>
+            <Dependent Role="Articles">
+              <PropertyRef Name="Category" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <EntityContainer Name="AMTeamModelStoreContainer">
+          <EntitySet Name="Articles" EntityType="Self.Articles" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Categories" EntityType="Self.Categories" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TestEntities" EntityType="Self.TestEntities" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="Category" Association="Self.Category">
+            <End Role="Categories" EntitySet="Categories" />
+            <End Role="Articles" EntitySet="Articles" />
+          </AssociationSet>
         </EntityContainer>
       </Schema></edmx:StorageModels>
     <!-- CSDL content -->
@@ -21,7 +58,13 @@
       <Schema Namespace="AMTeamModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
         <EntityContainer Name="AMTeamEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="TestEntities" EntityType="AMTeamModel.TestEntity" />
-        </EntityContainer>
+          <EntitySet Name="Articles" EntityType="AMTeamModel.Article" />
+          <EntitySet Name="Categories" EntityType="AMTeamModel.Category" />
+          <AssociationSet Name="Category1" Association="AMTeamModel.Category1">
+            <End Role="Category" EntitySet="Categories" />
+            <End Role="Article" EntitySet="Articles" />
+          </AssociationSet>
+          </EntityContainer>
         <EntityType Name="TestEntity">
           <Key>
             <PropertyRef Name="Id" />
@@ -29,7 +72,40 @@
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Message" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
         </EntityType>
-      </Schema>
+        <EntityType Name="Article">
+          <Key>
+            <PropertyRef Name="ArticleId" />
+          </Key>
+          <Property Name="ArticleId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Title" Type="String" Nullable="false" MaxLength="15" FixedLength="false" Unicode="false" />
+          <Property Name="Author" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="PublishedDate" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="Content" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="ImageURL" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="Category" Type="Int32" />
+          <NavigationProperty Name="Category1" Relationship="AMTeamModel.Category1" FromRole="Article" ToRole="Category" />
+        </EntityType>
+        <EntityType Name="Category">
+          <Key>
+            <PropertyRef Name="CategoryId" />
+          </Key>
+          <Property Name="CategoryId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Articles" Relationship="AMTeamModel.Category1" FromRole="Category" ToRole="Article" />
+        </EntityType>
+        <Association Name="Category1">
+          <End Type="AMTeamModel.Category" Role="Category" Multiplicity="0..1" />
+          <End Type="AMTeamModel.Article" Role="Article" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Category">
+              <PropertyRef Name="CategoryId" />
+            </Principal>
+            <Dependent Role="Article">
+              <PropertyRef Name="Category" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
@@ -43,7 +119,28 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-        </EntityContainerMapping>
+          <EntitySetMapping Name="Articles">
+            <EntityTypeMapping TypeName="AMTeamModel.Article">
+              <MappingFragment StoreEntitySet="Articles">
+                <ScalarProperty Name="Category" ColumnName="Category" />
+                <ScalarProperty Name="ImageURL" ColumnName="ImageURL" />
+                <ScalarProperty Name="Content" ColumnName="Content" />
+                <ScalarProperty Name="PublishedDate" ColumnName="PublishedDate" />
+                <ScalarProperty Name="Author" ColumnName="Author" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="ArticleId" ColumnName="ArticleId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Categories">
+            <EntityTypeMapping TypeName="AMTeamModel.Category">
+              <MappingFragment StoreEntitySet="Categories">
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="CategoryId" ColumnName="CategoryId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
   </edmx:Runtime>
