@@ -26,7 +26,5 @@ namespace TheAMTeam.Data
         }
     
         public virtual DbSet<TestEntity> TestEntities { get; set; }
-        public virtual DbSet<ContactU> ContactUs { get; set; }
-        public virtual DbSet<Department> Departments { get; set; }
     }
 }

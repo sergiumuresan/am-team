@@ -1,19 +1,12 @@
-﻿using TheAMTeam.Data;
-using TheAMTeam.Data.Repositories;
-
-namespace TheAMTeam.App
+﻿namespace TheAMTeam.App
 {
     internal class Program
     {
         static void Main(string[] args)
         {
-            PaulGal.ContactUs.Execute();
+            Example.Example.Execute();
 
             //Add your code here
-
-
         }
-
-        
     }
 }

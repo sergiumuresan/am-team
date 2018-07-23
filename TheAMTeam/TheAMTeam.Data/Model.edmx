@@ -5,25 +5,6 @@
     <!-- SSDL content -->
     <edmx:StorageModels>
     <Schema Namespace="AMTeamModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
-        <EntityType Name="ContactUs">
-          <Key>
-            <PropertyRef Name="FormId" />
-          </Key>
-          <Property Name="FormId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="ContactName" Type="varchar" MaxLength="30" Nullable="false" />
-          <Property Name="Email" Type="varchar" MaxLength="30" Nullable="false" />
-          <Property Name="Phone" Type="int" Nullable="false" />
-          <Property Name="UserMessage" Type="varchar" MaxLength="200" Nullable="false" />
-          <Property Name="MessageDate" Type="date" Nullable="false" />
-          <Property Name="DepartmentId" Type="int" />
-        </EntityType>
-        <EntityType Name="Department">
-          <Key>
-            <PropertyRef Name="DepartmentId" />
-          </Key>
-          <Property Name="DepartmentId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="Name" Type="varchar" MaxLength="20" Nullable="false" />
-        </EntityType>
         <EntityType Name="TestEntities">
           <Key>
             <PropertyRef Name="Id" />
@@ -31,26 +12,8 @@
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Message" Type="varchar(max)" />
         </EntityType>
-        <Association Name="FK_DepartmentId">
-          <End Role="Department" Type="Self.Department" Multiplicity="0..1" />
-          <End Role="ContactUs" Type="Self.ContactUs" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Department">
-              <PropertyRef Name="DepartmentId" />
-            </Principal>
-            <Dependent Role="ContactUs">
-              <PropertyRef Name="DepartmentId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <EntityContainer Name="AMTeamModelStoreContainer">
-          <EntitySet Name="ContactUs" EntityType="Self.ContactUs" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="Department" EntityType="Self.Department" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TestEntities" EntityType="Self.TestEntities" Schema="dbo" store:Type="Tables" />
-          <AssociationSet Name="FK_DepartmentId" Association="Self.FK_DepartmentId">
-            <End Role="Department" EntitySet="Department" />
-            <End Role="ContactUs" EntitySet="ContactUs" />
-          </AssociationSet>
         </EntityContainer>
       </Schema></edmx:StorageModels>
     <!-- CSDL content -->
@@ -58,12 +21,6 @@
       <Schema Namespace="AMTeamModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
         <EntityContainer Name="AMTeamEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="TestEntities" EntityType="AMTeamModel.TestEntity" />
-          <EntitySet Name="ContactUs" EntityType="AMTeamModel.ContactU" />
-          <EntitySet Name="Departments" EntityType="AMTeamModel.Department" />
-          <AssociationSet Name="FK_DepartmentId" Association="AMTeamModel.FK_DepartmentId">
-            <End Role="Department" EntitySet="Departments" />
-            <End Role="ContactU" EntitySet="ContactUs" />
-          </AssociationSet>
         </EntityContainer>
         <EntityType Name="TestEntity">
           <Key>
@@ -72,39 +29,6 @@
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Message" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
         </EntityType>
-        <EntityType Name="ContactU">
-          <Key>
-            <PropertyRef Name="FormId" />
-          </Key>
-          <Property Name="FormId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="ContactName" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="false" />
-          <Property Name="Email" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="false" />
-          <Property Name="Phone" Type="Int32" Nullable="false" />
-          <Property Name="UserMessage" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
-          <Property Name="MessageDate" Type="DateTime" Nullable="false" Precision="0" />
-          <Property Name="DepartmentId" Type="Int32" />
-          <NavigationProperty Name="Department" Relationship="AMTeamModel.FK_DepartmentId" FromRole="ContactU" ToRole="Department" />
-        </EntityType>
-        <EntityType Name="Department">
-          <Key>
-            <PropertyRef Name="DepartmentId" />
-          </Key>
-          <Property Name="DepartmentId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Name" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="ContactUs" Relationship="AMTeamModel.FK_DepartmentId" FromRole="Department" ToRole="ContactU" />
-        </EntityType>
-        <Association Name="FK_DepartmentId">
-          <End Type="AMTeamModel.Department" Role="Department" Multiplicity="0..1" />
-          <End Type="AMTeamModel.ContactU" Role="ContactU" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Department">
-              <PropertyRef Name="DepartmentId" />
-            </Principal>
-            <Dependent Role="ContactU">
-              <PropertyRef Name="DepartmentId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -116,27 +40,6 @@
               <MappingFragment StoreEntitySet="TestEntities">
                 <ScalarProperty Name="Message" ColumnName="Message" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="ContactUs">
-            <EntityTypeMapping TypeName="AMTeamModel.ContactU">
-              <MappingFragment StoreEntitySet="ContactUs">
-                <ScalarProperty Name="DepartmentId" ColumnName="DepartmentId" />
-                <ScalarProperty Name="MessageDate" ColumnName="MessageDate" />
-                <ScalarProperty Name="UserMessage" ColumnName="UserMessage" />
-                <ScalarProperty Name="Phone" ColumnName="Phone" />
-                <ScalarProperty Name="Email" ColumnName="Email" />
-                <ScalarProperty Name="ContactName" ColumnName="ContactName" />
-                <ScalarProperty Name="FormId" ColumnName="FormId" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Departments">
-            <EntityTypeMapping TypeName="AMTeamModel.Department">
-              <MappingFragment StoreEntitySet="Department">
-                <ScalarProperty Name="Name" ColumnName="Name" />
-                <ScalarProperty Name="DepartmentId" ColumnName="DepartmentId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

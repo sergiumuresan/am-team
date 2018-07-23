@@ -20,7 +20,6 @@ namespace TheAMTeam.DataAccessLayer.Repositories
             }
             catch (Exception ex)
             {
-                Console.Write(ex);
                 //todo exeption handling
                 throw;
             }

@@ -13,11 +13,11 @@ namespace TheAMTeam.DataAccessLayer.Migrations
 
         protected override void Seed(AppContext context)
         {
-            //context.TestEntities.AddOrUpdate(
-            //    new TestEntity
-            //    {
-            //        Message = "Welcome! This is a test entry. Good luck!"
-            //    });
+            context.TestEntities.AddOrUpdate(
+                new TestEntity
+                {
+                    Message = "Welcome! This is a test entry. Good luck!"
+                });
         }
     }
 }

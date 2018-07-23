@@ -6,9 +6,6 @@
     <edmx:Diagrams>
       <Diagram DiagramId="4150d8758f644bc894f9a95ba661264b" Name="Diagram1">
         <EntityTypeShape EntityType="AMTeamModel.TestEntity" Width="1.5" PointX="0.75" PointY="0.75" />
-        <EntityTypeShape EntityType="AMTeamModel.ContactU" Width="1.5" PointX="6" PointY="0.75" />
-        <EntityTypeShape EntityType="AMTeamModel.Department" Width="1.5" PointX="3.375" PointY="1" />
-        <AssociationConnector Association="AMTeamModel.FK_DepartmentId" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
