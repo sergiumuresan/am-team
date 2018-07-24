@@ -8,6 +8,7 @@
 
             AdrianBarbus.App.Execute();
             IosuaSipos.MatchTests.Execute();
+            AlexLazarean.TeamExecute.Execute();   
         }
     }
 }

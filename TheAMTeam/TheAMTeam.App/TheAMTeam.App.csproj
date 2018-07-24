@@ -58,16 +58,21 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AdrianBarbus\App.cs" />
+    <Compile Include="AlexLazarean\TeamExecute.cs" />
     <Compile Include="Example\Example.cs" />
     <Compile Include="IosuaSipos\MatchTests.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="App.config" />
+    <None Include="App.config">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="AdrianBarbus\" />
+    <Folder Include="IosuaSipos\" />
     <Folder Include="AlexLazarean\" />
     <Folder Include="PaulGal\" />
     <Folder Include="TeodorDumitriu\" />
