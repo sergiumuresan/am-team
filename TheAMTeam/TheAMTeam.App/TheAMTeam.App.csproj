@@ -63,6 +63,7 @@
     <Compile Include="IosuaSipos\MatchTests.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="TeodorDumitriu\MainTask.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config">
@@ -75,7 +76,12 @@
     <Folder Include="IosuaSipos\" />
     <Folder Include="AlexLazarean\" />
     <Folder Include="PaulGal\" />
-    <Folder Include="TeodorDumitriu\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\TheAMTeam.Data\TheAMTeam.Data.csproj">
+      <Project>{3ab6e127-e363-423f-b289-8363ef343e19}</Project>
+      <Name>TheAMTeam.Data</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

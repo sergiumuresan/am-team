@@ -158,6 +158,12 @@
           <EntitySet Name="Teams" EntityType="Self.Teams" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Articles" EntityType="Self.Articles" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Categories" EntityType="Self.Categories" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CompetitionType" EntityType="Self.CompetitionType" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Department" EntityType="Self.Department" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Matches" EntityType="Self.Matches" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Nationality" EntityType="Self.Nationality" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Players" EntityType="Self.Players" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Teams" EntityType="Self.Teams" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TestEntities" EntityType="Self.TestEntities" Schema="dbo" store:Type="Tables" />
           <AssociationSet Name="CompId" Association="Self.CompId">
             <End Role="CompetitionType" EntitySet="CompetitionType" />
@@ -182,6 +188,26 @@
           <AssociationSet Name="Category" Association="Self.Category">
             <End Role="Categories" EntitySet="Categories" />
             <End Role="Articles" EntitySet="Articles" />
+          </AssociationSet>
+          <AssociationSet Name="CompId" Association="Self.CompId">
+            <End Role="CompetitionType" EntitySet="CompetitionType" />
+            <End Role="Matches" EntitySet="Matches" />
+          </AssociationSet>
+          <AssociationSet Name="FirstTeamId" Association="Self.FirstTeamId">
+            <End Role="Teams" EntitySet="Teams" />
+            <End Role="Matches" EntitySet="Matches" />
+          </AssociationSet>
+          <AssociationSet Name="NationalityId" Association="Self.NationalityId">
+            <End Role="Nationality" EntitySet="Nationality" />
+            <End Role="Players" EntitySet="Players" />
+          </AssociationSet>
+          <AssociationSet Name="SecondTeamId" Association="Self.SecondTeamId">
+            <End Role="Teams" EntitySet="Teams" />
+            <End Role="Matches" EntitySet="Matches" />
+          </AssociationSet>
+          <AssociationSet Name="Team" Association="Self.Team">
+            <End Role="Teams" EntitySet="Teams" />
+            <End Role="Players" EntitySet="Players" />
           </AssociationSet>
         </EntityContainer>
       </Schema></edmx:StorageModels>
@@ -223,6 +249,33 @@
             <End Role="Article" EntitySet="Articles" />
           </AssociationSet>
           </EntityContainer>
+          <EntitySet Name="CompetitionTypes" EntityType="AMTeamModel.CompetitionType" />
+          <EntitySet Name="Departments" EntityType="AMTeamModel.Department" />
+          <EntitySet Name="Matches" EntityType="AMTeamModel.Match" />
+          <EntitySet Name="Nationalities" EntityType="AMTeamModel.Nationality" />
+          <EntitySet Name="Players" EntityType="AMTeamModel.Player" />
+          <EntitySet Name="Teams" EntityType="AMTeamModel.Team" />
+          <AssociationSet Name="CompId" Association="AMTeamModel.CompId">
+            <End Role="CompetitionType" EntitySet="CompetitionTypes" />
+            <End Role="Match" EntitySet="Matches" />
+          </AssociationSet>
+          <AssociationSet Name="FirstTeamId" Association="AMTeamModel.FirstTeamId">
+            <End Role="Team" EntitySet="Teams" />
+            <End Role="Match" EntitySet="Matches" />
+          </AssociationSet>
+          <AssociationSet Name="SecondTeamId" Association="AMTeamModel.SecondTeamId">
+            <End Role="Team" EntitySet="Teams" />
+            <End Role="Match" EntitySet="Matches" />
+          </AssociationSet>
+          <AssociationSet Name="NationalityId" Association="AMTeamModel.NationalityId">
+            <End Role="Nationality" EntitySet="Nationalities" />
+            <End Role="Player" EntitySet="Players" />
+          </AssociationSet>
+          <AssociationSet Name="Team1" Association="AMTeamModel.Team1">
+            <End Role="Team" EntitySet="Teams" />
+            <End Role="Player" EntitySet="Players" />
+          </AssociationSet>
+        </EntityContainer>
         <EntityType Name="TestEntity">
           <Key>
             <PropertyRef Name="Id" />
@@ -237,6 +290,130 @@
           <Property Name="CompetitionId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Name" Type="String" Nullable="false" MaxLength="15" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="Matches" Relationship="AMTeamModel.CompId" FromRole="CompetitionType" ToRole="Match" />
+        </EntityType>
+        <EntityType Name="Match">
+          <Key>
+            <PropertyRef Name="MatchesId" />
+          </Key>
+          <Property Name="MatchesId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FirstTeamId" Type="Int32" />
+          <Property Name="SecondTeamId" Type="Int32" />
+          <Property Name="FirstTeamScore" Type="Int32" Nullable="false" />
+          <Property Name="SecondTeamScore" Type="Int32" Nullable="false" />
+          <Property Name="Match_date" Type="DateTime" Precision="0" />
+          <Property Name="CompId" Type="Int32" />
+          <NavigationProperty Name="CompetitionType" Relationship="AMTeamModel.CompId" FromRole="Match" ToRole="CompetitionType" />
+          <NavigationProperty Name="Team" Relationship="AMTeamModel.FirstTeamId" FromRole="Match" ToRole="Team" />
+          <NavigationProperty Name="Team1" Relationship="AMTeamModel.SecondTeamId" FromRole="Match" ToRole="Team" />
+        </EntityType>
+        <EntityType Name="Nationality">
+          <Key>
+            <PropertyRef Name="NationalityId" />
+          </Key>
+          <Property Name="NationalityId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Players" Relationship="AMTeamModel.NationalityId" FromRole="Nationality" ToRole="Player" />
+        </EntityType>
+        <EntityType Name="Player">
+          <Key>
+            <PropertyRef Name="PlayerId" />
+          </Key>
+          <Property Name="PlayerId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="Team" Type="Int32" Nullable="false" />
+          <Property Name="TshirtNO" Type="Int32" Nullable="false" />
+          <Property Name="BirthDate" Type="DateTime" Precision="0" />
+          <Property Name="NameAlias" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="NationalityId" Type="Int32" />
+          <NavigationProperty Name="Nationality" Relationship="AMTeamModel.NationalityId" FromRole="Player" ToRole="Nationality" />
+          <NavigationProperty Name="Team1" Relationship="AMTeamModel.Team1" FromRole="Player" ToRole="Team" />
+        </EntityType>
+        <EntityType Name="Team">
+          <Key>
+            <PropertyRef Name="TeamId" />
+          </Key>
+          <Property Name="TeamId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="15" FixedLength="false" Unicode="false" />
+          <Property Name="City" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+          <Property Name="Coach" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Matches" Relationship="AMTeamModel.FirstTeamId" FromRole="Team" ToRole="Match" />
+          <NavigationProperty Name="Matches1" Relationship="AMTeamModel.SecondTeamId" FromRole="Team" ToRole="Match" />
+          <NavigationProperty Name="Players" Relationship="AMTeamModel.Team1" FromRole="Team" ToRole="Player" />
+        </EntityType>
+        <Association Name="CompId">
+          <End Type="AMTeamModel.CompetitionType" Role="CompetitionType" Multiplicity="0..1" />
+          <End Type="AMTeamModel.Match" Role="Match" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CompetitionType">
+              <PropertyRef Name="CompetitionId" />
+            </Principal>
+            <Dependent Role="Match">
+              <PropertyRef Name="CompId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FirstTeamId">
+          <End Type="AMTeamModel.Team" Role="Team" Multiplicity="0..1" />
+          <End Type="AMTeamModel.Match" Role="Match" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Team">
+              <PropertyRef Name="TeamId" />
+            </Principal>
+            <Dependent Role="Match">
+              <PropertyRef Name="FirstTeamId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="SecondTeamId">
+          <End Type="AMTeamModel.Team" Role="Team" Multiplicity="0..1" />
+          <End Type="AMTeamModel.Match" Role="Match" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Team">
+              <PropertyRef Name="TeamId" />
+            </Principal>
+            <Dependent Role="Match">
+              <PropertyRef Name="SecondTeamId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="NationalityId">
+          <End Type="AMTeamModel.Nationality" Role="Nationality" Multiplicity="0..1" />
+          <End Type="AMTeamModel.Player" Role="Player" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Nationality">
+              <PropertyRef Name="NationalityId" />
+            </Principal>
+            <Dependent Role="Player">
+              <PropertyRef Name="NationalityId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Team1">
+          <End Type="AMTeamModel.Team" Role="Team" Multiplicity="1" />
+          <End Type="AMTeamModel.Player" Role="Player" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Team">
+              <PropertyRef Name="TeamId" />
+            </Principal>
+            <Dependent Role="Player">
+              <PropertyRef Name="Team" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="CompetitionType">
+          <Key>
+            <PropertyRef Name="CompetitionId" />
+          </Key>
+          <Property Name="CompetitionId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="15" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Matches" Relationship="AMTeamModel.CompId" FromRole="CompetitionType" ToRole="Match" />
+        </EntityType>
+        <EntityType Name="Department">
+          <Key>
+            <PropertyRef Name="DepartmentId" />
+          </Key>
+          <Property Name="DepartmentId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="Match">
           <Key>
@@ -470,6 +647,67 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           </EntityContainerMapping>
+          <EntitySetMapping Name="CompetitionTypes">
+            <EntityTypeMapping TypeName="AMTeamModel.CompetitionType">
+              <MappingFragment StoreEntitySet="CompetitionType">
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="CompetitionId" ColumnName="CompetitionId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Departments">
+            <EntityTypeMapping TypeName="AMTeamModel.Department">
+              <MappingFragment StoreEntitySet="Department">
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="DepartmentId" ColumnName="DepartmentId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Matches">
+            <EntityTypeMapping TypeName="AMTeamModel.Match">
+              <MappingFragment StoreEntitySet="Matches">
+                <ScalarProperty Name="CompId" ColumnName="CompId" />
+                <ScalarProperty Name="Match_date" ColumnName="Match_date" />
+                <ScalarProperty Name="SecondTeamScore" ColumnName="SecondTeamScore" />
+                <ScalarProperty Name="FirstTeamScore" ColumnName="FirstTeamScore" />
+                <ScalarProperty Name="SecondTeamId" ColumnName="SecondTeamId" />
+                <ScalarProperty Name="FirstTeamId" ColumnName="FirstTeamId" />
+                <ScalarProperty Name="MatchesId" ColumnName="MatchesId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Nationalities">
+            <EntityTypeMapping TypeName="AMTeamModel.Nationality">
+              <MappingFragment StoreEntitySet="Nationality">
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="NationalityId" ColumnName="NationalityId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Players">
+            <EntityTypeMapping TypeName="AMTeamModel.Player">
+              <MappingFragment StoreEntitySet="Players">
+                <ScalarProperty Name="NationalityId" ColumnName="NationalityId" />
+                <ScalarProperty Name="NameAlias" ColumnName="NameAlias" />
+                <ScalarProperty Name="BirthDate" ColumnName="BirthDate" />
+                <ScalarProperty Name="TshirtNO" ColumnName="TshirtNO" />
+                <ScalarProperty Name="Team" ColumnName="Team" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="PlayerId" ColumnName="PlayerId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Teams">
+            <EntityTypeMapping TypeName="AMTeamModel.Team">
+              <MappingFragment StoreEntitySet="Teams">
+                <ScalarProperty Name="Coach" ColumnName="Coach" />
+                <ScalarProperty Name="City" ColumnName="City" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="TeamId" ColumnName="TeamId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
   </edmx:Runtime>

@@ -1,4 +1,6 @@
-﻿namespace TheAMTeam.App
+﻿using System;
+
+namespace TheAMTeam.App
 {
     internal class Program
     {
@@ -9,6 +11,10 @@
             AdrianBarbus.App.Execute();
             IosuaSipos.MatchTests.Execute();
             AlexLazarean.TeamExecute.Execute();   
+            //Add your code here
+
+            TeodorDumitriu.MainTask.Execute();
+            Console.ReadKey();
         }
     }
 }

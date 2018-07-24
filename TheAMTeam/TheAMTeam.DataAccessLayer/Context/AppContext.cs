@@ -18,5 +18,7 @@ namespace TheAMTeam.DataAccessLayer.Context
         public DbSet<Category> Categories { get; set; }
         public DbSet<Article> Articles { get; set; }
         public DbSet<Players> Players { get; set; }
+
+        public DbSet<Nationality> Nationality { get; set; }
     }
 }

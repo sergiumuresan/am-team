@@ -61,6 +61,12 @@
     <Compile Include="Category.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
+    <Compile Include="CompetitionType.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Department.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
     <Compile Include="Model.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -86,6 +92,7 @@
     <Compile Include="Repositories\MatchRepository.cs" />
     <Compile Include="Repositories\ArticlesRepository.cs" />
     <Compile Include="Repositories\TeamRepository.cs" />
+    <Compile Include="Repositories\PlayersRepository.cs" />
     <Compile Include="Repositories\TestEntityRepository.cs" />
     <Compile Include="Team.cs">
       <DependentUpon>Model.tt</DependentUpon>
