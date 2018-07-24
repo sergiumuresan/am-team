@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using TheAMTeam.DataAccessLayer.Entities;
 using AppContext = TheAMTeam.DataAccessLayer.Context.AppContext;
 
@@ -25,6 +27,17 @@ namespace TheAMTeam.DataAccessLayer.Repositories
             }
 
             return dbTestEntity;
+        }
+
+        public List<TestEntity> GetAll()
+        {
+
+            using (var context = new AppContext())
+            {
+                var result = context.TestEntities.ToList();
+                return result;
+            }
+
         }
     }
 }
