@@ -7,13 +7,13 @@ namespace TheAMTeam.DataAccessLayer.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.2.0-61023")]
-    public sealed partial class CreateTableTeamMatchPlayers : IMigrationMetadata
+    public sealed partial class CreateAllTablesAfterMerge : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(CreateTableTeamMatchPlayers));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(CreateAllTablesAfterMerge));
         
         string IMigrationMetadata.Id
         {
-            get { return "201807201314079_CreateTableTeamMatchPlayers"; }
+            get { return "201807240638284_CreateAllTablesAfterMerge"; }
         }
         
         string IMigrationMetadata.Source

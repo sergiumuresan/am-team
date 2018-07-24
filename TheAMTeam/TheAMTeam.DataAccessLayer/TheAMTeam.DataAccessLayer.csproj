@@ -54,7 +54,6 @@
     <Compile Include="Entities\Player.cs" />
     <Compile Include="Entities\Article.cs" />
     <Compile Include="Entities\Category.cs" />
-    <Compile Include="Entities\keyAttribute.cs" />
     <Compile Include="Entities\Nationality.cs" />
     <Compile Include="Entities\Team.cs" />
     <Compile Include="Entities\TestEntity.cs" />
@@ -62,29 +61,9 @@
     <Compile Include="Migrations\201807200703030_Initial.Designer.cs">
       <DependentUpon>201807200703030_Initial.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201807201338008_CreateTablesMatchTeamCompetitionType.cs" />
-    <Compile Include="Migrations\201807201338008_CreateTablesMatchTeamCompetitionType.Designer.cs">
-      <DependentUpon>201807201338008_CreateTablesMatchTeamCompetitionType.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201807201224007_CreatedTablesArticleAndCategory.cs" />
-    <Compile Include="Migrations\201807201224007_CreatedTablesArticleAndCategory.Designer.cs">
-      <DependentUpon>201807201224007_CreatedTablesArticleAndCategory.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201807201314079_CreateTableTeamMatchPlayers.cs" />
-    <Compile Include="Migrations\201807201314079_CreateTableTeamMatchPlayers.Designer.cs">
-      <DependentUpon>201807201314079_CreateTableTeamMatchPlayers.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201807201211376_AllDone.cs" />
-    <Compile Include="Migrations\201807201211376_AllDone.Designer.cs">
-      <DependentUpon>201807201211376_AllDone.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201807201226526_AddedTeamMatchesNationalitiesWithForeignKeys.cs" />
-    <Compile Include="Migrations\201807201226526_AddedTeamMatchesNationalitiesWithForeignKeys.Designer.cs">
-      <DependentUpon>201807201226526_AddedTeamMatchesNationalitiesWithForeignKeys.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201807201235099_AddedTeamMatchesNationalitiesWithForeignKeysResolvedBugs.cs" />
-    <Compile Include="Migrations\201807201235099_AddedTeamMatchesNationalitiesWithForeignKeysResolvedBugs.Designer.cs">
-      <DependentUpon>201807201235099_AddedTeamMatchesNationalitiesWithForeignKeysResolvedBugs.cs</DependentUpon>
+    <Compile Include="Migrations\201807240638284_CreateAllTablesAfterMerge.cs" />
+    <Compile Include="Migrations\201807240638284_CreateAllTablesAfterMerge.Designer.cs">
+      <DependentUpon>201807240638284_CreateAllTablesAfterMerge.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -102,23 +81,8 @@
     <EmbeddedResource Include="Migrations\201807200703030_Initial.resx">
       <DependentUpon>201807200703030_Initial.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201807201338008_CreateTablesMatchTeamCompetitionType.resx">
-      <DependentUpon>201807201338008_CreateTablesMatchTeamCompetitionType.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201807201224007_CreatedTablesArticleAndCategory.resx">
-      <DependentUpon>201807201224007_CreatedTablesArticleAndCategory.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201807201314079_CreateTableTeamMatchPlayers.resx">
-      <DependentUpon>201807201314079_CreateTableTeamMatchPlayers.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201807201211376_AllDone.resx">
-      <DependentUpon>201807201211376_AllDone.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201807201226526_AddedTeamMatchesNationalitiesWithForeignKeys.resx">
-      <DependentUpon>201807201226526_AddedTeamMatchesNationalitiesWithForeignKeys.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201807201235099_AddedTeamMatchesNationalitiesWithForeignKeysResolvedBugs.resx">
-      <DependentUpon>201807201235099_AddedTeamMatchesNationalitiesWithForeignKeysResolvedBugs.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201807240638284_CreateAllTablesAfterMerge.resx">
+      <DependentUpon>201807240638284_CreateAllTablesAfterMerge.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

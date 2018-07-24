@@ -16,7 +16,7 @@ namespace TheAMTeam.App.AlexLazarean
 
         public static void PrintTeams(Team t)
         {
-            Console.WriteLine(t.Name + " " + t.Id);
+            Console.WriteLine(t.Name + " " + t.TeamId);
         }
 
         public static void Execute()
@@ -24,7 +24,7 @@ namespace TheAMTeam.App.AlexLazarean
 
             Team team = new Team
             {
-                Id = 4,
+                TeamId = 4,
                 Name = "Fc Ceva",
                 City = "Cluj",
                 Coach = "X"

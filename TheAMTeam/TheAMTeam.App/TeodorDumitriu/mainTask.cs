@@ -15,13 +15,11 @@ namespace TheAMTeam.App.TeodorDumitriu
             {
                 Name = "Teo",
                 NameAlias = "Teo",
-                Team = 2,
+                TeamId = 2,
                 TshirtNO = 7,
                 NationalityId = 2
-                
             };        
-                                 
-
+                      
             foreach (var item in i)
             {
                 if (item == 1) PrintAll();
