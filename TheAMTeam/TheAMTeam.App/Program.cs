@@ -11,9 +11,9 @@ namespace TheAMTeam.App
             AdrianBarbus.App.Execute();
             IosuaSipos.MatchTests.Execute();
             AlexLazarean.TeamExecute.Execute();   
-            //Add your code here
-
             TeodorDumitriu.MainTask.Execute();
+            PaulGal.ContactUs.Execute();
+
             Console.ReadKey();
         }
     }

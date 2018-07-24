@@ -61,6 +61,7 @@
     <Compile Include="AlexLazarean\TeamExecute.cs" />
     <Compile Include="Example\Example.cs" />
     <Compile Include="IosuaSipos\MatchTests.cs" />
+    <Compile Include="PaulGal\ContactUs.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TeodorDumitriu\MainTask.cs" />
@@ -71,12 +72,7 @@
     </None>
     <None Include="packages.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="AdrianBarbus\" />
-    <Folder Include="IosuaSipos\" />
-    <Folder Include="AlexLazarean\" />
-    <Folder Include="PaulGal\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <ProjectReference Include="..\TheAMTeam.Data\TheAMTeam.Data.csproj">
       <Project>{3ab6e127-e363-423f-b289-8363ef343e19}</Project>
