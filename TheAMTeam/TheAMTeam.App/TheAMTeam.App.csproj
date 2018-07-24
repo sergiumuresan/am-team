@@ -51,13 +51,15 @@
     <Reference Include="TheAMTeam.Data">
       <HintPath>..\TheAMTeam.Data\bin\Debug\TheAMTeam.Data.dll</HintPath>
     </Reference>
-    <Reference Include="TheAMTeam.DataAccessLayer">
+    <Reference Include="TheAMTeam.DataAccessLayer, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
       <HintPath>..\TheAMTeam.DataAccessLayer\bin\Debug\TheAMTeam.DataAccessLayer.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AdrianBarbus\App.cs" />
     <Compile Include="Example\Example.cs" />
+    <Compile Include="IosuaSipos\MatchTests.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -67,7 +69,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="AlexLazarean\" />
-    <Folder Include="IosuaSipos\" />
     <Folder Include="PaulGal\" />
     <Folder Include="TeodorDumitriu\" />
   </ItemGroup>

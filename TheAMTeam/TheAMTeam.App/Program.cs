@@ -7,7 +7,7 @@
             Example.Example.Execute();
 
             AdrianBarbus.App.Execute();
-            
+            IosuaSipos.MatchTests.Execute();
         }
     }
 }
