@@ -22,5 +22,12 @@ namespace TheAMTeam.WebApi.Controllers
 
             return getResult;
         }
+        
+        public List<TestEntityModel> GetById()
+        {
+            var getResult = _testComponent.Get();
+
+            return getResult;
+        }
     }
 }

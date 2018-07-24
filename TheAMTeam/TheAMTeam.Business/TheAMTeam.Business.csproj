@@ -79,6 +79,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Components\TestComponent.cs" />
+    <Compile Include="Models\Contact.cs" />
+    <Compile Include="Models\Department.cs" />
     <Compile Include="Models\TestEntityModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
