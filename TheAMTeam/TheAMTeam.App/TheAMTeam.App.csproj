@@ -48,9 +48,6 @@
     <Reference Include="System.Data" />
     <Reference Include="System.Net.Http" />
     <Reference Include="System.Xml" />
-    <Reference Include="TheAMTeam.Data">
-      <HintPath>..\TheAMTeam.Data\bin\Debug\TheAMTeam.Data.dll</HintPath>
-    </Reference>
     <Reference Include="TheAMTeam.DataAccessLayer, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\TheAMTeam.DataAccessLayer\bin\Debug\TheAMTeam.DataAccessLayer.dll</HintPath>
@@ -73,12 +70,6 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup />
-  <ItemGroup>
-    <ProjectReference Include="..\TheAMTeam.Data\TheAMTeam.Data.csproj">
-      <Project>{3ab6e127-e363-423f-b289-8363ef343e19}</Project>
-      <Name>TheAMTeam.Data</Name>
-    </ProjectReference>
-  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
