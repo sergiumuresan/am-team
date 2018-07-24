@@ -20,6 +20,6 @@ namespace TheAMTeam.Business.Models
         public string Coach { get; set; }
 
         public ICollection<Player> Players { get; set; }
-        public virtual ICollection<Match> Matches { get; set; }
+        
     }
 }
