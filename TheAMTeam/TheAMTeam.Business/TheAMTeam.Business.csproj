@@ -78,7 +78,10 @@
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Components\TeamComponent.cs" />
     <Compile Include="Components\TestComponent.cs" />
+    <Compile Include="Models\PlayerModel.cs" />
+    <Compile Include="Models\TeamModel.cs" />
     <Compile Include="Models\TestEntityModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
