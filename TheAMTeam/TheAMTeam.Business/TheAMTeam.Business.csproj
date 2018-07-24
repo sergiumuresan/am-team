@@ -79,6 +79,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Components\TestComponent.cs" />
+    <Compile Include="Models\ArticleModel.cs" />
+    <Compile Include="Models\CompetitionTypes.cs" />
     <Compile Include="Models\TestEntityModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
