@@ -19,7 +19,6 @@ namespace TheAMTeam.Business.Models
         [StringLength(15)]
         public string Coach { get; set; }
 
-        public ICollection<Player> Players { get; set; }
-        
+        public ICollection<PlayerModel> PlayersModel { get; set; }
     }
 }

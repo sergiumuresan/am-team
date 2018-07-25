@@ -17,6 +17,7 @@ namespace TheAMTeam.DataAccessLayer.Entities
         [StringLength(15)]
         public string Coach { get; set; }
 
+    
         public ICollection<Player> Players { get; set; }
         public virtual ICollection<Match> Matches { get; set; }
     }

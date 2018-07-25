@@ -29,16 +29,37 @@ namespace TheAMTeam.Business.Components
                     TeamId = team.TeamId,
                     Name = team.Name,
                     City = team.City,
-                    Coach = team.Coach
+                    Coach = team.Coach,
+                    PlayersModel = team.mapToModel().PlayersModel
                 });
             }
             return teamList;
+        }
+
+    
+
+        public TeamModel getTeamById(int id)
+        {
+           Team byId = _teamRepository.GetById(id);
+            return byId.mapToModel();
         }
 
         public TeamModel AddTeam(TeamModel team)
         {
         _teamRepository.Add(team.mapToTeam());
             return team;
+        }
+
+        public TeamModel UpdateTeam(TeamModel team)
+        {
+            _teamRepository.Update(team.mapToTeam());
+            return team;
+        }
+
+        public bool DeleteTeam(int id)
+        {   
+            _teamRepository.Delete(id);
+            return _teamRepository.Delete(id);
         }
     }
 }

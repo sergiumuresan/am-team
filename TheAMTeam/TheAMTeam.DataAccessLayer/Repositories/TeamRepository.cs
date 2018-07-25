@@ -17,8 +17,6 @@ namespace TheAMTeam.DataAccesLayer.Repositories
             {
                 using (var context = new AppContext())
                 {
-                    //Create a new entry in table, and get the new object
-                    //dbTeam = context.Teams.Add(team);
                     dbTeam = context.Teams.Add(team);
                     context.SaveChanges();
                 }
@@ -37,7 +35,7 @@ namespace TheAMTeam.DataAccesLayer.Repositories
             Team dbTeam;
             using(var context = new AppContext())
             {
-                dbTeam = context.Teams.Find(Id);
+                dbTeam = context.Teams.Include("Players").SingleOrDefault(x => x.TeamId == Id);
             }
             return dbTeam;
         }
@@ -46,6 +44,7 @@ namespace TheAMTeam.DataAccesLayer.Repositories
         {
             using(var context = new AppContext())
             {
+                //Team dbTeam;
                 //dbTeam = context.Teams.Find(changedTeam.TeamId);
                 //dbTeam.TeamId = changedTeam.TeamId;
                 //dbTeam.Name = changedTeam.Name;
@@ -84,14 +83,12 @@ namespace TheAMTeam.DataAccesLayer.Repositories
         
         public List<Team> GetAll()
         {
-            List<Team> list = new List<Team>();
+            List<Team> list;
 
             using(var context = new AppContext())
             {
-                   foreach(Team t in context.Teams)
-                {
-                    list.Add(t);
-                }
+                list = context.Teams.Include("Players").ToList();
+                
             }
 
             return list;

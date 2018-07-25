@@ -9,15 +9,17 @@ namespace TheAMTeam.Business.Utils
 {
     public static class TeamMapping
     {
-        public static TeamModel mapToModel (this Team team)
-    {
+
+        public static TeamModel mapToModel(this Team team)
+        {
             TeamModel teamModel = new TeamModel()
             {
                 Name = team.Name,
                 City = team.City,
                 Coach = team.Coach,
-                Players = team.Players
+                TeamId = team.TeamId,
 
+                PlayersModel = team.Players.Select(x => x.mapToPlayerModel()).ToList()
             };
 
             return teamModel;
@@ -30,10 +32,41 @@ namespace TheAMTeam.Business.Utils
                 Name = t.Name,
                 City = t.City,
                 Coach = t.Coach,
-                Players = t.Players
+                TeamId = t.TeamId,
+                Players = t.PlayersModel.Select(x=>x.mapToPlayer()).ToList()
             };
-           
+
             return team;
+        }
+
+        public static Player mapToPlayer(this PlayerModel p)
+        {
+            Player player = new Player()
+            {
+                PlayerId = p.PlayerId,
+                Name = p.Name,
+                TeamId = p.TeamId,
+                TshirtNO = p.TshirtNO,
+                BirthDate = p.BirthDate,
+                NameAlias = p.NameAlias,
+                NationalityId = p.NationalityId
+            };
+            return player;
+        }
+
+        public static PlayerModel mapToPlayerModel(this Player p)
+        {
+            PlayerModel playerModel = new PlayerModel()
+            {
+                PlayerId = p.PlayerId,
+                Name = p.Name,
+                TeamId = p.TeamId,
+                TshirtNO = p.TshirtNO,
+                BirthDate = p.BirthDate,
+                NameAlias = p.NameAlias,
+                NationalityId = p.NationalityId
+            };
+            return playerModel;
         }
     }
 }
