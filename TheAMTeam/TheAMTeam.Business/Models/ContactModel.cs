@@ -7,7 +7,7 @@ using System.Web;
 
 namespace TheAMTeam.Business.Models
 {
-    public class Contact
+    public class ContactModel
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
@@ -21,6 +21,6 @@ namespace TheAMTeam.Business.Models
 
         public int DepartmentId { get; set; }
         [ForeignKey("DepartmentId")]
-        public virtual Department Department { get; set; }
+        public virtual DepartmentModel Department { get; set; }
     }
 }

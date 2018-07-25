@@ -7,7 +7,7 @@ using System.Web;
 
 namespace TheAMTeam.Business.Models
 {
-    public class Department
+    public class DepartmentModel
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]

@@ -18,14 +18,12 @@ namespace TheAMTeam.DataAccessLayer.Repositories
             {
                 using (var context = new AppContext())
                 {
-                    //Create a new entry in table, and get the new object
                     dbContactEntity = context.Contacts.Add(contactUs);
                     context.SaveChanges();
                 }
             }
             catch (Exception ex)
             {
-                //todo exeption handling
                 Console.Write(ex);
                 throw;
             }
