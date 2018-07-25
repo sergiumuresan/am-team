@@ -19,7 +19,7 @@ namespace TheAMTeam.Business.Utils
                 Coach = team.Coach,
                 TeamId = team.TeamId,
 
-                PlayersModel = team.Players.Select(x => x.mapToPlayerModel()).ToList()
+                PlayersModel =team.Players != null ? team.Players.Select(x => x.mapToPlayerModel()).ToList(): null
             };
 
             return teamModel;
@@ -33,7 +33,7 @@ namespace TheAMTeam.Business.Utils
                 City = t.City,
                 Coach = t.Coach,
                 TeamId = t.TeamId,
-                Players = t.PlayersModel.Select(x=>x.mapToPlayer()).ToList()
+                Players = t.PlayersModel !=null ? t.PlayersModel.Select(x=>x.mapToPlayer()).ToList(): null
             };
 
             return team;
