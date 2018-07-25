@@ -71,6 +71,10 @@
     <Compile Include="Migrations\201807240709561_Added Contact entities - Paul.Designer.cs">
       <DependentUpon>201807240709561_Added Contact entities - Paul.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201807251529329_DeleteFieldCompIdFromEntityMatch.cs" />
+    <Compile Include="Migrations\201807251529329_DeleteFieldCompIdFromEntityMatch.Designer.cs">
+      <DependentUpon>201807251529329_DeleteFieldCompIdFromEntityMatch.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\CompetitionTypeRepository.cs" />
@@ -94,6 +98,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201807240709561_Added Contact entities - Paul.resx">
       <DependentUpon>201807240709561_Added Contact entities - Paul.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201807251529329_DeleteFieldCompIdFromEntityMatch.resx">
+      <DependentUpon>201807251529329_DeleteFieldCompIdFromEntityMatch.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
