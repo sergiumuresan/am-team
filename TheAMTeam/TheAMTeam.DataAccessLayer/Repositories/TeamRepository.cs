@@ -56,15 +56,7 @@ namespace TheAMTeam.DataAccesLayer.Repositories
             {
                 using (var context = new AppContext())
                 {
-                    //Team dbTeam;
-                    //dbTeam = context.Teams.Find(changedTeam.TeamId);
-                    //dbTeam.TeamId = changedTeam.TeamId;
-                    //dbTeam.Name = changedTeam.Name;
-                    //dbTeam.Coach = changedTeam.Coach;
-                    //dbTeam.City = changedTeam.City;
-                    //context.Entry(dbTeam).State = System.Data.Entity.EntityState.Modified;
-                    //context.SaveChanges();
-
+                    
                     context.Teams.Attach(changedTeam);
                     context.Entry(changedTeam).State = System.Data.Entity.EntityState.Modified;
                     context.SaveChanges();
@@ -80,9 +72,8 @@ namespace TheAMTeam.DataAccesLayer.Repositories
         }
 
 
-        public Boolean Delete(int id)
+        public bool Delete(int id)
         {
-            bool deleted = false;
             Team dbFindTeam;
 
             try
@@ -90,19 +81,15 @@ namespace TheAMTeam.DataAccesLayer.Repositories
                 using (var context = new AppContext())
                 {
                     dbFindTeam = context.Teams.Find(id);
-                    if (dbFindTeam != null)
-                    {
-                        context.Teams.Remove(dbFindTeam);
-                        context.SaveChanges();
-                        deleted = true;
-                    }
+                    context.Teams.Remove(dbFindTeam);
+                    context.SaveChanges();
+                    return true;
                 }
-            }catch(Exception ex)
+            }
+            catch(Exception ex)
             {
                 throw ex;
             }
-           
-            return deleted;
         }
         
         public List<Team> GetAll()
@@ -114,15 +101,12 @@ namespace TheAMTeam.DataAccesLayer.Repositories
                 using (var context = new AppContext())
                 {
                     list = context.Teams.Include("Players").ToList();
-
                 }
             }catch(Exception ex)
             {
                 throw ex;
             }
-           
             return list;
-            
         }
     }
 }
