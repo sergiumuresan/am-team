@@ -16,46 +16,85 @@ namespace TheAMTeam.WebApi.Controllers
     {
         private ArticleComponent _articleComponent = new ArticleComponent();
 
-
+        
         [System.Web.Http.HttpPost]
-        public ArticleModel Create([FromBody] ArticleModel myArticle)
+        [System.Web.Http.Route("api/articles")]
+        public HttpResponseMessage Create([FromBody] ArticleModel myArticle)
         {
-            var result = _articleComponent.Add(myArticle);
+            try
+            {
+                var result = _articleComponent.Add(myArticle);
 
-            return result;
+                return Request.CreateResponse(HttpStatusCode.OK, result);
+            }
+            catch(Exception ex)
+            {
+                return Request.CreateResponse(HttpStatusCode.InternalServerError, ex);
+            }
         }
 
+        [System.Web.Http.Route("api/articles/{id}")]
         [System.Web.Http.HttpGet]
-        public ArticleModel Read(int id)
+        public HttpResponseMessage Read(int id)
         {
-            var result = _articleComponent.GetById(id);
+            try
+            {
+                var result = _articleComponent.GetById(id);
 
-            return result;
+                return Request.CreateResponse(HttpStatusCode.OK, result);
+            }
+            catch(Exception ex)
+            {
+                return Request.CreateResponse(HttpStatusCode.InternalServerError, ex);
+            }
         }
 
+        [System.Web.Http.Route("api/articles")]
         [System.Web.Http.HttpGet]
-        public List<ArticleModel> GetAll()
+        public HttpResponseMessage GetAll()
         {
-            var result = _articleComponent.GetAll();
+            try
+            {
+                var result = _articleComponent.GetAll();
 
-            return result;
+                return Request.CreateResponse(HttpStatusCode.OK, result);
+            }
+            catch (Exception ex)
+            {
+                return Request.CreateResponse(HttpStatusCode.InternalServerError, ex);
+            }
         }
 
+        [System.Web.Http.Route("api/articles")]
         [System.Web.Http.HttpPut]
-        public ArticleModel Update([FromBody] ArticleModel newArticleModel)
+        public HttpResponseMessage Update([FromBody] ArticleModel newArticleModel)
         {
-            var result = _articleComponent.Update(newArticleModel);
+            try
+            {
+                var result = _articleComponent.Update(newArticleModel);
 
-            return result;
+                return Request.CreateResponse(HttpStatusCode.OK, result);
+            }
+            catch (Exception ex)
+            {
+                return Request.CreateResponse(HttpStatusCode.InternalServerError, ex);
+            }
         }
 
+        [System.Web.Http.Route("api/articles")]
         [System.Web.Http.HttpDelete]
-        public bool Delete(int id)
+        public HttpResponseMessage Delete(int id)
         {
-            var result = _articleComponent.Delete(id);
+            try
+            {
+                var result = _articleComponent.Delete(id);
 
-            return result;
+                return Request.CreateResponse(HttpStatusCode.OK, result);
+            }
+            catch (Exception ex)
+            {
+                return Request.CreateResponse(HttpStatusCode.InternalServerError, ex);
+            }
         }
-
     }
 }

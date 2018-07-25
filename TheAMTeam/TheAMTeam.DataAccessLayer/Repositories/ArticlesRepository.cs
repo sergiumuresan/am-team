@@ -22,7 +22,7 @@ namespace TheAMTeam.DataAccessLayer.Repositories
             catch (Exception ex)
             {
                 Console.Write(ex);
-                throw;
+                throw(ex);
             }
 
             return dbArticle;
@@ -43,7 +43,7 @@ namespace TheAMTeam.DataAccessLayer.Repositories
             catch (Exception ex)
             {
                 Console.Write(ex);
-                throw;
+                throw(ex);
             }
         }
 
@@ -62,7 +62,7 @@ namespace TheAMTeam.DataAccessLayer.Repositories
             catch (Exception ex)
             {
                 Console.Write(ex);
-                throw;
+                throw(ex);
             }
             return article;
         }
@@ -83,7 +83,7 @@ namespace TheAMTeam.DataAccessLayer.Repositories
             catch (Exception ex)
             {
                 Console.Write(ex);
-                throw;
+                throw(ex);
             }
             return dbArticle != null ? true : false;
         }
@@ -100,7 +100,7 @@ namespace TheAMTeam.DataAccessLayer.Repositories
             catch (Exception ex)
             {
                 Console.Write(ex);
-                throw;
+                throw(ex);
             }
         }
     }
