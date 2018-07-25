@@ -16,6 +16,6 @@ namespace TheAMTeam.Business.Models
         public string ImageURL { get; set; }
         public int CategoryId { get; set; }
 
-        public virtual Category Category { get; set; }
+        public virtual CategoryModel Category { get; set; }
     }
 }

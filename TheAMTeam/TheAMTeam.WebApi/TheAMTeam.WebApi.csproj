@@ -297,6 +297,10 @@
       <Project>{1da055b1-cd15-4b5e-b5c1-f9f99e12897a}</Project>
       <Name>TheAMTeam.Business</Name>
     </ProjectReference>
+    <ProjectReference Include="..\TheAMTeam.DataAccessLayer\TheAMTeam.DataAccessLayer.csproj">
+      <Project>{4B629E34-AC22-44E6-9E0B-D660542E61D1}</Project>
+      <Name>TheAMTeam.DataAccessLayer</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

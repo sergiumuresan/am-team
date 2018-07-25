@@ -84,6 +84,7 @@
     <Compile Include="Models\CategoryModel.cs" />
     <Compile Include="Models\TestEntityModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Utils\ExtensionMethods.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
@@ -94,9 +95,7 @@
       <DependentUpon>Web.config</DependentUpon>
     </None>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Utils\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <ProjectReference Include="..\TheAMTeam.DataAccessLayer\TheAMTeam.DataAccessLayer.csproj">
       <Project>{4b629e34-ac22-44e6-9e0b-d660542e61d1}</Project>
