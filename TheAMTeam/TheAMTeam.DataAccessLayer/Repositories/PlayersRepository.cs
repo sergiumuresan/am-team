@@ -23,7 +23,7 @@ namespace TheAMTeam.DataAccessLayer.Repositories
             catch (Exception ex)
             {
                 Console.WriteLine(ex);
-                throw;
+                throw ex;
             }
 
             return dbPlayer;
@@ -43,7 +43,7 @@ namespace TheAMTeam.DataAccessLayer.Repositories
             catch (Exception ex)
             {
                 //todo exeption handling
-                throw;
+                throw ex;
             }
 
             return dbPlayer;
@@ -77,7 +77,7 @@ namespace TheAMTeam.DataAccessLayer.Repositories
             catch (Exception ex)
             {
                 //todo exeption handling
-                throw;
+                throw ex;
             }
         }
 
@@ -102,7 +102,7 @@ namespace TheAMTeam.DataAccessLayer.Repositories
             catch (Exception ex)
             {
                 //todo exeption handling
-                throw;
+                throw ex;
             }
         }
 
@@ -119,7 +119,7 @@ namespace TheAMTeam.DataAccessLayer.Repositories
             catch (Exception ex)
             {
                 //todo exeption handling
-                throw;
+                throw ex;
             }
         }
     }

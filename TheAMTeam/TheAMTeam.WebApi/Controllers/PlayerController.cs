@@ -15,42 +15,75 @@ namespace TheAMTeam.WebApi.Controllers
         private PlayerComponent _playerComponent = new PlayerComponent();
 
         [HttpPost]
-        public PlayerModel Add([FromBody]PlayerModel player)
+        [Route("api/player")]
+        public HttpResponseMessage Add([FromBody]PlayerModel player)
         {
-            var getResult = _playerComponent.Add(player);
-
-            return getResult;
+            try
+            {
+                var result = _playerComponent.Add(player);
+                return Request.CreateResponse(HttpStatusCode.OK, result);
+            }
+            catch (Exception ex)
+            {
+                return Request.CreateErrorResponse(HttpStatusCode.InternalServerError, ex);
+            }
         }
         [HttpGet]
-        public List<PlayerModel> Get()
+        public HttpResponseMessage Get()
         {
-            var getResult = _playerComponent.GetAllPlayers();
-
-            return getResult;
+            try
+            {
+                var result = _playerComponent.GetAllPlayers();
+                return Request.CreateResponse(HttpStatusCode.OK, result);
+            }
+            catch (Exception ex)
+            {
+                return Request.CreateErrorResponse(HttpStatusCode.InternalServerError, ex);
+            }
         }
         [HttpGet]
         [Route("api/player/{playerId}")]
-        public PlayerModel Get(int playerId)
+        public HttpResponseMessage Get(int playerId)
         {
-            var getResult = _playerComponent.Get(playerId);
+            try
+            {
+                var result = _playerComponent.Get(playerId);
+                return Request.CreateResponse(HttpStatusCode.OK, result);
+            }
+            catch(Exception ex)
+            {
+                return Request.CreateErrorResponse(HttpStatusCode.InternalServerError,ex);
+            }
+     
 
-            return getResult;
         }
         [HttpPut]
         [Route("api/player/{playerId}")]
-        public PlayerModel Update(int playerId,[FromBody]PlayerModel player)
+        public HttpResponseMessage Update(int playerId,[FromBody]PlayerModel player)
         {
-            var result = _playerComponent.Update(playerId,player);
-
-            return result;
+            try
+            {
+                var result = _playerComponent.Update(playerId, player);
+                return Request.CreateResponse(HttpStatusCode.OK, result);
+            }
+            catch (Exception ex)
+            {
+                return Request.CreateErrorResponse(HttpStatusCode.InternalServerError, ex);
+            }
         }
         [HttpDelete]
         [Route("api/player/{playerId}")]
-        public bool Delete(int playerId)
+        public HttpResponseMessage Delete(int playerId)
         {
-            var result = _playerComponent.Delete(playerId);
-
-            return result;
+            try
+            {
+                var result = _playerComponent.Delete(playerId);
+                return Request.CreateResponse(HttpStatusCode.OK, result);
+            }
+            catch (Exception ex)
+            {
+                return Request.CreateErrorResponse(HttpStatusCode.InternalServerError, ex);
+            }
         }
         
     }
