@@ -4,36 +4,57 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
+using TheAMTeam.Business.Components;
+using TheAMTeam.Business.Models;
 
 namespace TheAMTeam.WebApi.Controllers
 {
     public class CompetitionTypeController : ApiController
     {
-        // GET: api/Competitions
-        public IEnumerable<string> Get()
+        private CompetitionTypeComponent _competitionTypeComponent;
+
+        public CompetitionTypeController()
         {
-            return new string[] { "value1", "value2" };
+            _competitionTypeComponent = new CompetitionTypeComponent();
+        }
+
+        [Route("api/competitionType")]
+        public IEnumerable<CompetitionTypeModel> GetAll()
+        {
+            var result = _competitionTypeComponent.GetAllCompetionType();
+            return result;
         }
 
         // GET: api/Competitions/5
-        public string Get(int id)
+        [Route("api/competitionType/{id}")]
+        public CompetitionTypeModel GetById(int id)
         {
-            return "value";
+            var getCompetion = _competitionTypeComponent.GetById(id);
+            return getCompetion;
         }
 
-        // POST: api/Competitions
-        public void Post([FromBody]string value)
+        [HttpPost]
+        public CompetitionTypeModel Add([FromBody]CompetitionTypeModel competitionTypeModel)
         {
+            _competitionTypeComponent.Add(competitionTypeModel);
+            return competitionTypeModel;
         }
 
-        // PUT: api/Competitions/5
-        public void Put(int id, [FromBody]string value)
+
+        [HttpPut]
+        public CompetitionTypeModel Update(CompetitionTypeModel typeModel)
         {
+            var result = _competitionTypeComponent.Update(typeModel);
+            return result;
         }
 
-        // DELETE: api/Competitions/5
-        public void Delete(int id)
+        [HttpDelete]
+        [Route("api/competitionType/{id}")]
+
+        public bool Delete(int id)
         {
+            var result = _competitionTypeComponent.Delete(id);
+            return result;
         }
     }
 }
