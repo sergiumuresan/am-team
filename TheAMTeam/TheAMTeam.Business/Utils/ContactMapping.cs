@@ -20,7 +20,9 @@ namespace TheAMTeam.Business.Utils
                 MessageDate = contact.MessageDate,
                 Phone = contact.Phone,
                 UserMessage = contact.UserMessage,
-                DepartmentId = contact.DepartmentId
+                DepartmentId = contact.DepartmentId,
+
+                Department = contact.Department.MapToDepartment()
             };
             return contactModel;
         }
@@ -36,16 +38,47 @@ namespace TheAMTeam.Business.Utils
                 MessageDate = m.MessageDate,
                 Phone = m.Phone,
                 UserMessage = m.UserMessage,
-                DepartmentId = m.DepartmentId
+                DepartmentId = m.DepartmentId,
+
+                Department = m.Department.MapToDepartmentModel()
             };
             return contact;
         }
+        public static DepartmentModel MapToDepartment(this Department department)
+        {
+            try
+            {
+                var result = department != null ? new DepartmentModel()
+                {
+                    Id = department.Id,
+                    Name = department.Name
+                } : null;
+
+                return result;
+            }
+            catch (Exception ex)
+            {
+                Console.Write(ex);
+                throw;
+            }
+        }
+        public static Department MapToDepartmentModel(this DepartmentModel d)
+        {
+            try
+            {
+                
+                var result = d != null ?  new Department()
+                {
+                    Id = d.Id,
+                    Name = d.Name
+                } : null;
+                return result;
+            }
+            catch (Exception ex)
+            {
+                Console.Write(ex);
+                throw;
+            }
+        }
     }
 }
-    
-//context.Contact.Attach(changedContact)
-//if(XmlSiteMapProvider.Id == userId)
-//    {
-//    return XmlSiteMapProvider.Roles.FirstOrDefaullt(y =>y.Id == roleId);
-//    }
-//    return null;

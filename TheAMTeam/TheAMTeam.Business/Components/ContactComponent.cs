@@ -17,7 +17,7 @@ namespace TheAMTeam.Business.Components
             _contactRepository = new ContactRepository();
         }
 
-        [HttpGet]
+        
         public List<ContactModel> GetAllContacts()
         {
             var result = _contactRepository.GetAll();
@@ -34,34 +34,31 @@ namespace TheAMTeam.Business.Components
                     Phone = item.Phone,
                     UserMessage = item.UserMessage,
                     MessageDate = item.MessageDate,
-                    DepartmentId = item.DepartmentId
+                    DepartmentId = item.DepartmentId,
+                    Department = item.MapToModel().Department
                 });
             }
             return returnList;
         }
-
-        [HttpGet]
-        [Route("api/contactType/{id}")]
+        
         public ContactModel GetById(int id)
         {
             var result = _contactRepository.GetById(id);
             return result.MapToModel();
         }
-
-        [HttpPost]
+        
         public ContactModel Add([FromBody]ContactModel contact)
         {
-            var con = _contactRepository.Add(contact.MapToContact());
-            return con.MapToModel();
+            var add = _contactRepository.Add(contact.MapToContact());
+            return add.MapToModel();
         }
-
-        [HttpPut]
+        
         public ContactModel Update([FromBody]ContactModel contact)
         {
-            var con = _contactRepository.Update(contact.MapToContact());
-            return con.MapToModel();
+            var update = _contactRepository.Update(contact.MapToContact());
+            return update.MapToModel();
         }
-        [HttpDelete]
+
         public bool Delete(int id)
         {
             bool del = _contactRepository.Delete(id);

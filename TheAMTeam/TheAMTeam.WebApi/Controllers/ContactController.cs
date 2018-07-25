@@ -16,61 +16,41 @@ namespace TheAMTeam.WebApi.Controllers
     {
         private ContactComponent _contactComponent = new ContactComponent();
 
+        [System.Web.Http.HttpGet]
         public List<ContactModel> Get()
         {
             var getResult = _contactComponent.GetAllContacts();
-
             return getResult;
         }
+
+        [System.Web.Http.HttpGet]
+        [System.Web.Http.Route("api/Get/{id}")]
         public ContactModel Get(int id)
         {
             var result = _contactComponent.GetById(id);
             return result;
         }
-        
+
+        [System.Web.Http.HttpPost]
         public ContactModel Post([FromBody] ContactModel contact)
         {
-            ContactModel con = _contactComponent.Add(contact);
-            return con;
-            
+            ContactModel add = _contactComponent.Add(contact);
+            return add;
         }
+        [System.Web.Http.HttpPut]
         public ContactModel Put([FromBody] ContactModel contact)
         {
-            ContactModel con = _contactComponent.Update(contact);
-            return con;
+            ContactModel update = _contactComponent.Update(contact);
+            return update;
          }
+
+        [System.Web.Http.HttpDelete]
+        [System.Web.Http.Route("api/Delete/{id}")]
         public bool Delete(int id)
         {
             var result = _contactComponent.Delete(id);
             return result;
         }
 
-
-        //// GET: api/Contact
-        //public IEnumerable<string> Get()
-        //{
-        //    return new string[] { "value1", "value2" };
-        //}
-
-        //// GET: api/Contact/5
-        //public string Get(int id)
-        //{
-        //    return "value";
-        //}
-
-        //// POST: api/Contact
-        //public void Post([FromBody]string value)
-        //{
-        //}
-
-        //// PUT: api/Contact/5
-        //public void Put(int id, [FromBody]string value)
-        //{
-        //}
-
-        //// DELETE: api/Contact/5
-        //public void Delete(int id)
-        //{
-        //}
     }
 }

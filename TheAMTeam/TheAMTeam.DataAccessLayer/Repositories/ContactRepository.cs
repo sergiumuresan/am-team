@@ -38,7 +38,7 @@ namespace TheAMTeam.DataAccessLayer.Repositories
             {
                 using (var context = new AppContext())
                 {
-                    dbContactUs = context.Contacts.SingleOrDefault(c => c.Id == id);
+                    dbContactUs = context.Contacts.Include("Department").SingleOrDefault(c => c.Id == id);
                     context.SaveChanges();
                 }
             }
@@ -109,7 +109,7 @@ namespace TheAMTeam.DataAccessLayer.Repositories
             {
                 using (var context = new AppContext())
                 {
-                    dbContactUs = context.Contacts.ToList();
+                    dbContactUs = context.Contacts.Include("Department").ToList();
                     context.SaveChanges();
                 }
             }
