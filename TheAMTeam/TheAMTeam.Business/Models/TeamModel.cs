@@ -7,5 +7,8 @@ namespace TheAMTeam.Business.Models
 {
     public class TeamModel
     {
+        public int TeamId { get; set; }
+        public string Name { get; set; }
+        public string City { get; set; }
     }
 }

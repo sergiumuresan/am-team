@@ -22,7 +22,7 @@ namespace TheAMTeam.Business.Models
         public string NameAlias { get; set; }
 
         public int? NationalityId { get; set; }
+
         
-        public virtual TeamModel Team { get; set; }
     }
 }
