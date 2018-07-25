@@ -13,40 +13,82 @@ namespace TheAMTeam.WebApi.Controllers
     {
         private TeamComponent _teamComponent = new TeamComponent();
 
-        public List<TeamModel> Get()
-        {   
+        
+        [Route("api/teams")]
+        [HttpGet]
+        public HttpResponseMessage Get()
+        {
+            try
+            {
+                var getResult = _teamComponent.GetAllTeams();
+                return Request.CreateResponse(HttpStatusCode.OK, getResult);
+            }catch(Exception ex)
+            {
+                return Request.CreateErrorResponse(HttpStatusCode.NotFound, ex);
+            }
             
-            var getResult = _teamComponent.GetAllTeams();
-            return getResult;
         }
         
 
         [Route("api/team/{teamId}")]
-        public TeamModel GetById(int teamId)
+        public HttpResponseMessage GetById(int teamId)
         {
-            var result = _teamComponent.getTeamById(teamId);
-            return result;
+            try
+            {
+                var result = _teamComponent.getTeamById(teamId);
+                return Request.CreateResponse(HttpStatusCode.OK, result);
+            }catch(Exception ex)
+            {
+                return Request.CreateErrorResponse(HttpStatusCode.NotFound, ex);
+            }
+            
         }
 
+        [Route("api/team")]
         [HttpPost]
-        public TeamModel Add([FromBody]TeamModel team)
+        public HttpResponseMessage Add([FromBody]TeamModel team)
         {
-            _teamComponent.AddTeam(team);
-            return team;
+            try
+            {
+                _teamComponent.AddTeam(team);
+                return Request.CreateResponse(HttpStatusCode.OK, team);
+            }catch(Exception ex)
+            {
+                return Request.CreateErrorResponse(HttpStatusCode.NotFound, ex);
+            }
+            
         }
 
+        [Route("api/team")]
         [HttpPut]
-        public TeamModel Update([FromBody]TeamModel team)
+        public HttpResponseMessage Update([FromBody]TeamModel team)
         {
-            _teamComponent.UpdateTeam(team);
-            return team;
+            try
+            {
+                var updated = _teamComponent.UpdateTeam(team);
+                return Request.CreateResponse(HttpStatusCode.OK, updated);
+            }
+            catch(Exception ex)
+            {
+                return Request.CreateErrorResponse(HttpStatusCode.NotFound, ex);
+            }
+            
         }
 
+        [Route("api/team")]
         [HttpDelete]
-        public bool Delete([FromBody] int id)
+        public HttpResponseMessage Delete([FromBody] int id)
         {
-            _teamComponent.DeleteTeam(id);
-            return _teamComponent.DeleteTeam(id);
+            try
+            {
+                
+                var deleted = _teamComponent.DeleteTeam(id);
+                return Request.CreateResponse(HttpStatusCode.OK, deleted);
+            }catch(Exception ex)
+            {
+                return Request.CreateErrorResponse(HttpStatusCode.NotFound, ex);
+            }
+            
         }
     }
 }
