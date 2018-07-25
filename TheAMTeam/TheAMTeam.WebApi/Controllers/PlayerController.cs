@@ -29,6 +29,7 @@ namespace TheAMTeam.WebApi.Controllers
             }
         }
         [HttpGet]
+        [Route("api/players")]
         public HttpResponseMessage Get()
         {
             try
