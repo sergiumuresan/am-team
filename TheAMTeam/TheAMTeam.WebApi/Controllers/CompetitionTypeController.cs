@@ -18,43 +18,81 @@ namespace TheAMTeam.WebApi.Controllers
             _competitionTypeComponent = new CompetitionTypeComponent();
         }
 
-        [Route("api/competitionType")]
-        public IEnumerable<CompetitionTypeModel> GetAll()
+        [HttpGet]
+        [Route("api/competitionTypes")]
+        public HttpResponseMessage GetAll()
         {
-            var result = _competitionTypeComponent.GetAllCompetionType();
-            return result;
+            try
+            {
+                var result = _competitionTypeComponent.GetAllCompetionType();
+                return Request.CreateResponse(HttpStatusCode.OK, result);
+            }catch(Exception ex)
+            {
+                return Request.CreateErrorResponse(HttpStatusCode.InternalServerError, ex);
+            }
+           
         }
-
-        // GET: api/Competitions/5
-        [Route("api/competitionType/{id}")]
-        public CompetitionTypeModel GetById(int id)
+        [HttpGet]
+        [Route("api/competitionTypes/{id}")]
+        public HttpResponseMessage GetById(int id)
         {
-            var getCompetion = _competitionTypeComponent.GetById(id);
-            return getCompetion;
+            try
+            {
+                var getCompetion = _competitionTypeComponent.GetById(id);
+                return Request.CreateResponse(HttpStatusCode.OK, getCompetion);
+            }catch(Exception ex)
+            {
+                return Request.CreateErrorResponse(HttpStatusCode.InternalServerError, ex);
+            }
+
         }
 
         [HttpPost]
-        public CompetitionTypeModel Add([FromBody]CompetitionTypeModel competitionTypeModel)
+        [Route("api/competitionTypes")]
+        public HttpResponseMessage Add([FromBody]CompetitionTypeModel competitionTypeModel)
         {
-            _competitionTypeComponent.Add(competitionTypeModel);
-            return competitionTypeModel;
+            try
+            {
+                var result = _competitionTypeComponent.Add(competitionTypeModel);
+                return Request.CreateResponse(HttpStatusCode.OK, result);
+            }catch(Exception ex)
+            {
+                return Request.CreateErrorResponse(HttpStatusCode.InternalServerError, ex);
+            }
+            
         }
 
 
         [HttpPut]
-        public CompetitionTypeModel Update(CompetitionTypeModel typeModel)
+        [Route("api/competitionTypes/{id}")]
+        public HttpResponseMessage Update(CompetitionTypeModel typeModel)
         {
-            var result = _competitionTypeComponent.Update(typeModel);
-            return result;
+            try
+            {
+                var result = _competitionTypeComponent.Update(typeModel);
+                return Request.CreateResponse(HttpStatusCode.OK, result);
+            }
+            catch (Exception ex)
+            {
+                return Request.CreateErrorResponse(HttpStatusCode.InternalServerError, ex);
+            }
+
         }
 
         [HttpDelete]
         [Route("api/competitionType/{id}")]
 
-        public bool Delete(int id)
+        public HttpResponseMessage Delete(int id)
         {
-            var result = _competitionTypeComponent.Delete(id);
-            return result;
+            try
+            {
+                var result = _competitionTypeComponent.Delete(id);
+                return Request.CreateResponse(HttpStatusCode.OK, result);
+            }
+            catch (Exception ex)
+            {
+                return Request.CreateErrorResponse(HttpStatusCode.InternalServerError, ex);
+            }
         }
     }
 }

@@ -22,7 +22,7 @@ namespace TheAMTeam.DataAccessLayer.Repositories
             catch (Exception ex)
             {
                 Console.WriteLine(ex);
-                throw;
+                throw ex;
             }
 
             return matches;
@@ -42,7 +42,7 @@ namespace TheAMTeam.DataAccessLayer.Repositories
             catch (Exception ex)
             {
                 Console.Write(ex);
-                throw;
+                throw ex;
             }
 
             return dbCompetition;
@@ -61,7 +61,7 @@ namespace TheAMTeam.DataAccessLayer.Repositories
             catch (Exception ex)
             {
                 Console.Write(ex);
-                throw;
+                throw ex;
             }
 
             return dbCompetition;
@@ -84,7 +84,7 @@ namespace TheAMTeam.DataAccessLayer.Repositories
             catch (Exception ex)
             {
                 Console.Write(ex);
-                throw;
+                throw ex;
             }
             return competitionType;
         }
@@ -104,7 +104,7 @@ namespace TheAMTeam.DataAccessLayer.Repositories
             catch (Exception ex)
             {
                 Console.Write(ex);
-                throw;
+                throw ex;
             }
             return dbCompetition != null ? true : false;
         }
