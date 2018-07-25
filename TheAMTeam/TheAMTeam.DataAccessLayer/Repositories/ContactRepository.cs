@@ -25,7 +25,7 @@ namespace TheAMTeam.DataAccessLayer.Repositories
             catch (Exception ex)
             {
                 Console.Write(ex);
-                throw;
+                throw ex;
             }
 
             return dbContactEntity;
@@ -45,7 +45,7 @@ namespace TheAMTeam.DataAccessLayer.Repositories
             catch (Exception ex)
             {
                 Console.Write(ex);
-                throw;
+                throw ex;
             }
             return dbContactUs;
         }
@@ -57,7 +57,7 @@ namespace TheAMTeam.DataAccessLayer.Repositories
             {
                 using (var context = new AppContext())
                 {
-                    dbContactUs = context.Contacts.SingleOrDefault(c => c.Id == contact.Id);
+                    dbContactUs = context.Contacts.Include("Department").SingleOrDefault(c => c.Id == contact.Id);
                     if (dbContactUs != null)
                     {
                         //context.Contacts.Attach(contact);
@@ -76,7 +76,7 @@ namespace TheAMTeam.DataAccessLayer.Repositories
             catch (Exception ex)
             {
                 Console.Write(ex);
-                throw;
+                throw ex;
             }
             return contact;
         }
@@ -88,7 +88,7 @@ namespace TheAMTeam.DataAccessLayer.Repositories
             {
                 using (var context = new AppContext())
                 {
-                    dbContact = context.Contacts.SingleOrDefault(c => c.Id == id);
+                    dbContact = context.Contacts.Include("Department").SingleOrDefault(c => c.Id == id);
 
                     context.Contacts.Remove(dbContact);
                     context.SaveChanges();
@@ -98,7 +98,7 @@ namespace TheAMTeam.DataAccessLayer.Repositories
             catch (Exception ex)
             {
                 Console.Write(ex);
-                throw;
+                throw ex;
             }
             return dbContact != null ? true : false;
         }
@@ -116,7 +116,7 @@ namespace TheAMTeam.DataAccessLayer.Repositories
             catch (Exception ex)
             {
                 Console.Write(ex);
-                throw;
+                throw ex;
             }
             return dbContactUs;
         }

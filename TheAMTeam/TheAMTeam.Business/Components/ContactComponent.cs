@@ -47,13 +47,13 @@ namespace TheAMTeam.Business.Components
             return result.MapToModel();
         }
         
-        public ContactModel Add([FromBody]ContactModel contact)
+        public ContactModel Add(ContactModel contact)
         {
             var add = _contactRepository.Add(contact.MapToContact());
             return add.MapToModel();
         }
         
-        public ContactModel Update([FromBody]ContactModel contact)
+        public ContactModel Update(ContactModel contact)
         {
             var update = _contactRepository.Update(contact.MapToContact());
             return update.MapToModel();

@@ -3,9 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
-using System.Web;
 using System.Web.Http;
-using System.Web.Mvc;
 using TheAMTeam.Business.Components;
 using TheAMTeam.Business.Models;
 
@@ -16,41 +14,79 @@ namespace TheAMTeam.WebApi.Controllers
     {
         private ContactComponent _contactComponent = new ContactComponent();
 
-        [System.Web.Http.HttpGet]
-        public List<ContactModel> Get()
+        [HttpGet]
+        [Route("api/contacts")]
+        public HttpResponseMessage Get()
         {
-            var getResult = _contactComponent.GetAllContacts();
-            return getResult;
+            try
+            {
+                var getResult = _contactComponent.GetAllContacts();
+                return Request.CreateResponse(HttpStatusCode.OK, getResult);
+            }
+            catch (Exception ex)
+            {
+                return Request.CreateErrorResponse(HttpStatusCode.InternalServerError, ex);
+            }
         }
 
-        [System.Web.Http.HttpGet]
-        [System.Web.Http.Route("api/Get/{id}")]
-        public ContactModel Get(int id)
+        [HttpGet]
+        [Route("api/contact/{id}")]
+        public HttpResponseMessage Get(int id)
         {
-            var result = _contactComponent.GetById(id);
-            return result;
+            try
+            {
+                var result = _contactComponent.GetById(id);
+                return Request.CreateResponse(HttpStatusCode.OK, result);
+            }
+            catch (Exception ex)
+            {
+                return Request.CreateErrorResponse(HttpStatusCode.InternalServerError, ex);
+            }
         }
 
-        [System.Web.Http.HttpPost]
-        public ContactModel Post([FromBody] ContactModel contact)
+        [HttpPost]
+        [Route("api/contact")]
+        public HttpResponseMessage Post([FromBody] ContactModel contact)
         {
-            ContactModel add = _contactComponent.Add(contact);
-            return add;
-        }
-        [System.Web.Http.HttpPut]
-        public ContactModel Put([FromBody] ContactModel contact)
-        {
-            ContactModel update = _contactComponent.Update(contact);
-            return update;
-         }
-
-        [System.Web.Http.HttpDelete]
-        [System.Web.Http.Route("api/Delete/{id}")]
-        public bool Delete(int id)
-        {
-            var result = _contactComponent.Delete(id);
-            return result;
+            try
+            {
+                var result = _contactComponent.Add(contact);
+                return Request.CreateResponse(HttpStatusCode.OK, result);
+            }  
+            catch(Exception ex)
+            {
+                return Request.CreateErrorResponse(HttpStatusCode.InternalServerError, ex);
+            }
         }
 
+        [HttpPut]
+        [Route("api/contact")]
+        public HttpResponseMessage Put([FromBody] ContactModel contact)
+        {
+            try
+            {
+                var result = _contactComponent.Update(contact);
+                return Request.CreateResponse(HttpStatusCode.OK,result);
+            }catch (Exception ex)
+            {
+                return Request.CreateErrorResponse(HttpStatusCode.InternalServerError, ex);
+                
+            }
+        }
+
+        [HttpDelete]
+        [Route("api/contact/{contatId}")]
+        public HttpResponseMessage Delete(int contatId)
+        {
+            try
+            {
+                var result = _contactComponent.Delete(contatId);
+                return Request.CreateResponse(HttpStatusCode.OK, result);
+            }
+            catch (Exception ex)
+            {
+                return Request.CreateErrorResponse(HttpStatusCode.InternalServerError, ex);
+            }
+        }
     }
 }
