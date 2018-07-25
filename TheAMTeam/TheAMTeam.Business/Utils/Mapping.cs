@@ -11,34 +11,63 @@ namespace TheAMTeam.Business.Utils
     {
         public static PlayerModel toModel(this Player player)
         {
-            PlayerModel playerEntity = new PlayerModel
+            if (player != null)
             {
-                PlayerId = player.PlayerId,
-                Name = player.Name,
-                TshirtNO = player.TshirtNO,
-                BirthDate = player.BirthDate,
-                NameAlias = player.NameAlias,
-                TeamId = player.TeamId,
-                NationalityId = player.NationalityId
 
-            };
-            return playerEntity;
+                PlayerModel playerEntity = new PlayerModel
+                {
+                    PlayerId = player.PlayerId,
+                    Name = player.Name,
+                    TshirtNO = player.TshirtNO,
+                    BirthDate = player.BirthDate,
+                    NameAlias = player.NameAlias,
+                    NationalityId = player.NationalityId,
+                    TeamId = player.TeamId,
+
+                    team = player.Team != null ? new TeamModel
+                    {
+                        TeamId = player.Team.TeamId,
+                        Name = player.Team?.Name,
+                        City = player.Team?.City,
+                        Coach = player.Team?.Coach
+                    } : null
+                };
+                return playerEntity;
+            }
+            else
+            {
+                return null;
+            }
         }
 
         public static Player toPlayer(this PlayerModel player)
         {
-            Player playerEntity = new Player
+            if (player != null)
+            {
+                
+                Player playerEntity = new Player
             {
                 PlayerId = player.PlayerId,
                 Name = player.Name,
                 TshirtNO = player.TshirtNO,
                 BirthDate = player.BirthDate,
                 NameAlias = player.NameAlias,
+                NationalityId = player.NationalityId,
                 TeamId = player.TeamId,
-                NationalityId = player.NationalityId
+                Team = player.team != null ? new Team {
+                    TeamId = player.team.TeamId,
+                    Name = player.team?.Name,
+                    City = player.team?.City,
+                    Coach = player.team?.Coach
+                } : null
 
-            };
+                };
             return playerEntity;
+            }
+            else
+            {
+                return null;
+            }
         }
     }
 }

@@ -15,7 +15,7 @@ namespace TheAMTeam.WebApi.Controllers
         private PlayerComponent _playerComponent = new PlayerComponent();
 
         [HttpPost]
-        public PlayerModel Add(PlayerModel player)
+        public PlayerModel Add([FromBody]PlayerModel player)
         {
             var getResult = _playerComponent.Add(player);
 
@@ -28,19 +28,30 @@ namespace TheAMTeam.WebApi.Controllers
 
             return getResult;
         }
-        [HttpPut]
-        public PlayerModel Update(PlayerModel player)
+        [HttpGet]
+        [Route("api/player/{playerId}")]
+        public PlayerModel Get(int playerId)
         {
-            var result = _playerComponent.Update(player);
+            var getResult = _playerComponent.Get(playerId);
+
+            return getResult;
+        }
+        [HttpPut]
+        [Route("api/player/{playerId}")]
+        public PlayerModel Update(int playerId,[FromBody]PlayerModel player)
+        {
+            var result = _playerComponent.Update(playerId,player);
 
             return result;
         }
         [HttpDelete]
-        public bool Delete(int id)
+        [Route("api/player/{playerId}")]
+        public bool Delete(int playerId)
         {
-            var result = _playerComponent.Delete(id);
+            var result = _playerComponent.Delete(playerId);
 
             return result;
         }
+        
     }
 }

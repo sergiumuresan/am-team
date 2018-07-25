@@ -40,13 +40,19 @@ namespace TheAMTeam.Business.Components
             }
             return returnList;
         }
+        public PlayerModel Get(int id)
+        {
+            var result = _playerRepository.GetById(id).toModel();
 
-        public PlayerModel Update(PlayerModel model)
+            return result;
+        }
+
+        public PlayerModel Update(int playerId,PlayerModel model)
         {
             var player = model.toPlayer();
-            _playerRepository.Update(player);
+            _playerRepository.Update(playerId,player);
 
-            var returnPlayer = _playerRepository.GetById(player.PlayerId);
+            var returnPlayer = _playerRepository.GetById(playerId);
             return (returnPlayer.toModel());
         }
 
