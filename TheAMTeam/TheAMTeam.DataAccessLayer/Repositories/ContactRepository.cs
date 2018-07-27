@@ -18,16 +18,14 @@ namespace TheAMTeam.DataAccessLayer.Repositories
             {
                 using (var context = new AppContext())
                 {
-                    //Create a new entry in table, and get the new object
                     dbContactEntity = context.Contacts.Add(contactUs);
                     context.SaveChanges();
                 }
             }
             catch (Exception ex)
             {
-                //todo exeption handling
                 Console.Write(ex);
-                throw;
+                throw ex;
             }
 
             return dbContactEntity;
@@ -40,14 +38,14 @@ namespace TheAMTeam.DataAccessLayer.Repositories
             {
                 using (var context = new AppContext())
                 {
-                    dbContactUs = context.Contacts.SingleOrDefault(c => c.Id == id);
+                    dbContactUs = context.Contacts.Include("Department").SingleOrDefault(c => c.Id == id);
                     context.SaveChanges();
                 }
             }
             catch (Exception ex)
             {
                 Console.Write(ex);
-                throw;
+                throw ex;
             }
             return dbContactUs;
         }
@@ -59,7 +57,7 @@ namespace TheAMTeam.DataAccessLayer.Repositories
             {
                 using (var context = new AppContext())
                 {
-                    dbContactUs = context.Contacts.SingleOrDefault(c => c.Id == contact.Id);
+                    dbContactUs = context.Contacts.Include("Department").SingleOrDefault(c => c.Id == contact.Id);
                     if (dbContactUs != null)
                     {
                         //context.Contacts.Attach(contact);
@@ -78,7 +76,7 @@ namespace TheAMTeam.DataAccessLayer.Repositories
             catch (Exception ex)
             {
                 Console.Write(ex);
-                throw;
+                throw ex;
             }
             return contact;
         }
@@ -90,7 +88,7 @@ namespace TheAMTeam.DataAccessLayer.Repositories
             {
                 using (var context = new AppContext())
                 {
-                    dbContact = context.Contacts.SingleOrDefault(c => c.Id == id);
+                    dbContact = context.Contacts.Include("Department").SingleOrDefault(c => c.Id == id);
 
                     context.Contacts.Remove(dbContact);
                     context.SaveChanges();
@@ -100,7 +98,7 @@ namespace TheAMTeam.DataAccessLayer.Repositories
             catch (Exception ex)
             {
                 Console.Write(ex);
-                throw;
+                throw ex;
             }
             return dbContact != null ? true : false;
         }
@@ -111,14 +109,14 @@ namespace TheAMTeam.DataAccessLayer.Repositories
             {
                 using (var context = new AppContext())
                 {
-                    dbContactUs = context.Contacts.ToList();
+                    dbContactUs = context.Contacts.Include("Department").ToList();
                     context.SaveChanges();
                 }
             }
             catch (Exception ex)
             {
                 Console.Write(ex);
-                throw;
+                throw ex;
             }
             return dbContactUs;
         }

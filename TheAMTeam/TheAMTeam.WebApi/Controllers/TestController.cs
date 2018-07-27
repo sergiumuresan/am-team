@@ -14,8 +14,7 @@ namespace TheAMTeam.WebApi.Controllers
     public class TestController : ApiController
     {
         private TestComponent _testComponent = new TestComponent();
-    
-        // GET: TestEntity
+
         public List<TestEntityModel> Get()
         {
             var getResult = _testComponent.GetAllTests();
