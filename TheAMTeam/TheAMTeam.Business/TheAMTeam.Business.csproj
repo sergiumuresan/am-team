@@ -80,7 +80,7 @@
   <ItemGroup>
     <Compile Include="Components\ArticleComponent.cs" />
     <Compile Include="Components\TestComponent.cs" />
-    <Compile Include="Models\ArticleModel.cs" />
+    <Compile Include="Models\ArticleBussinessModel.cs" />
     <Compile Include="Models\CategoryModel.cs" />
     <Compile Include="Models\TestEntityModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

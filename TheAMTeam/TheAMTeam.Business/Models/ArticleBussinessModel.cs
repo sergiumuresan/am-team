@@ -6,7 +6,7 @@ using TheAMTeam.DataAccessLayer.Entities;
 
 namespace TheAMTeam.Business.Models
 {
-    public class ArticleModel
+    public class ArticleBussinessModel
     {
         public int ArticleId { get; set; }
         public string Title { get; set; }

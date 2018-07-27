@@ -19,7 +19,7 @@ namespace TheAMTeam.WebApi.Controllers
         
         [System.Web.Http.HttpPost]
         [System.Web.Http.Route("api/articles")]
-        public HttpResponseMessage Create([FromBody] ArticleModel myArticle)
+        public HttpResponseMessage Create([FromBody] ArticleBussinessModel myArticle)
         {
             try
             {
@@ -67,7 +67,7 @@ namespace TheAMTeam.WebApi.Controllers
 
         [System.Web.Http.Route("api/articles")]
         [System.Web.Http.HttpPut]
-        public HttpResponseMessage Update([FromBody] ArticleModel newArticleModel)
+        public HttpResponseMessage Update([FromBody] ArticleBussinessModel newArticleModel)
         {
             try
             {

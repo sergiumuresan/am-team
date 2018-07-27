@@ -15,25 +15,25 @@ namespace TheAMTeam.Business.Components
             _articlesRepository = new ArticlesRepository();
         }
 
-        public ArticleModel Add(ArticleModel articleModel)
+        public ArticleBussinessModel Add(ArticleBussinessModel articleModel)
         {
             var addedArticle = _articlesRepository.Add(articleModel.ToArticle());
 
             return addedArticle.ToArticleModel();
         }
 
-        public ArticleModel GetById(int id)
+        public ArticleBussinessModel GetById(int id)
         {
-            ArticleModel result;
+            ArticleBussinessModel result;
             result = _articlesRepository.GetById(id).ToArticleModel();
             return result;
         }
 
-        public List<ArticleModel> GetAll()
+        public List<ArticleBussinessModel> GetAll()
         {
             var result = _articlesRepository.GetAll();
 
-            var returnList = new List<ArticleModel>();
+            var returnList = new List<ArticleBussinessModel>();
 
             foreach (var item in result)
             {
@@ -43,7 +43,7 @@ namespace TheAMTeam.Business.Components
             return returnList;
         }
 
-        public ArticleModel Update(ArticleModel articleModelToUpdate)
+        public ArticleBussinessModel Update(ArticleBussinessModel articleModelToUpdate)
         {
             var updated =_articlesRepository.Update(articleModelToUpdate.ToArticle());
 
