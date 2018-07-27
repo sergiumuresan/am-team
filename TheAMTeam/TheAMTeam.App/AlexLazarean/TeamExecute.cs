@@ -12,11 +12,11 @@ namespace TheAMTeam.App.AlexLazarean
 {
     public static class TeamExecute
     {
-        public static readonly TeamRepository teamRepo = new TeamRepository();
+        private static readonly TeamRepository teamRepo = new TeamRepository();
 
         public static void PrintTeams(Team t)
         {
-            Console.WriteLine(t.Name + " " + t.TeamId);
+            Console.WriteLine ($"{t.Name}/{t.TeamId}");
         }
 
         public static void Execute()
@@ -41,21 +41,20 @@ namespace TheAMTeam.App.AlexLazarean
                         {
                             PrintTeams(t);
                         }
-                        //teamRepo.GetAll();
                         break;
                     case 2:
-                        PrintTeams(teamRepo.GetById(2));
-                        
+                        var getById = teamRepo.GetById(2);
+                        PrintTeams(getById);
                         break;
                     case 3:
                         teamRepo.Add(team);
                         break;
                     case 4:
-                        //teamRepo.GetById(4);
                         teamRepo.Update(team);
                         break;
                     case 5:
-                        Console.WriteLine(teamRepo.Delete(5));
+                        var deleted = teamRepo.Delete(5);
+                        Console.WriteLine(deleted);
                         break;
 
                 }
