@@ -1,13 +1,15 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Linq;
+using System.Web;
+using TheAMTeam.DataAccessLayer.Entities;
 
-namespace TheAMTeam.DataAccessLayer.Entities
+namespace TheAMTeam.Business.Models
 {
-    public class Team
+    public class TeamModel
     {
-        [Key]
-        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int TeamId { get; set; }
 
         [StringLength(15)]
@@ -17,8 +19,6 @@ namespace TheAMTeam.DataAccessLayer.Entities
         [StringLength(15)]
         public string Coach { get; set; }
 
-    
-        public ICollection<Player> Players { get; set; }
-        public virtual ICollection<Match> Matches { get; set; }
+        public ICollection<PlayerModel> PlayersModel { get; set; }
     }
 }

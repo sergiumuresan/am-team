@@ -37,7 +37,7 @@ namespace TheAMTeam.DataAccessLayer.Repositories
             {
                 using (var context = new AppContext())
                 {
-                    idMatch = context.Matches.Where(m => m.MatchId == id).SingleOrDefault();
+                    idMatch = context.Matches.SingleOrDefault(m => m.MatchId == id);
                     context.SaveChanges();
                 }
             }
@@ -52,23 +52,11 @@ namespace TheAMTeam.DataAccessLayer.Repositories
 
         public Match Update(Match match)
         {
-            //Match dbMatch;
             try
             {
                 using (var context = new AppContext())
                 {
-                    // case 1
-                    //dbMatch = context.Matches.Find(match.MatchesId);
-                    //if(dbMatch != null)
-                    //{
-                    //    dbMatch.FirstTeamId = match.FirstTeamId;
-                    //    dbMatch.SecondTeamId = match.SecondTeamId;
-                    //    dbMatch.FirstTeamScore = match.FirstTeamScore;
-                    //    dbMatch.Match_date = match.Match_date;
-                    //    dbMatch.CompId = match.CompId;
-                    //}
-
-                    //case 2
+                    
                     if (match != null)
                     {
                         context.Matches.Attach(match);
@@ -82,7 +70,6 @@ namespace TheAMTeam.DataAccessLayer.Repositories
                 throw;
             }
 
-            //return dbMatch;
             return match;
         }
 
@@ -93,29 +80,18 @@ namespace TheAMTeam.DataAccessLayer.Repositories
             {
                 using (var context = new AppContext())
                 {
-                    dbMatch = context.Matches.Where(m => m.MatchId == id).SingleOrDefault();
+                    dbMatch = context.Matches.SingleOrDefault(m => m.MatchId == id);
                     context.Matches.Remove(dbMatch);
                     context.SaveChanges();
+                    return true;
                 }
             } catch (Exception ex)
             {
                 Console.WriteLine(ex);
-                throw;
+                throw ex;
             }
-
-            return dbMatch != null ? true : false;
         }
 
-                // var 1
-        //public IQueryable<Match> getAll()
-        //{
-        //    using (var context =  new AMTeamEntities())
-        //    {
-        //        return context.Set<Match>();
-        //    } 
-        //}
-
-        //var 2
         public List<Match> getAll()
         {
             List<Match> matches;
