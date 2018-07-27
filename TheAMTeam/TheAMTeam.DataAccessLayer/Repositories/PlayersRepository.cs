@@ -23,7 +23,7 @@ namespace TheAMTeam.DataAccessLayer.Repositories
             catch (Exception ex)
             {
                 Console.WriteLine(ex);
-                throw;
+                throw ex;
             }
 
             return dbPlayer;
@@ -36,27 +36,26 @@ namespace TheAMTeam.DataAccessLayer.Repositories
             {
                 using (var context = new AppContext())
                 {
-                    dbPlayer = context.Players.Find(id);
+                    dbPlayer = context.Players.Include("Team").SingleOrDefault(c => c.PlayerId == id);
                     context.SaveChanges();
                 }
             }
             catch (Exception ex)
             {
                 //todo exeption handling
-                throw;
+                throw ex;
             }
 
             return dbPlayer;
         }
 
-        public Player Update(Player newPlayer)
+        public Player Update(int playerId,Player newPlayer)
         {
             try
             {
                 using (var context = new AppContext())
                 {
-                    int id = newPlayer.PlayerId;
-                    Player dbPlayer = context.Players.Find(id);
+                    Player dbPlayer = context.Players.Include("Team").SingleOrDefault(c => c.PlayerId == playerId);
 
 
                     dbPlayer.BirthDate = newPlayer.BirthDate;
@@ -64,9 +63,10 @@ namespace TheAMTeam.DataAccessLayer.Repositories
                     dbPlayer.NameAlias = newPlayer.NameAlias;
                     //dbPlayer.Nationality = newPlayer.Nationality;
                     dbPlayer.NationalityId = newPlayer.NationalityId;
-                    dbPlayer.PlayerId = newPlayer.PlayerId;
+                    //dbPlayer.PlayerId = newPlayer.PlayerId;
                     //dbPlayer.Team = newPlayer.Team;
                     //dbPlayer.Team1 = newPlayer.Team1;
+                    dbPlayer.TeamId = newPlayer.TeamId;
                     dbPlayer.TshirtNO = newPlayer.TshirtNO;
 
                     context.SaveChanges();
@@ -77,7 +77,7 @@ namespace TheAMTeam.DataAccessLayer.Repositories
             catch (Exception ex)
             {
                 //todo exeption handling
-                throw;
+                throw ex;
             }
         }
 
@@ -89,7 +89,7 @@ namespace TheAMTeam.DataAccessLayer.Repositories
                 {
                     if (context.Players.Find(id) != null)
                     {
-                        Player dbPlayer = context.Players.Find(id);
+                        Player dbPlayer = context.Players.SingleOrDefault(c => c.PlayerId == id);
                         context.Players.Remove(dbPlayer);
                         context.SaveChanges();
                         Console.WriteLine("Line {0} deleted!", id);
@@ -102,7 +102,7 @@ namespace TheAMTeam.DataAccessLayer.Repositories
             catch (Exception ex)
             {
                 //todo exeption handling
-                throw;
+                throw ex;
             }
         }
 
@@ -112,14 +112,14 @@ namespace TheAMTeam.DataAccessLayer.Repositories
             {
                 using (var context = new AppContext())
                 {
-                    var result = context.Players.ToList();
+                    var result = context.Players.Include("Team").ToList();
                     return result;
                 }
             }
             catch (Exception ex)
             {
                 //todo exeption handling
-                throw;
+                throw ex;
             }
         }
     }
