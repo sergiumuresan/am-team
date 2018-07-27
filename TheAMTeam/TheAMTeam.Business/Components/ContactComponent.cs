@@ -1,10 +1,7 @@
 ﻿using System.Collections.Generic;
 using TheAMTeam.Business.Models;
-using TheAMTeam.DataAccessLayer.Entities;
-using TheAMTeam.DataAccessLayer.Repositories;
-using System.Net.Http;
-using System.Web.Http;
 using TheAMTeam.Business.Utils;
+using TheAMTeam.DataAccessLayer.Repositories;
 
 namespace TheAMTeam.Business.Components
 {

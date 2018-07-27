@@ -1,12 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
+﻿using System.Collections.Generic;
 using TheAMTeam.Business.Models;
-using TheAMTeam.DataAccessLayer.Entities;
-using TheAMTeam.DataAccessLayer.Repositories;
-using System.Web.Http;
 using TheAMTeam.Business.Utils;
+using TheAMTeam.DataAccessLayer.Repositories;
 
 namespace TheAMTeam.Business.Components
 {
@@ -21,7 +16,7 @@ namespace TheAMTeam.Business.Components
         }
 
         
-        public CompetitionTypeModel Add([FromBody]CompetitionTypeModel competitionTypeModel)
+        public CompetitionTypeModel Add(CompetitionTypeModel competitionTypeModel)
         {   
 
             _competitionTypeRepository.Add(competitionTypeModel.mapToCompetiotionType());
@@ -56,7 +51,7 @@ namespace TheAMTeam.Business.Components
 
         }
 
-        public CompetitionTypeModel Update([FromBody]CompetitionTypeModel competitionTypeModel)
+        public CompetitionTypeModel Update(CompetitionTypeModel competitionTypeModel)
         {
             _competitionTypeRepository.Update(competitionTypeModel.mapToCompetiotionType());
             return competitionTypeModel;
