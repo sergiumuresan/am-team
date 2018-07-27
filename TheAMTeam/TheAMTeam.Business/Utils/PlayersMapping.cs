@@ -7,14 +7,14 @@ using TheAMTeam.DataAccessLayer.Entities;
 
 namespace TheAMTeam.Business.Utils
 {
-    public static class Mapping
+    public static class PlayersMapping
     {
-        public static PlayerModel toModel(this Player player)
+        public static PlayerBusinessModel toModel(this Player player)
         {
             if (player != null)
             {
 
-                PlayerModel playerEntity = new PlayerModel
+                PlayerBusinessModel playerEntity = new PlayerBusinessModel
                 {
                     PlayerId = player.PlayerId,
                     Name = player.Name,
@@ -24,7 +24,7 @@ namespace TheAMTeam.Business.Utils
                     NationalityId = player.NationalityId,
                     TeamId = player.TeamId,
 
-                    team = player.Team != null ? new TeamModel
+                    team = player.Team != null ? new TeamBusinessModel
                     {
                         TeamId = player.Team.TeamId,
                         Name = player.Team?.Name,
@@ -40,7 +40,7 @@ namespace TheAMTeam.Business.Utils
             }
         }
 
-        public static Player toPlayer(this PlayerModel player)
+        public static Player toPlayer(this PlayerBusinessModel player)
         {
             if (player != null)
             {

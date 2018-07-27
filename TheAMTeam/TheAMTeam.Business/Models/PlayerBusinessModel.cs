@@ -2,7 +2,7 @@
 
 namespace TheAMTeam.Business.Models
 {
-    public class PlayerModel
+    public class PlayerBusinessModel
     {
         public int PlayerId { get; set; }
 
@@ -18,7 +18,7 @@ namespace TheAMTeam.Business.Models
 
         public int TeamId { get; set; }
        
-        public TeamModel team { get; set; }
+        public TeamBusinessModel team { get; set; }
         
     }
 }

@@ -5,7 +5,7 @@ using System.Web;
 
 namespace TheAMTeam.Business.Components
 {
-    public class TeamComponent
+    public class TeamComp
     {
 
     }

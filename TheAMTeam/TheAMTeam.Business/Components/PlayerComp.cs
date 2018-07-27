@@ -9,16 +9,16 @@ using TheAMTeam.DataAccessLayer.Repositories;
 
 namespace TheAMTeam.Business.Components
 {
-    public class PlayerComponent
+    public class PlayerComp
     {
         private readonly PlayersRepository _playerRepository;
 
-        public PlayerComponent()
+        public PlayerComp()
         {
             _playerRepository = new PlayersRepository();
         }
 
-        public PlayerModel Add(PlayerModel model)
+        public PlayerBusinessModel Add(PlayerBusinessModel model)
         {
             Player player = model.toPlayer();
             _playerRepository.Create(player);
@@ -27,27 +27,27 @@ namespace TheAMTeam.Business.Components
             return (playerEntity);
         }
 
-        public List<PlayerModel> GetAllPlayers()
+        public List<PlayerBusinessModel> GetAllPlayers()
         {
             var result = _playerRepository.GetAll();
 
-            var returnList = new List<PlayerModel>();
+            var returnList = new List<PlayerBusinessModel>();
 
             foreach(var item in result)
             {
-                PlayerModel player = item.toModel();
+                PlayerBusinessModel player = item.toModel();
                 returnList.Add(player);
             }
             return returnList;
         }
-        public PlayerModel Get(int id)
+        public PlayerBusinessModel Get(int id)
         {
             var result = _playerRepository.GetById(id).toModel();
 
             return result;
         }
 
-        public PlayerModel Update(int playerId,PlayerModel model)
+        public PlayerBusinessModel Update(int playerId,PlayerBusinessModel model)
         {
             var player = model.toPlayer();
             _playerRepository.Update(playerId,player);

@@ -12,11 +12,11 @@ namespace TheAMTeam.WebApi.Controllers
 {
     public class PlayerController : ApiController
     {
-        private PlayerComponent _playerComponent = new PlayerComponent();
+        private PlayerComp _playerComponent = new PlayerComp();
 
         [HttpPost]
         [Route("api/player")]
-        public HttpResponseMessage Add([FromBody]PlayerModel player)
+        public HttpResponseMessage Add([FromBody]PlayerBusinessModel player)
         {
             try
             {
@@ -60,7 +60,7 @@ namespace TheAMTeam.WebApi.Controllers
         }
         [HttpPut]
         [Route("api/player/{playerId}")]
-        public HttpResponseMessage Update(int playerId,[FromBody]PlayerModel player)
+        public HttpResponseMessage Update(int playerId,[FromBody]PlayerBusinessModel player)
         {
             try
             {

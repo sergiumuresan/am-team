@@ -6,7 +6,7 @@ using TheAMTeam.DataAccessLayer.Entities;
 
 namespace TheAMTeam.Business.Models
 {
-    public class TeamModel
+    public class TeamBusinessModel
     {
         public int TeamId { get; set; }
         public string Name { get; set; }

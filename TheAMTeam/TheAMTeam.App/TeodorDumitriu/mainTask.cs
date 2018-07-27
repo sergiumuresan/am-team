@@ -29,7 +29,7 @@ namespace TheAMTeam.App.TeodorDumitriu
                 {
                     Player playerNew = _playersRepository.GetById(3);
                     playerNew.Name = "Updated";
-                    _playersRepository.Update(playerNew);
+                    //_playersRepository.Update(playerNew);
                 }
                 else if (item == 5) _playersRepository.Delete(9);    
             }
