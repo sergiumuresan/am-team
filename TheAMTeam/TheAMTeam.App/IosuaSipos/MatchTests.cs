@@ -10,7 +10,8 @@ namespace TheAMTeam.App.IosuaSipos
 
         public static void PrintMatch(Match m)
         {
-            Console.WriteLine(m.FirstTeamId + " / " + m.SecondTeamId);
+            Console.WriteLine($"{m.FirstTeamId}/{m.SecondTeamId}");
+
         }
         public static void Execute()
         {
@@ -29,7 +30,7 @@ namespace TheAMTeam.App.IosuaSipos
                 FirstTeamScore = 2,
                 SecondTeamScore = 1,
                 MatchDate = DateTime.Now,
-                CompId = 1
+                CompetitionId = 1
             };
 
             Console.WriteLine("Please enter a number between 0 and 5:");
@@ -39,28 +40,28 @@ namespace TheAMTeam.App.IosuaSipos
                 switch(number)
                 {
                     case 1:
-                        foreach (Match m in _testMatchRepository.getAll())
+                        var allMatches = _testMatchRepository.getAll();
+                        foreach (Match m in allMatches)
                             {
                                 PrintMatch(m);
                             }
                         break;
                     case 2:
-                        PrintMatch(_testMatchRepository.GetById(1));
+                        var result = _testMatchRepository.GetById(1);
+                        PrintMatch(result);
                         break;
                     case 3:
-                        PrintMatch(_testMatchRepository.Add(match));
+                        _testMatchRepository.Add(match);
                         break;
                     case 4:
                         match = _testMatchRepository.GetById(2);
                         match.SecondTeamScore = 3;
-                        //PrintMatch(_testMatchRepository.Update(match));
-                        _testMatchRepository.Update(match);
+                        var updateResult = _testMatchRepository.Update(match);
+                        PrintMatch(updateResult);
                         break;
                     case 5:
-                        _testMatchRepository.Delete(5);
+                        var deleteResult = _testMatchRepository.Delete(5);
                         break;
-                    
-
 
                 }
                 number = Int32.Parse(Console.ReadLine());

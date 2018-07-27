@@ -22,30 +22,29 @@ namespace TheAMTeam.DataAccessLayer.Repositories
             catch (Exception ex)
             {
                 Console.Write(ex);
-                throw;
+                throw(ex);
             }
 
             return dbArticle;
         }
 
-        public Article GetById(int Id)
+        public Article GetById(int id)
         {
-            Article dbArticle;
             try
             {
+                Article dbArticle;
                 using (var context = new AppContext())
                 {
-                    dbArticle = context.Articles.FirstOrDefault(c => c.ArticleId == Id);
+                    dbArticle = context.Articles.Include("Category").SingleOrDefault(c => c.ArticleId == id);
                     context.SaveChanges();
                 }
+                return dbArticle;
             }
             catch (Exception ex)
             {
                 Console.Write(ex);
-                throw;
+                throw(ex);
             }
-
-            return dbArticle;
         }
 
         public Article Update(Article article)
@@ -55,18 +54,15 @@ namespace TheAMTeam.DataAccessLayer.Repositories
                 using (var context = new AppContext())
                 {
                     //var unUpdate = context.Articles.FirstOrDefault(c => c.Author == upd.Author);
-                    if(article != null)
-                    {
-                        context.Articles.Attach(article);
-                        context.Entry(article).State = System.Data.Entity.EntityState.Modified;
-                        context.SaveChanges();
-                    }
+                    context.Articles.Attach(article);
+                    context.Entry(article).State = System.Data.Entity.EntityState.Modified;
+                    context.SaveChanges();                    
                 }
             }
             catch (Exception ex)
             {
                 Console.Write(ex);
-                throw;
+                throw(ex);
             }
             return article;
         }
@@ -87,28 +83,25 @@ namespace TheAMTeam.DataAccessLayer.Repositories
             catch (Exception ex)
             {
                 Console.Write(ex);
-                throw;
+                throw(ex);
             }
             return dbArticle != null ? true : false;
         }
 
         public List<Article> GetAll()
         {
-            List<Article> articles;
             try
             {
                 using (var context = new AppContext())
                 {
-                     articles = context.Articles.ToList();
-                    
+                    return context.Articles.Include("Category").ToList();
                 }
             }
             catch (Exception ex)
             {
                 Console.Write(ex);
-                throw;
+                throw(ex);
             }
-            return articles;
         }
     }
 }
