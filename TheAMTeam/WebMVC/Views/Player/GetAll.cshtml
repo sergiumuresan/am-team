@@ -1,0 +1,23 @@
+﻿@model  IEnumerable<TheAMTeam.Business.Models.PlayerBusinessModel>
+
+@{
+    Layout = "/Views/Shared/Player_Layout.cshtml";
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title></title>
+</head>
+<body>
+    @foreach (var player in Model)
+    {
+    <div>
+        @player.Name
+        @Html.ActionLink("Edit Player", "EditPlayer", "Player", new { id = player.PlayerId }, null)
+    </div>     
+    }
+</body>
+</html>

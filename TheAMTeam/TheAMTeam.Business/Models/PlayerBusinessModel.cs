@@ -1,4 +1,5 @@
 ﻿using System;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace TheAMTeam.Business.Models
 {
@@ -10,6 +11,7 @@ namespace TheAMTeam.Business.Models
 
         public int TshirtNO { get; set; }
 
+        [Column(TypeName = "datetime2")]
         public DateTime? BirthDate { get; set; }
 
         public string NameAlias { get; set; }
