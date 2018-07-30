@@ -1,17 +1,29 @@
 ﻿@model IEnumerable<TheAMTeam.Business.Models.ArticleBussinessModel>
 @{
-    ViewBag.Title = "Article";
+
+    Layout = "/Views/Shared/_LayoutArticle.cshtml";
 }
 
+
 <h2>Article</h2>
+
 @foreach (var field in Model)
 {
-    <p>@field.Title</p>
-    <p>@field.Author</p>
-    <p>@field.PublishedDate</p>
-    <p>@field.Content</p>
-    <p>@field.ImageURL</p>
+    <input type="button" value="Add new article" onclick="location.href='@Url.Action("Add", "Article")'" />
+    <div>
+        @field.Title
+        @Html.ActionLink("Edit", "Edit", "Article", new { id = field.ArticleId }, null)
+        @Html.ActionLink("Delete", "Delete", "Article", new { id = field.ArticleId }, null)
+
+    </div>
 }
+
+
+
+
+
+
+
 
 
 

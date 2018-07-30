@@ -1,0 +1,15 @@
+﻿@model TheAMTeam.Business.Models.ArticleBussinessModel
+@{
+    ViewBag.Title = "Delete";
+    Layout = "~/Views/Shared/_LayoutArticle.cshtml";
+}
+
+@using (Html.BeginForm("Delete", "Article", FormMethod.Post))
+{
+    <div>
+        <label>ID</label>
+        @Html.TextBoxFor(x => x.ArticleId)
+    </div>
+    <input type="submit" value="Delete" />
+}
+

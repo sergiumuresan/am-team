@@ -25,8 +25,13 @@ namespace TheAMTeam.WebMVC.Controllers
             return View(getById);
         }
 
-       public ActionResult Add(ArticleBussinessModel fullArticle)
+       public ActionResult Add()
         {
+            return View();
+        } 
+       public ActionResult AddNew(ArticleBussinessModel fullArticle)
+        {
+            fullArticle.PublishedDate = DateTime.Now;
             if (ModelState.IsValid)
             {
                 var add = articleComponent.Add(fullArticle);
@@ -40,6 +45,24 @@ namespace TheAMTeam.WebMVC.Controllers
             var toDelete = articleComponent.GetById(id);
             var deleted = toDelete != null ? articleComponent.Delete(toDelete.ArticleId) : false;
 
+            return RedirectToAction("GetAll");
+        }
+
+        public ActionResult Edit()
+        {
+            return View();
+        }
+
+        public ActionResult EditNew(ArticleBussinessModel editedArticle)
+        {
+            //var article = articleComponent.GetById(editedArticle.ArticleId);
+            editedArticle.PublishedDate = DateTime.Now;
+            
+            if(editedArticle != null)
+            {
+                articleComponent.Update(editedArticle);
+                
+            }
             return RedirectToAction("GetAll");
         }
 

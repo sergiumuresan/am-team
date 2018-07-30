@@ -247,6 +247,8 @@
     <Content Include="Views\Article\Add.cshtml" />
     <Content Include="Views\Article\About.cshtml" />
     <Content Include="Views\Shared\_LayoutArticle.cshtml" />
+    <Content Include="Views\Article\Delete.cshtml" />
+    <Content Include="Views\Article\Edit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

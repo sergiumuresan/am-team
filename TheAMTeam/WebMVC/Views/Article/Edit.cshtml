@@ -4,14 +4,12 @@
     Layout = "~/Views/Shared/_LayoutArticle.cshtml";
 }
 
-
-<h2>Add Article</h2>
-
-
-
-@using (Html.BeginForm("AddNew", "Article", FormMethod.Post))
+@using (Html.BeginForm("EditNew", "Article", FormMethod.Post))
 {
-    <input type="submit" value="Add" />
+    <div>
+        <label>Id</label>
+        @Html.HiddenFor(x => x.ArticleId)
+    </div>
     <div>
         <label>Title</label>
         @Html.TextBoxFor(x => x.Title)
@@ -35,6 +33,7 @@
         <label>Category id</label>
         @Html.TextBoxFor(x => x.CategoryId)
     </div>
-
-
+    <input type="submit" value="Edit" />
 }
+
+
