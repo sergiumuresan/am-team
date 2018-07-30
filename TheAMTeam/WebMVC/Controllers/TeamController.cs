@@ -47,12 +47,28 @@ namespace TheAMTeam.WebMVC.Controllers
 
         public ActionResult EditTeam(int id)
         {
-            var matchingIntern = interns.FirstOrDefault(x => x.Id == id);
+            var matchingTeam = _teamComponent.getTeamById(id);
+            if (matchingTeam == null)
+            {
+                return RedirectToAction("Teams");
+            }
+            return View(matchingTeam);
+        }
+
+        [HttpPost]
+        public ActionResult EditTeamPostMethod(TeamModel model)
+        {
+            var matchingIntern = _teamComponent.getTeamById(model.TeamId);
             if (matchingIntern == null)
             {
-                return RedirectToAction("About");
+                return RedirectToAction("Teams");
             }
-            return View(matchingIntern);
+
+            _teamComponent.UpdateTeam(model);
+            
+
+            return RedirectToAction("Teams");
         }
+
     }
 }
