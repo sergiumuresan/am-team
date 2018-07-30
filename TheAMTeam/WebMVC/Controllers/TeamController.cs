@@ -26,7 +26,12 @@ namespace TheAMTeam.WebMVC.Controllers
 
             //    teams.Teams.Add(team);
             //}
-            return View(list);
+            return View(list.OrderByDescending(x => x.TeamId));
+            //var result = (from team in list
+            //              orderby team.TeamId descending
+            //              select team).Skip((page-1) * 10).Take(10);
+            //return View(result);
+                         
         }
 
         public ActionResult AddTeam()
@@ -58,14 +63,37 @@ namespace TheAMTeam.WebMVC.Controllers
         [HttpPost]
         public ActionResult EditTeamPostMethod(TeamModel model)
         {
-            var matchingIntern = _teamComponent.getTeamById(model.TeamId);
-            if (matchingIntern == null)
+            var matchingTeam = _teamComponent.getTeamById(model.TeamId);
+            if (matchingTeam == null)
             {
                 return RedirectToAction("Teams");
             }
 
             _teamComponent.UpdateTeam(model);
             
+
+            return RedirectToAction("Teams");
+        }
+        public ActionResult RemoveTeam(int id)
+        {
+            var matchingTeam = _teamComponent.getTeamById(id);
+            if (matchingTeam == null)
+            {
+                return RedirectToAction("Teams");
+            }
+            return View(matchingTeam);
+        }
+        [HttpPost]
+        public ActionResult RemoveTeamMethod(int TeamId)
+        {
+            var matchingTeam = _teamComponent.getTeamById(TeamId);
+            if (matchingTeam == null)
+            {
+                return RedirectToAction("Teams");
+            }
+
+            _teamComponent.DeleteTeam(matchingTeam.TeamId);
+
 
             return RedirectToAction("Teams");
         }
