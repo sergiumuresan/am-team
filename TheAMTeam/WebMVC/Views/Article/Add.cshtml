@@ -1,0 +1,35 @@
+﻿@model TheAMTeam.Business.Models.ArticleBussinessModel
+@{
+    ViewBag.Title = "Add";
+}
+
+<h2>Add new intern</h2>
+
+@using (Html.BeginForm("Add", "Article", FormMethod.Post))
+{
+    <div>
+        <label>
+            @Html.TextBoxFor(x => x.Title)
+        </label>
+    </div>
+    <div>
+        <label>
+            @Html.TextBoxFor(x => x.Author)
+        </label>
+    </div>
+    <div>
+        <label>
+            @Html.TextBoxFor(x => x.PublishedDate)
+        </label>
+    </div>
+    <div>
+        <label>
+            @Html.TextBoxFor(x => x.Content)
+        </label>
+    </div>
+    <div>
+        <label>
+            @Html.TextBoxFor(x => x.ImageURL)
+        </label>
+    </div>
+}

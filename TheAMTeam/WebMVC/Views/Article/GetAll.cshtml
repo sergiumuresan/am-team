@@ -1,0 +1,17 @@
+﻿@model IEnumerable<TheAMTeam.Business.Models.ArticleBussinessModel>
+@{
+    ViewBag.Title = "Article";
+}
+
+<h2>Article</h2>
+@foreach (var field in Model)
+{
+    <p>@field.Title</p>
+    <p>@field.Author</p>
+    <p>@field.PublishedDate</p>
+    <p>@field.Content</p>
+    <p>@field.ImageURL</p>
+}
+
+
+

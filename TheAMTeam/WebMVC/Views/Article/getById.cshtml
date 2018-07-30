@@ -1,0 +1,16 @@
+﻿@model TheAMTeam.Business.Models.ArticleBussinessModel
+@{
+    ViewBag.Title = "getById";
+}
+
+<h2>getById</h2>
+
+@foreach(var byId in Model)
+{
+    <p>@byId.Title</p>
+    <p>@byId.Author</p>
+    <p>@byId.PublishedDate</p>
+    <p>@byId.Content</p>
+    <p>@byId.ImageURL</p>
+}
+

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Web;
 using TheAMTeam.DataAccessLayer.Entities;
@@ -11,6 +12,8 @@ namespace TheAMTeam.Business.Models
         public int ArticleId { get; set; }
         public string Title { get; set; }
         public string Author { get; set; }
+
+        [Column(TypeName = "datetime2")]
         public DateTime PublishedDate { get; set; }
         public string Content { get; set; }
         public string ImageURL { get; set; }
