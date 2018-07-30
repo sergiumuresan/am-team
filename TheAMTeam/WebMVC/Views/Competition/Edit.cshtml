@@ -1,21 +1,33 @@
 ﻿@model TheAMTeam.Business.Models.CompetitionTypeModel
+
 @{
-    Layout = "~/Views/Shared/_Layout.cshtml";
+    Layout = "~/Views/Shared/_LayoutSite.cshtml";
 }
 
-<h2>Edit Competition</h2>
+<h1>Edit Competition </h1>
 
-@using (Html.BeginForm("Edit", "Competition", FormMethod.Post))
+@using (Html.BeginForm("EditCompetition", "Competition", FormMethod.Post))
 {
     <div>
         <label>Id</label>
         @Html.TextBoxFor(x => x.CompetitionTypeId)
     </div>
+
     <div>
         <label>Name</label>
         @Html.TextBoxFor(x => x.Name)
     </div>
+
+    <div>
+        <p>
+            <input type="submit" value="Submit form" /><button onclick="goBack()">Go Back</button>
+        </p>
+    </div>
     
 
-    <input type="submit" value="Submit form" />
+    <script>
+        function goBack() {
+        window.history.back();
+               }
+    </script>
 }

@@ -1,16 +1,28 @@
 ﻿@model IEnumerable<TheAMTeam.Business.Models.CompetitionTypeModel>
 @{
-    Layout = "~/Views/Shared/_Layout.cshtml";
+    Layout = "~/Views/Shared/_LayoutSite.cshtml";
 }
 
 <h1>All Competitions</h1>
 
+@Html.ActionLink("Add a competition", "AddComp", "Competition")
+
 @foreach (var item in Model)
 {
     <p>
-        @item.Name    <a href="@Url.Action("Delete", "Competition", new { id = item.CompetitionTypeId }, null)">
+        @item.CompetitionTypeId
+        @item.Name <a href="@Url.Action("Delete", "Competition", new { id = item.CompetitionTypeId }, null)">
             <img height="15" width="15" src="https://cdn1.iconfinder.com/data/icons/round-ui/123/47-512.png" />
+        </a> <a href="@Url.Action("Edit", "Competition",new { id = item.CompetitionTypeId }, null)">
+            <img height="15" width="15" src="http://icons.iconarchive.com/icons/bokehlicia/pacifica/256/system-software-update-icon.png" />
         </a>
     </p>
 }
-@Html.ActionLink("Add a competition", "AddComp", "Competition")
+
+    <button onclick="goBack()">Go Back</button>
+
+    <script>
+        function goBack() {
+        window.history.back();
+               }
+    </script>

@@ -21,11 +21,6 @@ namespace TheAMTeam.WebMVC.Controllers
             
             return View(competition);
         }
-        //public ActionResult GetById(int id)
-        //{
-        //    var byId = comp.GetById(id);
-        //    return view(byId);
-        //}
 
         public ActionResult AddComp()
         {
@@ -42,17 +37,26 @@ namespace TheAMTeam.WebMVC.Controllers
             return RedirectToAction("GetAll");
         }
 
-        public ActionResult Edit(CompetitionTypeModel editComp)
+        public ActionResult Edit(int id)
         {
-            var matchingCompetition = component.GetById(editComp.CompetitionTypeId);
-            if (matchingCompetition == null)
+            var matchingCompetition = component.GetById(id);
+            if(matchingCompetition == null)
             {
                 return RedirectToAction("GetAll");
             }
+            return View(matchingCompetition);
+        }
 
-            matchingCompetition.CompetitionTypeId = matchingCompetition.CompetitionTypeId;
-            matchingCompetition.Name = editComp.Name;
-
+        [HttpPost]
+        public ActionResult EditCompetition(CompetitionTypeModel  competition)
+        {
+            var matchingCompetition = component.GetById(competition.CompetitionTypeId);
+            if (matchingCompetition != null)
+            {
+                matchingCompetition.Name = competition.Name;
+                component.Update(matchingCompetition);
+            }
+            
             return RedirectToAction("GetAll");
         }
 
