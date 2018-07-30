@@ -1,0 +1,26 @@
+﻿@model IEnumerable<TheAMTeam.Business.Models.TeamModel>
+@{
+    ViewBag.Title = "Teams";
+    Layout = "~/Views/Shared/_TeamLayout.cshtml";
+}
+<h2>Teams</h2>
+<table>
+    <thead>
+        <th>Name</th>
+        <th>City</th>
+        <th>Coach</th>
+    </thead>
+    <tbody>
+        @foreach (var team in Model)
+        {
+            <tr>
+                <td>@team.Name</td>
+                <td>@team.City</td>
+                <td>@team.Coach</td>
+                <th
+                    >@Html.ActionLink("Edit", "EditTeam", "Team", new { id = team.TeamId }, null)
+                </th>
+            </tr>
+        }
+    </tbody>
+</table>
