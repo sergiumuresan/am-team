@@ -1,0 +1,16 @@
+﻿@model IEnumerable<TheAMTeam.Business.Models.CompetitionTypeModel>
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>All Competitions</h1>
+
+@foreach (var item in Model)
+{
+    <p>
+        @item.Name    <a href="@Url.Action("Delete", "Competition", new { id = item.CompetitionTypeId }, null)">
+            <img height="15" width="15" src="https://cdn1.iconfinder.com/data/icons/round-ui/123/47-512.png" />
+        </a>
+    </p>
+}
+@Html.ActionLink("Add a competition", "AddComp", "Competition")
