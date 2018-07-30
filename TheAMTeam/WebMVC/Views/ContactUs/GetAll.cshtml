@@ -1,0 +1,24 @@
+﻿@model IEnumerable<TheAMTeam.Business.Models.ContactModel>
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Contact Us All</h1>
+
+@foreach (var item in Model)
+{
+<div>
+    <p>
+        <b>@item.Name</b> : @item.Phone <br>
+
+        In the department: @item.Department.Name <br>
+
+        <i>@item.UserMessage</i> <br>
+
+        @Html.ActionLink("Edit User", "Edit", "ContactUs", new { id = item.Id }, null)
+        @Html.ActionLink("Delete User", "Delete", "ContactUs", new { id = item.Id}, null)
+    </p>
+    <br>
+</div>
+
+}

@@ -1,0 +1,30 @@
+﻿@model TheAMTeam.Business.Models.ContactModel
+@{
+    ViewBag.Title = "Edit";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Edit the user @Model.Name</h2>
+
+@using (Html.BeginForm("EditContactUs", "EditContactUs", FormMethod.Post))
+{
+    <div>
+        <label>Name</label>
+        @Html.TextBoxFor(x => x.Name)
+    </div>
+    <div>
+        <label>Phone Number</label>
+        @Html.TextBoxFor(x => x.Phone)
+    </div>
+    <div>
+        <label>Department</label>
+        @Html.TextBoxFor(x => x.Department.Name)
+    </div>
+    <div>
+        <label>User's message</label>
+        @Html.TextBoxFor(x => x.UserMessage)
+    </div>
+
+    <br>
+    <input type="submit" value="Submit form" />
+
