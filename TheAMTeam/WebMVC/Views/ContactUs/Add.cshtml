@@ -1,16 +1,12 @@
 ﻿@model TheAMTeam.Business.Models.ContactModel
 @{
-    ViewBag.Title = "Edit";
     Layout = "~/Views/Shared/_LayoutTeo.cshtml";
 }
 
-<h2>Edit the user @Model.Name</h2>
+<h2>Add the new info</h2>
 
-@using (Html.BeginForm("Update", "ContactUs", FormMethod.Post))
+@using (Html.BeginForm("AddNewEntry", "ContactUs", FormMethod.Post))
 {
-    <div>
-        @Html.HiddenFor(x => x.Id)
-    </div>
     <div>
         <label>Name</label>
         @Html.TextBoxFor(x => x.Name)
@@ -24,8 +20,8 @@
         @Html.TextBoxFor(x => x.Email)
     </div>
     <div>
-        <label>Department</label>
-        @Html.TextBoxFor(x => x.Department.Name)
+        <label>Department ID</label>
+        @Html.TextBoxFor(x => x.DepartmentId)
     </div>
     <div>
         <label>User's message</label>

@@ -20,27 +20,62 @@ namespace TheAMTeam.WebMVC.Controllers
             return View(result);
         }
 
-        //ContactUs/Update/id  -  updates a contact person by id
-        public ActionResult Update(int id)
+       
+        //Add a new entry 
+        public ActionResult Add()
         {
-            var playerToUpdate = contactComponent.GetById(id);
+            return View();
+        }
 
-            return View(playerToUpdate);
+        [HttpPost]
+        public ActionResult AddNewEntry(ContactModel myContact)
+        {
+            myContact.MessageDate = DateTime.Now;
+
+            var newEntry = contactComponent.Add(myContact);
+
+            return RedirectToAction("GetAll");
         }
 
 
-        
-
-
-
-        public ActionResult Edit(ContactModel contactModel)
+        // Edit a contact
+        public ActionResult Edit(ContactModel myContact)
         {
-            var matchinguser = contactComponent.GetById(contactModel.Id);
-            if(matchinguser == null)
+            var matchingUser = contactComponent.GetById(myContact.Id);
+            if(matchingUser == null)
             {
-                RedirectToAction("GetAll");
+                return RedirectToAction("GetAll");
             }
-            return View(matchinguser);
+            return View(matchingUser);
+        }
+
+        [HttpPost]
+        public ActionResult Update(ContactModel contactModelToUpdate)
+        {
+            contactModelToUpdate.MessageDate = DateTime.Now;
+
+            contactComponent.Update(contactModelToUpdate);
+
+            return RedirectToAction("GetAll");
+        }
+
+
+        // Delete a contact
+        public ActionResult Delete(ContactModel contactToDelete)
+        {
+            var matchingUser = contactComponent.GetById(contactToDelete.Id);
+            if (matchingUser == null)
+            {
+                return RedirectToAction("GetAll");
+            }
+            return View(matchingUser);
+        }
+        [HttpPost]
+        public ActionResult DeleteTheContact(int Id)
+        {
+            contactComponent.Delete(Id);
+
+            return RedirectToAction("GetAll");
         }
     }
 }

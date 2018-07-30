@@ -1,24 +1,27 @@
 ﻿@model IEnumerable<TheAMTeam.Business.Models.ContactModel>
 @{
-    Layout = "~/Views/Shared/_Layout.cshtml";
+    Layout = "~/Views/Shared/_LayoutTeo.cshtml";
 }
 
 <h1>Contact Us All</h1>
 
+<h3>@Html.ActionLink("Add a new Entry", "Add", "ContactUs")</h3>
+<br>
+
 @foreach (var item in Model)
 {
-<div>
-    <p>
-        <b>@item.Name</b> : @item.Phone <br>
+    <div>
+        <p>
+            <b>@item.Name</b> : @item.Phone <br>
 
-        In the department: @item.Department.Name <br>
+            In the department: @item.Department.Name <br>
 
-        <i>@item.UserMessage</i> <br>
+            <i>@item.UserMessage</i> <br>
 
-        @Html.ActionLink("Edit User", "Edit", "ContactUs", new { id = item.Id }, null)
-        @Html.ActionLink("Delete User", "Delete", "ContactUs", new { id = item.Id}, null)
-    </p>
-    <br>
-</div>
+            @Html.ActionLink("Edit User", "Edit", "ContactUs", new { id = item.Id }, null)
+            @Html.ActionLink("Delete User", "Delete", "ContactUs", new { id = item.Id }, null)
+        </p>
+        <br>
+    </div>
 
 }

@@ -11,6 +11,7 @@ namespace TheAMTeam.Business.Utils
     public static class ContactMapping
     {
         public static ContactModel MapToModel(this Contact contact)
+
         {
             ContactModel contactModel = new ContactModel()
             {
