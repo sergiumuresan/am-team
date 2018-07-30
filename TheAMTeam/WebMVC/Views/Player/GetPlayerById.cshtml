@@ -1,15 +1,10 @@
-﻿@model  IEnumerable<TheAMTeam.Business.Models.PlayerBusinessModel>
+﻿@model  TheAMTeam.Business.Models.PlayerBusinessModel
 
 @{
     ViewBag.Title = "GetPlayerById";
+    Layout = "~/Views/Shared/_LayoutPlayer.cshtml";
 }
 
 <h2>GetPlayerById</h2>
 
-@foreach (var player in Model)
-{
-    <div>
-        @player.Name
-        @Html.ActionLink("Edit Player", "EditPlayer", "Player", new { id = player.PlayerId }, null)
-    </div>
-}
+

@@ -1,23 +1,42 @@
 ﻿@model  IEnumerable<TheAMTeam.Business.Models.PlayerBusinessModel>
 
 @{
-    Layout = "/Views/Shared/Player_Layout.cshtml";
+    Layout = "/Views/Shared/_LayoutPlayer.cshtml";
 }
 
-<!DOCTYPE html>
+<h2>Players</h2>
+    <input type="button" value="Add Player" onclick="location.href='@Url.Action("AddPlayer", "Player")'" />
 
-<html>
-<head>
-    <meta name="viewport" content="width=device-width" />
-    <title></title>
-</head>
-<body>
-    @foreach (var player in Model)
-    {
-    <div>
-        @player.Name
-        @Html.ActionLink("Edit Player", "EditPlayer", "Player", new { id = player.PlayerId }, null)
-    </div>     
-    }
-</body>
-</html>
+<table class="table">
+    <thead>
+    <th>Name</th>
+    <th>Number</th>
+    <th>team</th>
+    <th>Birth Date</th>
+    <th>Name Alias</th>
+    <th>Nationality Id</th>
+    </thead>
+    <tbody>
+        @foreach (var player in Model)
+        {
+            <tr>
+                <td>@player.Name</td>
+                <td>@player.TshirtNO</td>
+                <td>@player.TeamId</td>
+                <td>@player.BirthDate</td>
+                <td>@player.NameAlias</td>
+                <td>@player.NationalityId</td>
+                <th>
+                    @Html.ActionLink("Edit", "EditPlayer", "Player", new { id = player.PlayerId }, null)
+                </th>
+                <th>
+                    @Html.ActionLink("Delete", "DeletePlayer", "Player", new { id = player.PlayerId }, null)
+                </th>
+            </tr>
+        }
+    </tbody>
+
+</table>
+
+
+

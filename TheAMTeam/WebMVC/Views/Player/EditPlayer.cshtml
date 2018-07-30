@@ -1,17 +1,41 @@
-﻿
+﻿@model  TheAMTeam.Business.Models.PlayerBusinessModel
+
 @{
-    Layout = null;
+    ViewBag.Title = "Edit Player";
+    Layout = "~/Views/Shared/_LayoutPlayer.cshtml";
 }
 
-<!DOCTYPE html>
+<h1>Add Player</h1>
 
-<html>
-<head>
-    <meta name="viewport" content="width=device-width" />
-    <title>EditPlayer</title>
-</head>
-<body>
-    <div> 
+@using (Html.BeginForm("EditPlayerPostMethod", "Player", FormMethod.Post))
+{
+    <div>
+        <label>Name</label>
+        @Html.TextBoxFor(x => x.Name)
     </div>
-</body>
-</html>
+    <div>
+        <label>TshirtNO</label>
+        @Html.TextBoxFor(x => x.TshirtNO)
+    </div>
+    <div>
+        <label>BirthDate</label>
+        @Html.TextBoxFor(x => x.TshirtNO)
+    </div>
+    <div>
+        <label>NationalityId</label>
+        @Html.TextBoxFor(x => x.NationalityId)
+    </div>
+    <div>
+        <label>TeamId</label>
+        @Html.TextBoxFor(x => x.TeamId)
+    </div>
+    <div>
+        <label>Name Alias</label>
+        @Html.TextBoxFor(x => x.NameAlias)
+    </div>
+
+    <br />
+
+    <input type="submit" value="Save" />
+    <input type="button" value="Back" onclick="location.href='@Url.Action("GetAll", "Player")'" />
+}

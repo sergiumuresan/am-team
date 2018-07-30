@@ -11,59 +11,87 @@ namespace TheAMTeam.WebMVC.Controllers
 {
     public class PlayerController : Controller
     {
-        private static PlayerComp playerComp = new PlayerComp();
+        private static PlayerComp _playerComp = new PlayerComp();
 
         [HttpGet]
         public ActionResult GetAll()
         {
-            var players = playerComp.GetAllPlayers();
+            var players = _playerComp.GetAllPlayers();
             return View(players);
         }
 
         [HttpGet]
         public ActionResult GetPlayerById(int id)
         {
-            var getPlayer = playerComp.Get(id);
+            var getPlayer = _playerComp.Get(id);
             return View(getPlayer);
         }
 
-        [HttpPost]
-        public ActionResult AddPlayer(PlayerBusinessModel player)
+        [HttpGet]
+        public ActionResult AddPlayer()
         {
+            return View();
+        }
+
+
+        [HttpPost]
+        public ActionResult AddPlayerPostMethod(PlayerBusinessModel player)
+        {
+
             if(ModelState.IsValid)
             {
-                playerComp.Add(player);
+                _playerComp.Add(player);
             }
             return RedirectToAction("GetAll");
         }
 
-        [HttpPut]
-        public ActionResult EditPlayer(PlayerBusinessModel model)
+        [HttpGet]
+        public ActionResult EditPlayer(int id)
         {
-            var matchingPlayer = playerComp.Get(model.PlayerId);
+            var matchingPlayer = _playerComp.Get(id);
+            if (matchingPlayer == null)
+            {
+                return RedirectToAction("GetAll");
+            }
+            return View(matchingPlayer);
+        }
+
+        [HttpPost]
+        public ActionResult EditPlayerPostMethod(PlayerBusinessModel model)
+        {
+            var matchingPlayer = _playerComp.Get(model.PlayerId);
             if(matchingPlayer == null)
             {
                 return RedirectToAction("GetAll");
             }
-            matchingPlayer.Name = model.Name;
-            matchingPlayer.TeamId = model.TeamId;
-            matchingPlayer.TshirtNO = model.TshirtNO;
-            matchingPlayer.BirthDate = model.BirthDate;
-            matchingPlayer.NameAlias = model.NameAlias;
-            matchingPlayer.NationalityId = model.NationalityId;
+            _playerComp.Update(model.PlayerId, model);
 
             return RedirectToAction("GetAll");
         }
 
-        [HttpDelete]
+        [HttpGet]
         public ActionResult DeletePlayer(int id)
         {
-            var deletePlayer = playerComp.Delete(id);
-            if(deletePlayer == null)
+            var matchingPlayer = _playerComp.Get(id);
+            if(matchingPlayer == null)
             {
-                return 
+                return RedirectToAction("GettAll");
             }
-            return RedirectToAction("GetAll");
+
+            return View(matchingPlayer);
+        }
+
+        [HttpPost]
+        public ActionResult DeletePlayerPostMethod(int id)
+        {
+            var matchingPlayer = _playerComp.Get(id);
+            if (matchingPlayer == null)
+            {
+                return RedirectToAction("GettAll");
+            }
+            _playerComp.Delete(matchingPlayer.PlayerId);
+
+            return View(matchingPlayer);
         }
     }   
 }
