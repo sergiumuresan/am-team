@@ -3,25 +3,21 @@
     Layout = "~/Views/Shared/_LayoutSite.cshtml";
 }
 
-    <form action="http://localhost:49705/Competition/AddComp">
-        <input type="submit" value="Add a Competition" />
-    </form>
+    <h1>My Competitions</h1>
+    <input type="button" value="Add a Competition" onclick="location.href='@Url.Action("AddComp","Competition")'" />
 
-<h1>My Competitions</h1>
-  @*  @Html.ActionLink("Add a competition", "AddComp", "Competition")*@
+@foreach (var item in Model)
+{
+    <p>
+        @item.CompetitionTypeId
+        @item.Name <a href="@Url.Action("Delete", "Competition", new { id = item.CompetitionTypeId }, null)">
+            <img height="15" width="15" src="https://cdn1.iconfinder.com/data/icons/round-ui/123/47-512.png" />
+        </a> <a href="@Url.Action("Edit", "Competition",new { id = item.CompetitionTypeId }, null)">
+            <img height="15" width="15" src="http://icons.iconarchive.com/icons/bokehlicia/pacifica/256/system-software-update-icon.png" />
+        </a>
+    </p>
+}
 
-    @foreach (var item in Model)
-    {
-        <p>
-            @item.CompetitionTypeId
-            @item.Name <a href="@Url.Action("Delete", "Competition", new { id = item.CompetitionTypeId }, null)">
-                <img height="15" width="15" src="https://cdn1.iconfinder.com/data/icons/round-ui/123/47-512.png" />
-            </a> <a href="@Url.Action("Edit", "Competition",new { id = item.CompetitionTypeId }, null)">
-                <img height="15" width="15" src="http://icons.iconarchive.com/icons/bokehlicia/pacifica/256/system-software-update-icon.png" />
-            </a>
-        </p>
-    }
+<button onclick="goBack()">Go Back</button>
 
-    <button onclick="goBack()">Go Back</button>
-
-    <link rel="stylesheet" type="text/css" href="style.css">
+<link rel="stylesheet" type="text/css" href="style.css">
