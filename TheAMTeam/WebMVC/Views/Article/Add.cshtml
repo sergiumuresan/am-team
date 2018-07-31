@@ -35,6 +35,5 @@
         <label>Category id</label>
         @Html.TextBoxFor(x => x.CategoryId)
     </div>
-
-
 }
+    <input type="button" value="Back" onclick="location.href='@Url.Action("GetAll", "Article")'" />

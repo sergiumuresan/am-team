@@ -7,9 +7,11 @@
 
 <h2>Article</h2>
 
+@*<input type="button" value="Add new article" onclick="location.href='@Url.Action("Add", "Article")'" />*@
+
 @foreach (var field in Model)
 {
-    <input type="button" value="Add new article" onclick="location.href='@Url.Action("Add", "Article")'" />
+    
     <div>
         @field.Title
         @Html.ActionLink("Edit", "Edit", "Article", new { id = field.ArticleId }, null)

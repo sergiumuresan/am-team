@@ -25,10 +25,13 @@ namespace TheAMTeam.WebMVC.Controllers
             return View(getById);
         }
 
+
        public ActionResult Add()
         {
             return View();
         } 
+
+        [HttpPost]
        public ActionResult AddNew(ArticleBussinessModel fullArticle)
         {
             fullArticle.PublishedDate = DateTime.Now;
@@ -48,20 +51,28 @@ namespace TheAMTeam.WebMVC.Controllers
             return RedirectToAction("GetAll");
         }
 
-        public ActionResult Edit()
+        public ActionResult Edit(int id)
         {
-            return View();
+           
+            var toEdit = articleComponent.GetById(id);
+            if(toEdit == null)
+            {
+                return RedirectToAction("GetAll");
+            }
+            return View(toEdit);
         }
 
+
+        [HttpPost]
         public ActionResult EditNew(ArticleBussinessModel editedArticle)
         {
-            //var article = articleComponent.GetById(editedArticle.ArticleId);
+            var article = articleComponent.GetById(editedArticle.ArticleId);
             editedArticle.PublishedDate = DateTime.Now;
             
             if(editedArticle != null)
             {
                 articleComponent.Update(editedArticle);
-                
+          
             }
             return RedirectToAction("GetAll");
         }

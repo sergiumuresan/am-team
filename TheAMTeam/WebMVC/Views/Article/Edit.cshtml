@@ -7,7 +7,6 @@
 @using (Html.BeginForm("EditNew", "Article", FormMethod.Post))
 {
     <div>
-        <label>Id</label>
         @Html.HiddenFor(x => x.ArticleId)
     </div>
     <div>
@@ -33,7 +32,8 @@
         <label>Category id</label>
         @Html.TextBoxFor(x => x.CategoryId)
     </div>
-    <input type="submit" value="Edit" />
+    <input type="submit" value="Save" />
+    <input type="button" value="Back" onclick="location.href='@Url.Action("GetAll", "Article")'" />
 }
 
 
