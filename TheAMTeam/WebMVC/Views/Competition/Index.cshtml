@@ -5,8 +5,16 @@
 <h2>Competition</h2>
 
 <p>
-    @Html.ActionLink("Apasa pentru a vedea ligile!", "GetAll", "Competition")
+    <form action="http://localhost:49705/Competition/GetAll">
+            <input type="submit" value="See Competitions" />
+      </form>
+
+   @* @Html.ActionLink("Apasa pentru a vedea ligile!", "GetAll", "Competition")*@
 </p>
 <p>
-    @Html.ActionLink("Apasa pentru a adauga o liga noua!", "AddComp", "Competition")
+    <form action="http://localhost:49705/Competition/AddComp">
+        <input type="submit" value="Add Competition" />
+    </form>
+
+   @* @Html.ActionLink("Apasa pentru a adauga o liga noua!", "AddComp", "Competition")*@
 </p>
