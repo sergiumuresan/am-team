@@ -2,6 +2,7 @@
 @{
     ViewBag.Title = "Teams";
     Layout = "~/Views/Shared/_TeamLayout.cshtml";
+    int pages = 0;
 }
 <h2>Teams</h2>
 <table>
@@ -12,7 +13,7 @@
     </thead>
     <tbody>
         @foreach (var team in Model)
-        {
+        { pages++;
             <tr>
                 <td>@team.Name</td>
                 <td>@team.City</td>
@@ -27,3 +28,6 @@
         }
     </tbody>
 </table>
+
+<input type="button" value="Back" onclick="location.href='@Url.Action("Teams", "Team", new { page = Request.QueryString["page"].AsInt()>1?  Request.QueryString["page"].AsInt()-1 : 1  })'" />
+<input type="button" value="Next" onclick="location.href='@Url.Action("Teams", "Team", new { page = Request.QueryString["page"].AsInt()<=pages/8? Request.QueryString["page"].AsInt() +1 :Request.QueryString["page"].AsInt() })'" />

@@ -16,7 +16,7 @@ namespace TheAMTeam.WebMVC.Controllers
         {
             return View();
         }
-        public ActionResult Teams()
+        public ActionResult Teams(int page)
 
 
         {
@@ -26,12 +26,12 @@ namespace TheAMTeam.WebMVC.Controllers
 
             //    teams.Teams.Add(team);
             //}
-            return View(list.OrderByDescending(x => x.TeamId));
-            //var result = (from team in list
-            //              orderby team.TeamId descending
-            //              select team).Skip((page-1) * 10).Take(10);
-            //return View(result);
-                         
+            //return View(list.OrderByDescending(x => x.TeamId));
+            var result = (from team in list
+                          orderby team.TeamId descending
+                          select team).Skip((page - 1) * 8).Take(8);
+            return View(result);
+
         }
 
         public ActionResult AddTeam()
