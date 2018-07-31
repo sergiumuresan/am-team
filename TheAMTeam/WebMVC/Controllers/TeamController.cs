@@ -47,7 +47,7 @@ namespace TheAMTeam.WebMVC.Controllers
                 _teamComponent.AddTeam(model);
             }
 
-            return RedirectToAction("Teams");
+            return RedirectToAction("Teams", new { page = 1 });
         }
 
         public ActionResult EditTeam(int id)
@@ -55,7 +55,7 @@ namespace TheAMTeam.WebMVC.Controllers
             var matchingTeam = _teamComponent.getTeamById(id);
             if (matchingTeam == null)
             {
-                return RedirectToAction("Teams");
+                return RedirectToAction("Teams", new { page = 1 });
             }
             return View(matchingTeam);
         }
@@ -66,20 +66,20 @@ namespace TheAMTeam.WebMVC.Controllers
             var matchingTeam = _teamComponent.getTeamById(model.TeamId);
             if (matchingTeam == null)
             {
-                return RedirectToAction("Teams");
+                return RedirectToAction("Teams", new { page = 1 });
             }
 
             _teamComponent.UpdateTeam(model);
             
 
-            return RedirectToAction("Teams");
+            return RedirectToAction("Teams", new { page = 1 });
         }
         public ActionResult RemoveTeam(int id)
         {
             var matchingTeam = _teamComponent.getTeamById(id);
             if (matchingTeam == null)
             {
-                return RedirectToAction("Teams");
+                return RedirectToAction("Teams", new { page = 1 });
             }
             return View(matchingTeam);
         }
@@ -89,13 +89,13 @@ namespace TheAMTeam.WebMVC.Controllers
             var matchingTeam = _teamComponent.getTeamById(TeamId);
             if (matchingTeam == null)
             {
-                return RedirectToAction("Teams");
+                return RedirectToAction("Teams", new { page = 1 });
             }
 
             _teamComponent.DeleteTeam(matchingTeam.TeamId);
 
 
-            return RedirectToAction("Teams");
+            return RedirectToAction("Teams", new { page = 1 });
         }
 
     }
