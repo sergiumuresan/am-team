@@ -29,7 +29,7 @@ namespace TheAMTeam.WebMVC.Controllers
             //return View(list.OrderByDescending(x => x.TeamId));
             var result = (from team in list
                           orderby team.TeamId descending
-                          select team).Skip((page - 1) * 8).Take(8);
+                          select team).Skip((page - 1) * 6).Take(6);
             return View(result);
 
         }

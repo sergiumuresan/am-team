@@ -18,6 +18,14 @@
                 <td>@team.Name</td>
                 <td>@team.City</td>
                 <td>@team.Coach</td>
+                <td>
+                    <select>
+                        @foreach (var item in team.PlayersModel)
+                        {
+                            <option>@item.Name</option>
+                        }
+                    </select>
+                </td>
                 <th>
                     @Html.ActionLink("Edit", "EditTeam", "Team", new { id = team.TeamId }, null)
                 </th>
@@ -30,4 +38,4 @@
 </table>
 
 <input type="button" value="Back" onclick="location.href='@Url.Action("Teams", "Team", new { page = Request.QueryString["page"].AsInt()>1?  Request.QueryString["page"].AsInt()-1 : 1  })'" />
-<input type="button" value="Next" onclick="location.href='@Url.Action("Teams", "Team", new { page = Request.QueryString["page"].AsInt()<=pages/8? Request.QueryString["page"].AsInt() +1 :Request.QueryString["page"].AsInt() })'" />
+<input type="button" value="Next" onclick="location.href='@Url.Action("Teams", "Team", new { page = Request.QueryString["page"].AsInt()<=pages/6? Request.QueryString["page"].AsInt() +1 :Request.QueryString["page"].AsInt() })'" />
