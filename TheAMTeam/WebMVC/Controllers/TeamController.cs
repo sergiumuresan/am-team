@@ -16,9 +16,8 @@ namespace TheAMTeam.WebMVC.Controllers
         {
             return View();
         }
+        [HttpGet]
         public ActionResult Teams(int page)
-
-
         {
             var list = _teamComponent.GetAllTeams();
             //foreach(var team in list)
@@ -26,12 +25,26 @@ namespace TheAMTeam.WebMVC.Controllers
 
             //    teams.Teams.Add(team);
             //}
-            //return View(list.OrderByDescending(x => x.TeamId));
-            var result = (from team in list
-                          orderby team.TeamId descending
-                          select team).Skip((page - 1) * 6).Take(6);
-            return View(result);
+            return View(list.Skip((page - 1) * 4).Take(4));
+            //var result = (from team in list
+            //              orderby team.TeamId descending
+            //              select team).Skip((page - 1) * 6).Take(6);
+            //return View(result);
 
+        }
+        [HttpPost]
+        public ActionResult Teams(string search)
+        {
+            var teams = _teamComponent.GetAllTeams();
+
+            if (!String.IsNullOrEmpty(search))
+            {
+                var result = teams.Where(s => s.Name.Contains(search));
+
+
+                return View(result);
+            }
+            return RedirectToAction("Teams", new { page = 1 });
         }
 
         public ActionResult AddTeam()
