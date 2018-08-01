@@ -247,9 +247,7 @@
     <Content Include="Views\Home\About.cshtml" />
     <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Competition\GetAll.cshtml" />
-    <Content Include="Views\Competition\GetById.cshtml" />
     <Content Include="Views\Competition\Index.cshtml" />
-    <Content Include="Views\Competition\Add.cshtml" />
     <Content Include="Views\Competition\AddComp.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Shared\_LayoutSite.cshtml" />
