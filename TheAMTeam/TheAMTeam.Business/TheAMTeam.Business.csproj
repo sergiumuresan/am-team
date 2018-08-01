@@ -100,6 +100,7 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Components\CategoryComponent.cs" />
     <Compile Include="Components\CompetitionTypeComponent.cs" />
     <Compile Include="Components\PlayerComponent.cs" />
     <Compile Include="Components\TeamComponent.cs" />

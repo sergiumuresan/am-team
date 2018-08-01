@@ -20,5 +20,7 @@ namespace TheAMTeam.Business.Models
         public int CategoryId { get; set; }
 
         public virtual CategoryModel Category { get; set; }
+
+        public IEnumerable<CategoryModel> Categories { get; set; }
     }
 }

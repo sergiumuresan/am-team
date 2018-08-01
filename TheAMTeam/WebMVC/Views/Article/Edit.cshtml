@@ -30,7 +30,7 @@
     </div>
     <div>
         <label>Category id</label>
-        @Html.TextBoxFor(x => x.CategoryId)
+        @Html.DropDownListFor(x => x.CategoryId, new SelectList(Model.Categories, "CategoryId", "Name"))
     </div>
     <input type="submit" value="Save" />
     <input type="button" value="Back" onclick="location.href='@Url.Action("GetAll", "Article")'" />

@@ -11,12 +11,19 @@ namespace TheAMTeam.WebMVC.Controllers
     public class ArticleController : Controller
     {
         private ArticleComponent articleComponent = new ArticleComponent();
+        private CategoryComponent categoryComponent = new CategoryComponent();
         // GET: Article
         public ActionResult getAll()
         {
             var getAll = articleComponent.GetAll();
             
             return View(getAll);
+        }
+
+        public  ActionResult getAllCategoryId()
+        {
+            var getAllCategory = categoryComponent.GetAll();
+            return View(getAllCategory);
         }
 
         public ActionResult getById(int id)
@@ -28,7 +35,11 @@ namespace TheAMTeam.WebMVC.Controllers
 
        public ActionResult Add()
         {
-            return View();
+            var categoryMod = new ArticleBussinessModel()
+            {
+                Categories = categoryComponent.GetAll()
+            };
+            return View(categoryMod);
         } 
 
         [HttpPost]
@@ -59,7 +70,18 @@ namespace TheAMTeam.WebMVC.Controllers
             {
                 return RedirectToAction("GetAll");
             }
-            return View(toEdit);
+           
+            var article = new ArticleBussinessModel()
+            {
+                ArticleId = toEdit.ArticleId,
+                Title = toEdit.Title,
+                Author = toEdit.Author,
+                PublishedDate = toEdit.PublishedDate,
+                Content = toEdit.Content,
+                ImageURL = toEdit.ImageURL,
+                Categories = categoryComponent.GetAll()
+            };
+            return View(article);
         }
 
 

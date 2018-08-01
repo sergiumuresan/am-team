@@ -32,8 +32,8 @@
         @Html.TextBoxFor(x => x.ImageURL)
     </div>
     <div>
-        <label>Category id</label>
-        @Html.TextBoxFor(x => x.CategoryId)
+        <label>Category id</label>  
+        @Html.DropDownListFor(x => x.CategoryId, new SelectList(Model.Categories, "CategoryId", "Name"), new { @class="form-control fix"})
     </div>
 }
     <input type="button" value="Back" onclick="location.href='@Url.Action("GetAll", "Article")'" />
