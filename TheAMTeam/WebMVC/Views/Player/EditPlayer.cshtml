@@ -5,33 +5,42 @@
     Layout = "~/Views/Shared/_LayoutPlayer.cshtml";
 }
 
-<h1>Add Player</h1>
+<h1>Edit Player</h1>
 
 @using (Html.BeginForm("EditPlayerPostMethod", "Player", FormMethod.Post))
 {
+    @Html.AntiForgeryToken()
+    @Html.HiddenFor(x => x.PlayerId)
     <div>
-        <label>Name</label>
-        @Html.TextBoxFor(x => x.Name)
+        @Html.LabelFor(p => p.Name)
+        @Html.TextBoxFor(x => x.Name, new { @class = "form-control", autofocus = "autofocus" })
+        @Html.ValidationMessageFor(p => p.Name)
     </div>
     <div>
-        <label>TshirtNO</label>
-        @Html.TextBoxFor(x => x.TshirtNO)
+        @Html.LabelFor(p => p.TshirtNO)
+        @Html.TextBoxFor(x => x.TshirtNO, new { @class = "form-control" })
+        @Html.ValidationMessageFor(p => p.TshirtNO)
     </div>
     <div>
-        <label>BirthDate</label>
-        @Html.TextBoxFor(x => x.TshirtNO)
+        @Html.LabelFor(p => p.BirthDate)
+        @Html.TextBoxFor(x => x.BirthDate, new { @class = "form-control" })
+        @Html.ValidationMessageFor(p => p.BirthDate)
     </div>
     <div>
-        <label>NationalityId</label>
-        @Html.TextBoxFor(x => x.NationalityId)
+        @Html.LabelFor(p => p.NationalityId)
+        @Html.TextBoxFor(x => x.NationalityId, new { @class = "form-control", placeholder = "2" })
+        @Html.ValidationMessageFor(p => p.NationalityId)
     </div>
     <div>
-        <label>TeamId</label>
-        @Html.TextBoxFor(x => x.TeamId)
+        @Html.LabelFor(p => p.TeamId)
+        @Html.DropDownListFor(t => t.TeamId, new SelectList(Model.Teams, "TeamId", "Name"), new { @class = "form-control fix" })
+
+        @Html.ValidationMessageFor(p => p.TeamId)
     </div>
     <div>
-        <label>Name Alias</label>
-        @Html.TextBoxFor(x => x.NameAlias)
+        @Html.LabelFor(p => p.NameAlias)
+        @Html.TextBoxFor(x => x.NameAlias, new { @class = "form-control", placeholder = "Messi" })
+        @Html.ValidationMessageFor(p => p.NameAlias)
     </div>
 
     <br />

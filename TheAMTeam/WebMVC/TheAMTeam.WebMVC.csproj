@@ -245,7 +245,6 @@
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Shared\_LayoutSite.cshtml" />
     <Content Include="Views\Player\GetAll.cshtml" />
-    <Content Include="Views\Player\GetPlayerById.cshtml" />
     <Content Include="Views\Shared\_LayoutPlayer.cshtml" />
     <Content Include="Views\Player\AddPlayer.cshtml" />
     <Content Include="Views\Player\DeletePlayer.cshtml" />

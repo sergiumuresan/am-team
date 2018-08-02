@@ -2,42 +2,22 @@
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
-
 using TheAMTeam.DataAccessLayer.Entities;
 using AppContext = TheAMTeam.DataAccessLayer.Context.AppContext;
 
-
 namespace TheAMTeam.DataAccessLayer.Repositories
 {
-    public class MatchRepository
+    public class NationalityRepository
     {
-        public Match Add(Match match)
+        public Nationality Add(Nationality nationality)
         {
-            Match dbMatch;
+            Nationality dbNationality;
             try
             {
                 using (var context = new AppContext())
                 {
-                    dbMatch = context.Matches.Add(match);
+                    dbNationality = context.Nationality.Add(nationality);
                     context.SaveChanges();
-                }
-            } catch (Exception ex)
-            {
-                Console.WriteLine(ex);
-                throw;
-            }
-
-            return dbMatch;
-        }
-
-        public Match GetById(int id)
-        {
-            Match idMatch;
-            try
-            {
-                using (var context = new AppContext())
-                {
-                    idMatch = context.Matches.SingleOrDefault(m => m.MatchId == id);
                 }
             }
             catch (Exception ex)
@@ -46,68 +26,90 @@ namespace TheAMTeam.DataAccessLayer.Repositories
                 throw;
             }
 
-            return idMatch;
+            return dbNationality;
         }
 
-        public Match Update(Match match)
+        public Nationality GetById(int id)
         {
+            Nationality nationality;
             try
             {
                 using (var context = new AppContext())
                 {
-                    
-                    if (match != null)
-                    {
-                        context.Matches.Attach(match);
-                        context.Entry(match).State = EntityState.Modified;
-                        context.SaveChanges();
-                    }
+                    nationality = context.Nationality.SingleOrDefault(n => n.NationalityId == id);
                 }
-            } catch (Exception ex)
+            }
+            catch (Exception ex)
             {
                 Console.WriteLine(ex);
                 throw;
             }
 
-            return match;
+            return nationality;
         }
 
-        public bool Delete(int id)
+        public Nationality Update(Nationality nationality)
         {
-            Match dbMatch;
             try
             {
                 using (var context = new AppContext())
                 {
-                    dbMatch = context.Matches.SingleOrDefault(m => m.MatchId == id);
-                    context.Matches.Remove(dbMatch);
+
+                    if (nationality != null)
+                    {
+                        context.Nationality.Attach(nationality);
+                        context.Entry(nationality).State = EntityState.Modified;
+                        context.SaveChanges();
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex);
+                throw;
+            }
+
+            return nationality;
+        }
+
+        public bool Delete(int id)
+        {
+            Nationality dbNationality;
+            try
+            {
+                using (var context = new AppContext())
+                {
+                    dbNationality = GetById(id);
+                    context.Nationality.Remove(dbNationality);
                     context.SaveChanges();
                     return true;
                 }
-            } catch (Exception ex)
+            }
+            catch (Exception ex)
             {
                 Console.WriteLine(ex);
                 throw ex;
             }
         }
 
-        public List<Match> getAll()
+        public List<Nationality> getAll()
         {
-            List<Match> matches;
+            List<Nationality> nationalities;
             try
             {
                 using (var context = new AppContext())
                 {
-                    matches = context.Matches.ToList();
+                    nationalities = context.Nationality.ToList();
                 }
 
-            }catch(Exception ex)
+            }
+            catch (Exception ex)
             {
                 Console.WriteLine(ex);
                 throw;
             }
 
-            return matches;
+            return nationalities;
         }
     }
 }

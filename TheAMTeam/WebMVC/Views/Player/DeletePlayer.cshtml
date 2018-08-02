@@ -9,38 +9,17 @@
 
 @using (Html.BeginForm("DeletePlayerPostMethod", "Player", FormMethod.Post))
 {
-
     <div>
-        <label>Id</label>
-        @Html.TextBoxFor(x => x.Name)
+        <label>@Model.PlayerId</label>
+        @Html.HiddenFor(x => x.PlayerId)
     </div>
     <div>
         <label>Name</label>
         @Html.TextBoxFor(x => x.Name)
     </div>
-    <div>
-        <label>TshirtNO</label>
-        @Html.TextBoxFor(x => x.TshirtNO)
-    </div>
-    <div>
-        <label>BirthDate</label>
-        @Html.TextBoxFor(x => x.TshirtNO)
-    </div>
-    <div>
-        <label>NationalityId</label>
-        @Html.TextBoxFor(x => x.NationalityId)
-    </div>
-    <div>
-        <label>TeamId</label>
-        @Html.TextBoxFor(x => x.TeamId)
-    </div>
-    <div>
-        <label>Name Alias</label>
-        @Html.TextBoxFor(x => x.NameAlias)
-    </div>
 
     <br />
 
-    <input type="submit" value="Save" />
+    <input type="submit" value="Delete" />
     <input type="button" value="Back" onclick="location.href='@Url.Action("GetAll", "Player")'" />
 }

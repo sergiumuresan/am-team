@@ -12,11 +12,13 @@ namespace TheAMTeam.WebMVC.Controllers
     public class PlayerController : Controller
     {
         private static PlayerComp _playerComp = new PlayerComp();
+        private static TeamComponent _teamComp = new TeamComponent();
 
         [HttpGet]
         public ActionResult GetAll()
         {
-            var players = _playerComp.GetAllPlayers();
+            var players = _playerComp.GetAllPlayers().OrderByDescending(p => p.PlayerId);
+
             return View(players);
         }
 
@@ -30,7 +32,12 @@ namespace TheAMTeam.WebMVC.Controllers
         [HttpGet]
         public ActionResult AddPlayer()
         {
-            return View();
+            var viewModel = new PlayerBusinessModel
+            {
+                Teams = _teamComp.GetAllTeams()
+            };
+
+            return View(viewModel);
         }
 
 
@@ -38,17 +45,33 @@ namespace TheAMTeam.WebMVC.Controllers
         public ActionResult AddPlayerPostMethod(PlayerBusinessModel player)
         {
 
-            if(ModelState.IsValid)
+            if (ModelState.IsValid)
             {
-                _playerComp.Add(player);
             }
+            _playerComp.Add(player);
+
             return RedirectToAction("GetAll");
         }
 
         [HttpGet]
         public ActionResult EditPlayer(int id)
         {
-            var matchingPlayer = _playerComp.Get(id);
+            var player = _playerComp.Get(id);
+
+            if (player == null)
+                return HttpNotFound();
+
+            PlayerBusinessModel matchingPlayer = new PlayerBusinessModel
+            {
+                PlayerId = player.PlayerId,
+                TshirtNO = player.TshirtNO,
+                BirthDate = player.BirthDate,
+                Name = player.Name,
+                NameAlias = player.NameAlias,
+                Teams = _teamComp.GetAllTeams(),
+                TeamId = player.TeamId
+
+            };
             if (matchingPlayer == null)
             {
                 return RedirectToAction("GetAll");
@@ -60,7 +83,7 @@ namespace TheAMTeam.WebMVC.Controllers
         public ActionResult EditPlayerPostMethod(PlayerBusinessModel model)
         {
             var matchingPlayer = _playerComp.Get(model.PlayerId);
-            if(matchingPlayer == null)
+            if (matchingPlayer == null)
             {
                 return RedirectToAction("GetAll");
             }
@@ -73,7 +96,7 @@ namespace TheAMTeam.WebMVC.Controllers
         public ActionResult DeletePlayer(int id)
         {
             var matchingPlayer = _playerComp.Get(id);
-            if(matchingPlayer == null)
+            if (matchingPlayer == null)
             {
                 return RedirectToAction("GettAll");
             }
@@ -82,16 +105,16 @@ namespace TheAMTeam.WebMVC.Controllers
         }
 
         [HttpPost]
-        public ActionResult DeletePlayerPostMethod(int id)
+        public ActionResult DeletePlayerPostMethod(int PlayerId)
         {
-            var matchingPlayer = _playerComp.Get(id);
+            var matchingPlayer = _playerComp.Get(PlayerId);
             if (matchingPlayer == null)
             {
-                return RedirectToAction("GettAll");
+                return RedirectToAction("GetAll");
             }
             _playerComp.Delete(matchingPlayer.PlayerId);
 
-            return View(matchingPlayer);
+            return RedirectToAction("GetAll");
         }
-    }   
+    }
 }

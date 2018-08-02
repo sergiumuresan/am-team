@@ -101,6 +101,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Components\CompetitionTypeComponent.cs" />
+    <Compile Include="Components\NationalityComponent.cs" />
     <Compile Include="Components\PlayerComponent.cs" />
     <Compile Include="Components\TeamComponent.cs" />
     <Compile Include="Components\PlayerComp.cs" />
@@ -111,6 +112,7 @@
     <Compile Include="Components\TestComponent.cs" />
     <Compile Include="Models\CompetitionTypeModel.cs" />
     <Compile Include="Models\MatchModel.cs" />
+    <Compile Include="Models\NationalityModel.cs" />
     <Compile Include="Models\PlayerModel.cs" />
     <Compile Include="Models\TeamModel.cs" />
     <Compile Include="Models\PlayerBusinessModel.cs" />
@@ -122,10 +124,13 @@
     <Compile Include="Models\TestEntityModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Utils\Mapping.cs" />
+    <Compile Include="Utils\NationalityMapping.cs" />
     <Compile Include="Utils\TeamMapping.cs" />
     <Compile Include="Utils\PlayersMapping.cs" />
     <Compile Include="Utils\ExtensionMethods.cs" />
     <Compile Include="Utils\ContactMapping.cs" />
+    <Compile Include="ViewModel\FutureDate.cs" />
+    <Compile Include="ViewModel\ValidationTime.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

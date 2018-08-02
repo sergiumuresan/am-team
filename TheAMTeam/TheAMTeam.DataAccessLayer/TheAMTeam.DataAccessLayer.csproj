@@ -81,6 +81,7 @@
     <Compile Include="Repositories\ContactRepository.cs" />
     <Compile Include="Repositories\MatchRepository.cs" />
     <Compile Include="Repositories\ArticlesRepository.cs" />
+    <Compile Include="Repositories\NationalityRepository.cs" />
     <Compile Include="Repositories\TeamRepository.cs" />
     <Compile Include="Repositories\PlayersRepository.cs" />
     <Compile Include="Repositories\TestEntityRepository.cs" />

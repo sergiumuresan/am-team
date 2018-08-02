@@ -9,30 +9,33 @@
 
 <table class="table">
     <thead>
-    <th>Name</th>
-    <th>Number</th>
-    <th>team</th>
-    <th>Birth Date</th>
-    <th>Name Alias</th>
-    <th>Nationality Id</th>
+        <tr>
+            <th>Name</th>
+            <th>Number</th>
+            <th>team</th>
+            <th>Birth Date</th>
+            <th>Name Alias</th>
+            <th>Nationality Id</th>
+        </tr>
     </thead>
+    
     <tbody>
         @foreach (var player in Model)
         {
-            <tr>
-                <td>@player.Name</td>
-                <td>@player.TshirtNO</td>
-                <td>@player.TeamId</td>
-                <td>@player.BirthDate</td>
-                <td>@player.NameAlias</td>
-                <td>@player.NationalityId</td>
-                <th>
-                    @Html.ActionLink("Edit", "EditPlayer", "Player", new { id = player.PlayerId }, null)
-                </th>
-                <th>
-                    @Html.ActionLink("Delete", "DeletePlayer", "Player", new { id = player.PlayerId }, null)
-                </th>
-            </tr>
+        <tr>
+            <td>@player.Name</td>
+            <td>@player.TshirtNO</td>
+            <td>@player.Team.Name</td>  
+            <td>@String.Format("{0:dd/MM/yyyy}", player.BirthDate)</td>
+            <td>@player.NameAlias</td>
+            <td>@player.NationalityId</td>
+            <th>
+                @Html.ActionLink("Edit", "EditPlayer", "Player", new { id = player.PlayerId }, null)
+            </th>
+            <th>
+                @Html.ActionLink("Delete", "DeletePlayer", "Player", new { id = player.PlayerId }, null)
+            </th>
+        </tr>
         }
     </tbody>
 
