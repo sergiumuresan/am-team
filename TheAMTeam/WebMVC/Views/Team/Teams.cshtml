@@ -27,6 +27,9 @@
                     </select>
                 </td>
                 <th>
+                    @Html.ActionLink("Asign Player", "AsignPlayer", "Team", new { teamId = team.TeamId }, null)
+                </th>
+                <th>
                     @Html.ActionLink("Edit", "EditTeam", "Team", new { id = team.TeamId }, null)
                 </th>
                 <th>

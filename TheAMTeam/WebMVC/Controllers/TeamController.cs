@@ -5,12 +5,14 @@ using System.Web;
 using System.Web.Mvc;
 using TheAMTeam.Business.Components;
 using TheAMTeam.Business.Models;
+using TheAMTeam.WebMVC.Models;
 
 namespace TheAMTeam.WebMVC.Controllers
 {
     public class TeamController : Controller
     {
         private TeamComponent _teamComponent = new TeamComponent();
+        private PlayerComp _playerComponent = new PlayerComp();
         // GET: Team
         public ActionResult Index()
         {
@@ -109,6 +111,32 @@ namespace TheAMTeam.WebMVC.Controllers
 
 
             return RedirectToAction("Teams", new { page = 1 });
+        }
+
+        public ActionResult AsignPlayer(int teamId)
+        {
+            var players = _playerComponent.GetAllPlayers();
+            PlayerAsignModel playerAsignModel = new PlayerAsignModel()
+            {
+                teamId = teamId,
+                playerModels = players
+            };
+            return View(playerAsignModel);
+        }
+
+        [HttpPost]
+        public ActionResult AsignPlayerPost(int teamId,int playerId)
+        {
+            if (teamId != null && playerId != null)
+            {
+                var player = _playerComponent.Get(playerId);
+
+                player.TeamId = teamId;
+
+                _playerComponent.Update(playerId,player);
+            }
+            return RedirectToAction("Teams", new { page = 1 });
+
         }
 
     }
