@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.UI.WebControls;
 using TheAMTeam.Business.Components;
 using TheAMTeam.Business.Models;
 
@@ -12,8 +13,11 @@ namespace TheAMTeam.WebMVC.Controllers
     {
         private ContactComponent contactComponent = new ContactComponent();
 
-        //ContactUs/GetAll  -  show all the contact infos
-        public ActionResult GetAll()
+        private DepartmentComponent departmentComponent = new DepartmentComponent();
+
+
+        //ContactUs/  -  show all the contact infos
+        public ActionResult Index()
         {
             var result = contactComponent.GetAllContacts();           
 
@@ -23,8 +27,13 @@ namespace TheAMTeam.WebMVC.Controllers
        
         //Add a new entry 
         public ActionResult Add()
-        {
-            return View();
+        {          
+            var viewModel = new ContactModel
+            {
+                Departments = departmentComponent.GetAll()
+            };
+
+            return View(viewModel);
         }
 
         [HttpPost]
@@ -34,7 +43,7 @@ namespace TheAMTeam.WebMVC.Controllers
 
             var newEntry = contactComponent.Add(myContact);
 
-            return RedirectToAction("GetAll");
+            return RedirectToAction("Index");
         }
 
 
@@ -44,8 +53,11 @@ namespace TheAMTeam.WebMVC.Controllers
             var matchingUser = contactComponent.GetById(myContact.Id);
             if(matchingUser == null)
             {
-                return RedirectToAction("GetAll");
+                return RedirectToAction("Index");
             }
+
+            matchingUser.Departments = departmentComponent.GetAll();
+
             return View(matchingUser);
         }
 
@@ -56,7 +68,7 @@ namespace TheAMTeam.WebMVC.Controllers
 
             contactComponent.Update(contactModelToUpdate);
 
-            return RedirectToAction("GetAll");
+            return RedirectToAction("Index");
         }
 
 
@@ -66,7 +78,7 @@ namespace TheAMTeam.WebMVC.Controllers
             var matchingUser = contactComponent.GetById(contactToDelete.Id);
             if (matchingUser == null)
             {
-                return RedirectToAction("GetAll");
+                return RedirectToAction("Index");
             }
             return View(matchingUser);
         }
@@ -75,7 +87,7 @@ namespace TheAMTeam.WebMVC.Controllers
         {
             contactComponent.Delete(Id);
 
-            return RedirectToAction("GetAll");
+            return RedirectToAction("Index");
         }
     }
 }

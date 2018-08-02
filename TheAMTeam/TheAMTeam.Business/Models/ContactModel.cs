@@ -22,5 +22,6 @@ namespace TheAMTeam.Business.Models
         public int DepartmentId { get; set; }
         [ForeignKey("DepartmentId")]
         public virtual DepartmentModel Department { get; set; }
+        public IEnumerable<DepartmentModel> Departments { get; set; }
     }
 }

@@ -3,9 +3,12 @@
     Layout = "~/Views/Shared/_LayoutTeo.cshtml";
 }
 
-<h1>Contact Us All</h1>
+<h1>Contact Us</h1>
 
-<h3>@Html.ActionLink("Add a new Entry", "Add", "ContactUs")</h3>
+
+<input type="button" value="Add a new Entry" onclick="location.href='@Url.Action("Add", "ContactUs")'" />
+
+<br>
 <br>
 
 @foreach (var item in Model)

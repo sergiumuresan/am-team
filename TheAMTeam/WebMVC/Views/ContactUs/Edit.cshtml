@@ -25,7 +25,7 @@
     </div>
     <div>
         <label>Department</label>
-        @Html.TextBoxFor(x => x.Department.Name)
+        @Html.DropDownListFor(x => x.DepartmentId, new SelectList(Model.Departments, "Id", "Name"))
     </div>
     <div>
         <label>User's message</label>
