@@ -24,16 +24,21 @@
             </div>
             <div class="content">
                 <div class="inner">
+                    <form action="/Team/Teams" method="post">
+                        
+                        <input type="text" name="search" placeholder="Search for a team..."/>
+                        <br />
+                        <input type="submit" value="Search" />
+                    </form>
                     @RenderBody()
                 </div>
             </div>
             <nav>
                 <ul>
-                    <li><a href="/team">Teams</a></li>
-                    <li><a href="/competition">Competitions</a></li>
-                    <li><a href="/player">Players</a></li>
-                    <li><a href="/articles">Articles</a></li>
-                    <li><a href="/contactus">ContactUs</a></li>
+                    <li><a href="/team/teams?page=1">Teams</a></li>
+                    <li><a href="/team/AddTeam">AddTeam</a></li>
+                    <li><a href="/">Main Page</a></li>
+
                    
                 </ul>
             </nav>

@@ -1,0 +1,25 @@
+﻿@model TheAMTeam.Business.Models.TeamModel
+@{
+    ViewBag.Title = "Teams";
+    Layout = "~/Views/Shared/_TeamLayout.cshtml";
+}
+<h2>Add Team</h2>
+
+@using (Html.BeginForm("AddTeamPostMethod", "Team", FormMethod.Post))
+{
+    <div>
+        <label>Name</label>
+        @Html.TextBoxFor(x => x.Name)
+    </div>
+    <div>
+        <label>City</label>
+        @Html.TextBoxFor(x => x.City)
+    </div>
+    <div>
+        <label>Coach</label>
+        @Html.TextBoxFor(x => x.Coach)
+    </div>
+
+    <input type="submit" value="Submit form" />
+    <input type="button" value="Back" onclick="location.href='@Url.Action("Teams", "Team",new { page = 1 })'" />
+}

@@ -1,0 +1,20 @@
+﻿@model TheAMTeam.WebMVC.Models.PlayerAsignModel
+@{
+    ViewBag.Title = "Teams";
+    Layout = "~/Views/Shared/_TeamLayout.cshtml";
+
+}
+
+@using (Html.BeginForm("AsignPlayerPost", "Team", FormMethod.Post))
+{
+    @Html.HiddenFor(x => x.teamId)
+   
+    <select class="form-control" id="playerId" name="playerId">
+        @foreach (var player in Model.playerModels)
+        {
+            <option value="@player.PlayerId">@player.Name</option>
+        }
+    </select>
+    <input type="submit" value="Submit form" />
+    <input type="button" value="Back" onclick="location.href='@Url.Action("Teams", "Team",new { page = 1 })'" />
+}

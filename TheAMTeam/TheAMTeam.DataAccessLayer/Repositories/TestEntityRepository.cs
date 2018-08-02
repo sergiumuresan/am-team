@@ -23,7 +23,7 @@ namespace TheAMTeam.DataAccessLayer.Repositories
             catch (Exception ex)
             {
                 //todo exeption handling
-                throw;
+                throw ex;
             }
 
             return dbTestEntity;
