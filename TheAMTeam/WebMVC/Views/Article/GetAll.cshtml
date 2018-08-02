@@ -6,19 +6,64 @@
 
 
 <h2>Article</h2>
-
-@*<input type="button" value="Add new article" onclick="location.href='@Url.Action("Add", "Article")'" />*@
-
-@foreach (var field in Model)
+@using (Html.BeginForm("getAll", "Article", FormMethod.Post))
 {
-    
-    <div>
-        @field.Title
-        @Html.ActionLink("Edit", "Edit", "Article", new { id = field.ArticleId }, null)
-        @Html.ActionLink("Delete", "Delete", "Article", new { id = field.ArticleId }, null)
-
-    </div>
+    <input type="text" placeholder="Search here..." name="search" />
+    <input type="submit" value="Search" />
 }
+
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Title </th>
+            <th>Author </th>
+            <th>Published Date </th>
+            <th>Content</th>
+            <th>Image URL</th>
+            <th>Category</th>
+        </tr>
+    </thead>
+        @*<tbody style="display:block; height:300px; overflow:auto;">*@
+        <tbody>
+                @foreach (var article in Model)
+                {
+                    <tr>
+                        <td>
+                            @article.Title
+                        </td>
+                        <td>
+                            @article.Author
+                        </td>
+                        <td>
+                            @article.PublishedDate
+                        </td>
+                        <td>
+                            @article.Content
+                        </td>
+                        <td>
+                            @article.ImageURL
+                        </td>
+                        <td>
+                            @article.Category.Name
+                        </td>
+                        <th>
+                            @Html.ActionLink("Edit", "Edit", "Article", new { id = article.ArticleId }, null)
+                        </th>
+                        <th>
+                            @Html.ActionLink("Delete", "Delete", "Article", new { id = article.ArticleId }, null)
+                        </th>
+                    </tr>
+                }
+               
+        </tbody>
+   </table>
+
+
+
+
+
+
 
 
 

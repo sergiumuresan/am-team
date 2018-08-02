@@ -13,6 +13,8 @@ namespace TheAMTeam.WebMVC.Controllers
         private ArticleComponent articleComponent = new ArticleComponent();
         private CategoryComponent categoryComponent = new CategoryComponent();
         // GET: Article
+
+            [HttpGet]
         public ActionResult getAll()
         {
             var getAll = articleComponent.GetAll();
@@ -79,6 +81,7 @@ namespace TheAMTeam.WebMVC.Controllers
                 PublishedDate = toEdit.PublishedDate,
                 Content = toEdit.Content,
                 ImageURL = toEdit.ImageURL,
+                CategoryId = toEdit.CategoryId,
                 Categories = categoryComponent.GetAll()
             };
             return View(article);
@@ -99,6 +102,13 @@ namespace TheAMTeam.WebMVC.Controllers
             return RedirectToAction("GetAll");
         }
 
-       
+        [HttpPost]
+        public ActionResult getAll(String search)
+        {
+            var getAll = articleComponent.GetAll();
+            var searchResult = getAll.Where(x => x.Author.Contains(search) || x.Category.Name.Contains(search) || x.Title.Contains(search));
+            return View(searchResult);
+        }
+
     }
 }
