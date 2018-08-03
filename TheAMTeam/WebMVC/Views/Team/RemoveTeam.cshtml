@@ -8,7 +8,6 @@
 @using (Html.BeginForm("RemoveTeamMethod", "Team", FormMethod.Post))
 {
     <div>
-        <label>@Model.TeamId</label>
         @Html.HiddenFor(x => x.TeamId)
        
     </div>

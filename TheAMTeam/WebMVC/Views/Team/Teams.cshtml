@@ -5,15 +5,23 @@
     int pages = 0;
 }
 <h2>Teams</h2>
+<form action="/Team/Teams" method="post">
+
+    <input type="text" name="search" placeholder="Search for a team..." />
+    <br />
+    <input type="submit" value="Search" />
+</form>
 <table>
     <thead>
-        <th>Name</th>
-        <th>City</th>
-        <th>Coach</th>
+    <th>Name</th>
+    <th>City</th>
+    <th>Coach</th>
+    <th>Players</th>
     </thead>
     <tbody>
         @foreach (var team in Model)
-        { pages++;
+        {
+            pages++;
             <tr>
                 <td>@team.Name</td>
                 <td>@team.City</td>
@@ -33,13 +41,13 @@
                     @Html.ActionLink("Edit", "EditTeam", "Team", new { id = team.TeamId }, null)
                 </th>
                 <th>
-                    @Html.ActionLink("Delete","RemoveTeam","Team",new { id = team.TeamId},null)
+                    @Html.ActionLink("Delete", "RemoveTeam", "Team", new { id = team.TeamId }, null)
                 </th>
             </tr>
         }
     </tbody>
 </table>
-@if(pages == 0)
+@if (pages == 0)
 {
     <p>No Teams Found!</p>
 }
