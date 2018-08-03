@@ -1,0 +1,12 @@
+﻿
+@{
+    ViewBag.Title = "EditErrorValidation";
+    Layout = "~/Views/Shared/_LayoutTeo.cshtml";
+}
+
+<h2>You have entered an invalid field</h2>
+<i>All fields are required, go back and complete all of them</i>
+<br>
+<br>
+
+<input type="button" value="Try again" onclick="location.href='@Url.Action("Edit", "ContactUs")'" />

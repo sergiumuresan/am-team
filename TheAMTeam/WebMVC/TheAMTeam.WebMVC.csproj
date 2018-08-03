@@ -251,6 +251,10 @@
     <Content Include="Views\Shared\_LayoutTeo.cshtml" />
     <Content Include="Views\ContactUs\Add.cshtml" />
     <Content Include="Views\ContactUs\Delete.cshtml" />
+    <Content Include="Views\ContactUs\ErrorValidation.cshtml" />
+    <Content Include="Views\ContactUs\ErrorValidationPhone.cshtml" />
+    <Content Include="Views\ContactUs\EditErrorValidation.cshtml" />
+    <Content Include="Views\ContactUs\EditErrorValidationPhone.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

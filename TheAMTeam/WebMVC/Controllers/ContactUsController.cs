@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text.RegularExpressions;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.UI.WebControls;
@@ -39,9 +40,13 @@ namespace TheAMTeam.WebMVC.Controllers
         [HttpPost]
         public ActionResult AddNewEntry(ContactModel myContact)
         {
+            if (myContact.Phone == null || myContact.Name == null || myContact.Email == null || myContact.UserMessage == null) return RedirectToAction("ErrorValidation");
+
+            if (!(Regex.IsMatch(myContact.Phone, @"^\d+$"))) return RedirectToAction("ErrorValidationPhone");
+
             myContact.MessageDate = DateTime.Now;
 
-            var newEntry = contactComponent.Add(myContact);
+            contactComponent.Add(myContact);
 
             return RedirectToAction("Index");
         }
@@ -66,6 +71,10 @@ namespace TheAMTeam.WebMVC.Controllers
         {
             contactModelToUpdate.MessageDate = DateTime.Now;
 
+            if (contactModelToUpdate.Phone == null || contactModelToUpdate.Name == null || contactModelToUpdate.Email == null || contactModelToUpdate.UserMessage == null) return RedirectToAction("EditErrorValidation");
+
+            if (!(Regex.IsMatch(contactModelToUpdate.Phone, @"^\d+$"))) return RedirectToAction("EditErrorValidationPhone");
+
             contactComponent.Update(contactModelToUpdate);
 
             return RedirectToAction("Index");
@@ -89,5 +98,28 @@ namespace TheAMTeam.WebMVC.Controllers
 
             return RedirectToAction("Index");
         }
+
+        // Validations
+
+        public ActionResult ErrorValidation()
+        {
+            return View("ErrorValidation");
+        }
+
+        public ActionResult ErrorValidationPhone()
+        {
+            return View("ErrorValidationPhone");
+        }
+
+        public ActionResult EditErrorValidation()
+        {
+            return View("EditErrorValidation");
+        }
+
+        public ActionResult EditErrorValidationPhone()
+        {
+            return View("EditErrorValidationPhone");
+        }
+
     }
 }
