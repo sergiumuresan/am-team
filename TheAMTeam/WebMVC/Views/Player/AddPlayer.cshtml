@@ -23,14 +23,7 @@
     </div>
     <div>
         @Html.LabelFor(p => p.BirthDate)
-        @Html.TextBoxFor(x => x.TshirtNO, new { @class = "form-control", placeholder = "eg 21 05 2018" })
-        @*<input type="date" id="last-start-date" value="@string.Format("{0:yyyy-MM-dd}", Model.BirthDate)" />*@
-        <div class="input-group date" data-provide="datepicker">
-            <input type="text" class="form-control">
-            <div class="input-group-addon">
-                <span class="glyphicon glyphicon-th"></span>
-            </div>
-        </div>
+        @Html.TextBoxFor(x => x.TshirtNO, new { @class = "form-control", placeholder = "eg 21 05 2018" })   
         @Html.ValidationMessageFor(p => p.BirthDate)
     </div>
     <div>
@@ -56,10 +49,4 @@
 
 }
 
-@section scripts
-{
-    $('.datepicker').datepicker({
-    format: 'mm/dd/yyyy',
-    startDate: '-3d'
-    });
-}
+

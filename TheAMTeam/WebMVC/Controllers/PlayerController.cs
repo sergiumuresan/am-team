@@ -116,5 +116,20 @@ namespace TheAMTeam.WebMVC.Controllers
 
             return RedirectToAction("GetAll");
         }
+
+        [HttpPost]
+        public ActionResult GetAll(string search)
+        {
+            var players = _playerComp.GetAllPlayers();
+
+            if (!String.IsNullOrEmpty(search))
+            {
+                var result = players.Where(s => s.Name.Contains(search));
+
+
+                return View(result);
+            }
+            return RedirectToAction("GetAll");
+        }
     }
 }
