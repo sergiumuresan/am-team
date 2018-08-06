@@ -8,6 +8,7 @@ namespace TheAMTeam.DataAccessLayer.Repositories
 {
     public class PlayersRepository
     {
+
         public Player Create(Player playerEntity)
         {
             Player dbPlayer;

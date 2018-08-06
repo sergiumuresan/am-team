@@ -26,7 +26,6 @@ namespace TheAMTeam.Business.Components
             return nationality?.mapToModel();
         }
 
-
         public List<NationalityModel> GetAllNationalities()
         {
             var nationalities = _nationalityRepository.getAll();

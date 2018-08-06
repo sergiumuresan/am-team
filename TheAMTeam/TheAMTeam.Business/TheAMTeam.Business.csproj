@@ -101,6 +101,14 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Components\CompetitionTypeComponent.cs" />
+    <Compile Include="Components\Interfaces\Components\IArticleComponent.cs" />
+    <Compile Include="Components\Interfaces\Components\ICompetitionTypeComponent.cs" />
+    <Compile Include="Components\Interfaces\Components\IContactComponent.cs" />
+    <Compile Include="Components\Interfaces\Components\IDepartmentComponent.cs" />
+    <Compile Include="Components\Interfaces\Components\INationalityComponent.cs" />
+    <Compile Include="Components\Interfaces\Components\IPlayerComp.cs" />
+    <Compile Include="Components\Interfaces\IUnitOfWorkComponent.cs" />
+    <Compile Include="Components\Interfaces\Components\ITeamComponent.cs" />
     <Compile Include="Components\NationalityComponent.cs" />
     <Compile Include="Components\PlayerComponent.cs" />
     <Compile Include="Components\TeamComponent.cs" />
