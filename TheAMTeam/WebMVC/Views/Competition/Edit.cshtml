@@ -1,7 +1,7 @@
 ﻿@model TheAMTeam.Business.Models.CompetitionTypeModel
 
 @{
-    Layout = "~/Views/Shared/_LayoutSite.cshtml";
+    Layout = "~/Views/Shared/CompetitionLayout.cshtml";
 }
 
 <h1>Edit Competition </h1>
@@ -12,18 +12,17 @@
         <label>Id</label>
         @Html.TextBoxFor(x => x.CompetitionTypeId)
     </div>
-
     <div>
-        <label>Name</label>
-        @Html.TextBoxFor(x => x.Name)
+        <p>
+            <label>Name</label>
+            @Html.TextBoxFor(x => x.Name)
+        </p>
     </div>
-
     <div>
         <p>
             <input type="submit" value="Submit form" /><button onclick="goBack()">Go Back</button>
         </p>
     </div>
-
 }
 
-<link rel="stylesheet" type="text/css" href="style.css">
+<script src="~/assets/js/script.js"></script>

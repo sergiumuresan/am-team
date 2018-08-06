@@ -457,7 +457,7 @@ input, select, textarea {
 	input[type="password"],
 	input[type="email"],
 	select {
-		height: 2.75rem;
+		height: 2rem;
 	}
 
 	textarea {
@@ -916,7 +916,7 @@ input, select, textarea {
 	}
 
 	table {
-		margin: 0 0 2rem 0;
+		margin: 0 0 1rem 0;
 		width: 100%;
 	}
 
@@ -931,15 +931,15 @@ input, select, textarea {
 			}
 
 		table td {
-			padding: 0.75em 0.75em;
+			padding: 0.25em 0.25em;
 		}
 
 		table th {
 			color: #ffffff;
 			font-size: 0.9em;
 			font-weight: 600;
-			padding: 0 0.75em 0.75em 0.75em;
-			text-align: left;
+			padding: 0 0.75em 0.5em 0.75em;
+			text-align: center;
 		}
 
 		table thead {
@@ -1636,3 +1636,13 @@ input, select, textarea {
 		body.is-preload #footer {
 			opacity: 0;
 		}
+
+        table .table{
+            margin:0px;
+            padding:0px;
+        }
+
+table .table li {
+    margin: 0px;
+    padding: 0px;
+}

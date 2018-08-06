@@ -171,10 +171,10 @@
     <Content Include="assets\js\browser.min.js" />
     <Content Include="assets\js\jquery.min.js" />
     <Content Include="assets\js\main.js" />
+    <Content Include="assets\js\script.js" />
     <Content Include="assets\js\util.js" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
-    <Content Include="Scripts\effects.js" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -250,8 +250,9 @@
     <Content Include="Views\Competition\Index.cshtml" />
     <Content Include="Views\Competition\AddComp.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
-    <Content Include="Views\Shared\_LayoutSite.cshtml" />
+    <Content Include="Views\Shared\CompetitionLayout.cshtml" />
     <Content Include="Views\Competition\Edit.cshtml" />
+    <Content Include="Views\Competition\getAllSearch.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

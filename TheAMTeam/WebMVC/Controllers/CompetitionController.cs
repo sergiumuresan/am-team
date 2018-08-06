@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using System.Web.Mvc;
 using TheAMTeam.Business.Components;
 using TheAMTeam.Business.Models;
@@ -7,9 +8,8 @@ namespace TheAMTeam.WebMVC.Controllers
 {
     public class CompetitionController : Controller
     {
-
         private static CompetitionTypeComponent component = new CompetitionTypeComponent();
-        // GET: Competition
+
         public ActionResult Index()
         {
             return View();
@@ -18,7 +18,6 @@ namespace TheAMTeam.WebMVC.Controllers
         public ActionResult GetAll()
         {
             var competition = component.GetAllCompetionType();
-            
             return View(competition);
         }
 
@@ -40,7 +39,7 @@ namespace TheAMTeam.WebMVC.Controllers
         public ActionResult Edit(int id)
         {
             var matchingCompetition = component.GetById(id);
-            if(matchingCompetition == null)
+            if (matchingCompetition == null)
             {
                 return RedirectToAction("GetAll");
             }
@@ -48,7 +47,7 @@ namespace TheAMTeam.WebMVC.Controllers
         }
 
         [HttpPost]
-        public ActionResult EditCompetition(CompetitionTypeModel  competition)
+        public ActionResult EditCompetition(CompetitionTypeModel competition)
         {
             var matchingCompetition = component.GetById(competition.CompetitionTypeId);
             if (matchingCompetition != null)
@@ -56,7 +55,7 @@ namespace TheAMTeam.WebMVC.Controllers
                 matchingCompetition.Name = competition.Name;
                 component.Update(matchingCompetition);
             }
-            
+
             return RedirectToAction("GetAll");
         }
 
@@ -64,7 +63,14 @@ namespace TheAMTeam.WebMVC.Controllers
         {
             var matchingCompetition = component.Delete(id);
             return RedirectToAction("GetAll");
-            
+        }
+
+        [HttpPost]
+        public ActionResult getAllSearch(String search)
+        {
+            var competition = component.GetAllCompetionType();
+            var searchResult = competition.Where(x => x.Name.Contains(search));
+            return View(searchResult);
         }
     }
 }
