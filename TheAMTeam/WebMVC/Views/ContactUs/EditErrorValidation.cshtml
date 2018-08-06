@@ -1,12 +1,15 @@
-﻿
+﻿@model TheAMTeam.Business.Models.ContactModel
 @{
     ViewBag.Title = "EditErrorValidation";
     Layout = "~/Views/Shared/_LayoutTeo.cshtml";
 }
 
-<h2>You have entered an invalid field</h2>
-<i>All fields are required, go back and complete all of them</i>
-<br>
-<br>
+    <i>All fields are required, you must complete all the fields</i>
+    <i>to validate the edit</i>
 
-<input type="button" value="Try again" onclick="location.href='@Url.Action("Edit", "ContactUs")'" />
+    <br>
+    <br>
+
+    <input type="button" value="Try again" onclick="location.href='@Url.Action("Index", "ContactUs")'" />
+ 
+

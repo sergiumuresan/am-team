@@ -4,11 +4,10 @@
     Layout = "~/Views/Shared/_LayoutTeo.cshtml";
 }
 
-<h2>Validation Error</h2>
+<i>The phone number must contain only numbers, introduce a valid one</i>
+<i>to validate the edit</i>
 
-<i>The phone number must contain only numbers</i>
 <br>
 <br>
 
-<input type="button" value="Try again" onclick="location.href='@Url.Action("Edit", "ContactUs")'" />
-
+<input type="button" value="Try again" onclick="location.href='@Url.Action("Index", "ContactUs")'" />

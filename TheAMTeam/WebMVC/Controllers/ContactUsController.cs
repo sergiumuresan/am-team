@@ -41,7 +41,6 @@ namespace TheAMTeam.WebMVC.Controllers
         public ActionResult AddNewEntry(ContactModel myContact)
         {
             if (myContact.Phone == null || myContact.Name == null || myContact.Email == null || myContact.UserMessage == null) return RedirectToAction("ErrorValidation");
-
             if (!(Regex.IsMatch(myContact.Phone, @"^\d+$"))) return RedirectToAction("ErrorValidationPhone");
 
             myContact.MessageDate = DateTime.Now;
@@ -72,7 +71,6 @@ namespace TheAMTeam.WebMVC.Controllers
             contactModelToUpdate.MessageDate = DateTime.Now;
 
             if (contactModelToUpdate.Phone == null || contactModelToUpdate.Name == null || contactModelToUpdate.Email == null || contactModelToUpdate.UserMessage == null) return RedirectToAction("EditErrorValidation");
-
             if (!(Regex.IsMatch(contactModelToUpdate.Phone, @"^\d+$"))) return RedirectToAction("EditErrorValidationPhone");
 
             contactComponent.Update(contactModelToUpdate);
@@ -120,6 +118,5 @@ namespace TheAMTeam.WebMVC.Controllers
         {
             return View("EditErrorValidationPhone");
         }
-
     }
 }

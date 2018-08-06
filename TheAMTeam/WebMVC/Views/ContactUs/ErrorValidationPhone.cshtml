@@ -1,4 +1,4 @@
-﻿
+﻿@model TheAMTeam.Business.Models.ContactModel
 @{
     ViewBag.Title = "ErrorValidationPhone";
     Layout = "~/Views/Shared/_LayoutTeo.cshtml";
@@ -9,6 +9,7 @@
 <i>The phone number must contain only numbers</i>
 <br>
 <br>
+
 
 <input type="button" value="Try again" onclick="location.href='@Url.Action("Add", "ContactUs")' " />
 
