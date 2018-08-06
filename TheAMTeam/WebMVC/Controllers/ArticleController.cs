@@ -37,11 +37,11 @@ namespace TheAMTeam.WebMVC.Controllers
 
        public ActionResult Add()
         {
-            var categoryMod = new ArticleBussinessModel()
-            {
-                Categories = categoryComponent.GetAll()
-            };
-            return View(categoryMod);
+                var categoryMod = new ArticleBussinessModel()
+                {
+                    Categories = categoryComponent.GetAll()
+                };
+                return View(categoryMod);
         } 
 
         [HttpPost]
@@ -51,8 +51,9 @@ namespace TheAMTeam.WebMVC.Controllers
             if (ModelState.IsValid)
             {
                 var add = articleComponent.Add(fullArticle);
+                return RedirectToAction("GetAll");
             }
-            return RedirectToAction("GetAll");
+            return RedirectToAction("Add");
 
         }
 
@@ -105,9 +106,15 @@ namespace TheAMTeam.WebMVC.Controllers
         [HttpPost]
         public ActionResult getAll(String search)
         {
-            var getAll = articleComponent.GetAll();
-            var searchResult = getAll.Where(x => x.Author.Contains(search) || x.Category.Name.Contains(search) || x.Title.Contains(search));
+            
+                var getAll = articleComponent.GetAll();
+                var searchResult = getAll.Where(x => x.Category.Name.Contains(search) || x.Title.Contains(search) || x.Author.Contains(search));
+                if(searchResult.Count(x=>x.ArticleId > 0) == 0)
+            {
+                ViewBag.NotFound = "There is no Article with the specified keywords";
+            }
             return View(searchResult);
+            
         }
 
     }

@@ -15,6 +15,7 @@
     <div>
         <label>Title</label>
         @Html.TextBoxFor(x => x.Title)
+        @Html.ValidationMessageFor(x =>x.Title, "", new { @class = "text-danger" })
     </div>
     <div>
         <label>Author</label>
