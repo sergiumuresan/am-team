@@ -255,6 +255,7 @@
     <Content Include="Views\ContactUs\ErrorValidationPhone.cshtml" />
     <Content Include="Views\ContactUs\EditErrorValidation.cshtml" />
     <Content Include="Views\ContactUs\EditErrorValidationPhone.cshtml" />
+    <Content Include="Views\ContactUs\SearchNotFound.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -24,8 +24,23 @@ namespace TheAMTeam.WebMVC.Controllers
 
             return View(result);
         }
+             
+        
+        //Search functionality
+        [HttpPost]
+        public ActionResult Index(string searchString)
+        {
+            var result = contactComponent.GetAllContacts();
 
-       
+            var searchedList = result.Where(x => x.Name.ToUpper().Contains(searchString.ToUpper()));
+            
+            if(searchedList.Count(x => x.Id > 0) == 0) ViewBag.Message = "There is no name in the database matching the search word";
+
+
+            return View(searchedList);
+        }
+
+
         //Add a new entry 
         public ActionResult Add()
         {          
@@ -33,6 +48,7 @@ namespace TheAMTeam.WebMVC.Controllers
             {
                 Departments = departmentComponent.GetAll()
             };
+            // todo aici obiectul intra cu datetime.now in view, trebuie sa fac datetime ul nullable probabil
 
             return View(viewModel);
         }
@@ -40,11 +56,9 @@ namespace TheAMTeam.WebMVC.Controllers
         [HttpPost]
         public ActionResult AddNewEntry(ContactModel myContact)
         {
-            if (myContact.Phone == null || myContact.Name == null || myContact.Email == null || myContact.UserMessage == null) return RedirectToAction("ErrorValidation");
+            if (myContact.Phone == null || myContact.Name == null || myContact.Email == null || myContact.UserMessage == null || myContact.MessageDate == null) return RedirectToAction("ErrorValidation");
             if (!(Regex.IsMatch(myContact.Phone, @"^\d+$"))) return RedirectToAction("ErrorValidationPhone");
-
-            myContact.MessageDate = DateTime.Now;
-
+          
             contactComponent.Add(myContact);
 
             return RedirectToAction("Index");
@@ -68,8 +82,6 @@ namespace TheAMTeam.WebMVC.Controllers
         [HttpPost]
         public ActionResult Update(ContactModel contactModelToUpdate)
         {
-            contactModelToUpdate.MessageDate = DateTime.Now;
-
             if (contactModelToUpdate.Phone == null || contactModelToUpdate.Name == null || contactModelToUpdate.Email == null || contactModelToUpdate.UserMessage == null) return RedirectToAction("EditErrorValidation");
             if (!(Regex.IsMatch(contactModelToUpdate.Phone, @"^\d+$"))) return RedirectToAction("EditErrorValidationPhone");
 

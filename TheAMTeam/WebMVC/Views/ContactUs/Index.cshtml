@@ -5,8 +5,27 @@
 
 <h1>Contact Us</h1>
 
+<br>
 
 <input type="button" value="Add a new Entry" onclick="location.href='@Url.Action("Add", "ContactUs")'" />
+
+<br>
+<br>
+
+@using (Html.BeginForm("Index", "ContactUs", FormMethod.Post))
+{
+    <input type="text" placeholder="Search a contact" name="searchString" />
+    <br />
+    <input type="submit" value="Search" />
+    <input type="button" value="Show All" onclick="location.href='@Url.Action("Index", "ContactUs")'" />
+    <br />
+}
+
+_______________________________________________________
+<br>
+<br>
+
+<h2>@ViewBag.Message</h2>
 
 <br>
 <br>
@@ -19,7 +38,12 @@
 
             In the department: @item.Department.Name <br>
 
-            <i>@item.UserMessage</i> <br>
+            <i>@item.UserMessage</i><br>
+
+            <small>@item.MessageDate.ToShortDateString()</small>
+
+            <br>
+            <br>
 
             @Html.ActionLink("Edit User", "Edit", "ContactUs", new { id = item.Id }, null)
             @Html.ActionLink("Delete User", "Delete", "ContactUs", new { id = item.Id }, null)

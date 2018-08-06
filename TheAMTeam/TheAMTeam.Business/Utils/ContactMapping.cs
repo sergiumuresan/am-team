@@ -43,6 +43,7 @@ namespace TheAMTeam.Business.Utils
 
                 Department = m.Department.MapToDepartmentModel()
             };
+
             return contact;
         }
         public static DepartmentModel MapToDepartment(this Department department)
