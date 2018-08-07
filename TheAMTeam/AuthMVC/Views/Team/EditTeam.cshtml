@@ -1,0 +1,30 @@
+﻿@model TheAMTeam.Business.Models.TeamModel
+@{
+    ViewBag.Title = "Teams";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<h2>Teams</h2>
+
+@using (Html.BeginForm("EditTeamPostMethod", "Team", FormMethod.Post))
+{
+    <div>
+        @Html.HiddenFor(x => x.TeamId)
+    </div>
+    <br />
+    <div class="form-group">
+        <label>Name</label>
+        @Html.TextBoxFor(x => x.Name, new { @class="form-control"})
+    </div>
+    <div class="form-group">
+        <label>City</label>
+        @Html.TextBoxFor(x => x.City, new { @class = "form-control" })
+    </div>
+    <div class="form-group">
+        <label>Coach</label>
+        @Html.TextBoxFor(x => x.Coach, new { @class = "form-control" })
+    </div>
+    <br />
+
+    <input type="submit" value="Submit form" />
+    <input type="button" value="Back" onclick="location.href='@Url.Action("Teams", "Team",new { page = 1 })'" />
+}

@@ -11,6 +11,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TheAMTeam.Business", "TheAM
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TheAMTeam.WebMVC", "WebMVC\TheAMTeam.WebMVC.csproj", "{4D77FB3A-3958-4758-B2F6-07E005E0C39D}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AuthMVC", "AuthMVC\AuthMVC.csproj", "{0F0EE0F5-3D2B-4DEE-B5E9-23A630F087CA}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +35,10 @@ Global
 		{4D77FB3A-3958-4758-B2F6-07E005E0C39D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4D77FB3A-3958-4758-B2F6-07E005E0C39D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4D77FB3A-3958-4758-B2F6-07E005E0C39D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0F0EE0F5-3D2B-4DEE-B5E9-23A630F087CA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0F0EE0F5-3D2B-4DEE-B5E9-23A630F087CA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0F0EE0F5-3D2B-4DEE-B5E9-23A630F087CA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0F0EE0F5-3D2B-4DEE-B5E9-23A630F087CA}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

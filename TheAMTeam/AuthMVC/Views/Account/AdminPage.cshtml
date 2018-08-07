@@ -1,0 +1,23 @@
+﻿
+@{
+    ViewBag.Title = "AdminPage";
+}
+
+<h2>AdminPage</h2>
+
+@using (Html.BeginForm("SetRole", "Account", FormMethod.Post))
+{
+    
+    <br />
+    <input type="submit" value="Submit form" />
+    <input type="button" value="Back" onclick="location.href='@Url.Action("Teams", "Team",new { page = 1 })'" />
+}
+
+@using (Html.BeginForm("AddRole", "Account", FormMethod.Post))
+{
+    <input type="text" name="roleName" placeholder="Role name to add..." />
+    <br />
+    <input type="submit" value="Submit form" />
+    <input type="button" value="Back" onclick="location.href='@Url.Action("Teams", "Team",new { page = 1 })'" />
+}
+
