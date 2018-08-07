@@ -1,0 +1,15 @@
+﻿@model TheAMTeam.Business.Models.CompetitionTypeModel
+@{
+    Layout = "~/Views/Shared/CompetitionLayout.cshtml";
+}
+<h2>Competition</h2>
+<p>
+    <form action="http://localhost:49705/Competition/GetAll">
+        <input type="submit" value="See Competitions" />
+    </form>
+</p>
+<p>
+    <form action="http://localhost:49705/Competition/AddComp">
+        <input type="submit" value="Add Competition" />
+    </form>
+</p>
