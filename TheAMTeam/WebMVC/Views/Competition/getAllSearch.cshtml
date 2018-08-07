@@ -1,0 +1,25 @@
+﻿@model IEnumerable<TheAMTeam.Business.Models.CompetitionTypeModel>
+@{
+    Layout = "~/Views/Shared/CompetitionLayout.cshtml";
+}
+
+<h1>My Competitions</h1>
+
+@foreach (var item in Model)
+{
+    <table class="table">
+        <tr>
+            <th>
+                @item.CompetitionTypeId
+                @item.Name <a href="@Url.Action("Delete", "Competition", new { id = item.CompetitionTypeId }, null)">
+                    <img height="18" width="18" src="http://iconshow.me/media/images/Application/Modern-Flat-style-Icons/png/512/Delete.png" />
+                </a> <a href="@Url.Action("Edit", "Competition",new { id = item.CompetitionTypeId }, null)">
+                    <img height="18" width="18" src="http://icons.iconarchive.com/icons/bokehlicia/pacifica/256/system-software-update-icon.png" />
+                </a>
+            </th>
+        </tr>
+
+    </table>
+}
+<button onclick="goBack()">Go Back</button>
+<script src="~/assets/js/script.js"></script>

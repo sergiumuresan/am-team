@@ -43,7 +43,7 @@ namespace TheAMTeam.Business.Components
                 {
                     CompetitionTypeId = item.CompetionId,
                     Name = item.Name,
-                    MatchesModels = item.mapToModel().MatchesModels
+                    //MatchesModels = item.mapToModel().MatchesModels
                 });
             }
 

@@ -15,8 +15,8 @@ namespace TheAMTeam.Business.Utils
             {
                 Name = competiotnType.Name,
                 CompetitionTypeId = competiotnType.CompetionId,
-                MatchesModels = (competiotnType.Matches!= null) ? 
-                    competiotnType.Matches.Select(m => m.mapToMatchModel()).ToList() : null
+                //MatchModel = (competiotnType.Matches!= null) ? 
+                //    competiotnType.Matches.Select(m => m.mapToMatchModel()).ToList() : null
             };
             return competitionTypeModel;
         }
@@ -27,8 +27,8 @@ namespace TheAMTeam.Business.Utils
             {
                 CompetionId = ct.CompetitionTypeId,
                 Name = ct.Name,
-                Matches = (ct.MatchesModels != null) ? 
-                    ct.MatchesModels.Select(m => m.mapToMatch()).ToList() : null
+                //Matches = (ct.MatchModel != null) ? 
+                //    ct.MatchModel.Select(m => m.mapToMatch()).ToList() : null
             };
 
             return competitionType;
