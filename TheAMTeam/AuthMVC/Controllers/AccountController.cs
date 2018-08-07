@@ -1,7 +1,4 @@
-﻿using System;
-using System.Globalization;
-using System.Linq;
-using System.Security.Claims;
+﻿using System.Linq;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
@@ -9,8 +6,6 @@ using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using AuthMVC.Models;
-using System.Web.Security;
-using Microsoft.AspNet.Identity.EntityFramework;
 
 namespace AuthMVC.Controllers
 {
@@ -432,39 +427,7 @@ namespace AuthMVC.Controllers
             base.Dispose(disposing);
         }
 
-        [HttpGet]
-        [Authorize(Roles = "Admin")]
-        public ActionResult AdminPage()
-        {
-            return View();
-        }
-        [Authorize(Roles= "Admin")]
-        [HttpPost]
-        public ActionResult SetRole(string userName,string roleName)
-        {
-            if (userName != null && roleName != null)
-            {
-                var currentUser = UserManager.FindByName(userName);
-
-                var roleresult = UserManager.AddToRole(currentUser.Id, roleName);
-            }
-            return RedirectToAction("Index");
-        }
-        [Authorize(Roles ="Admin")]
-        public ActionResult AddRole(string roleName)
-        {
-            var roleManager = new RoleManager<Microsoft.AspNet.Identity.EntityFramework.IdentityRole>(new RoleStore<IdentityRole>(new ApplicationDbContext()));
-
-
-            if (!roleManager.RoleExists(roleName))
-            {
-                var role = new Microsoft.AspNet.Identity.EntityFramework.IdentityRole();
-                role.Name = roleName;
-                roleManager.Create(role);
-
-            }
-            return RedirectToAction("Index");
-        }
+       
 
         #region Helpers
         // Used for XSRF protection when adding external logins

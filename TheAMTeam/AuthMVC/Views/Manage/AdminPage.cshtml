@@ -1,0 +1,44 @@
+﻿
+@{
+    ViewBag.Title = "AdminPage";
+}
+
+<h2>AdminPage</h2>
+<div class="panel panel-default">
+    @using (Html.BeginForm("SetRole", "Manage", FormMethod.Post ))
+    {
+    <div class="form-group">
+        <select name="userName" class="form-control">
+            @foreach (var user in ViewBag.Users)
+            {
+                <option value="@user.UserName">@user.UserName</option>
+            }
+        </select>
+        <br />
+        <select name="roleName" class="form-control">
+            @foreach (var role in ViewBag.Roles)
+            {
+                <option value="@role.Name">@role.Name</option>
+            }
+        </select>
+    </div>
+
+            <br />
+            <input type="submit" value="Submit form" class="btn btn-default" />
+            <input type="button" value="Back" onclick="location.href='@Url.Action("Teams", "Team",new { page = 1 })'" class="btn btn-default" />
+
+       
+    }
+</div>
+<div class="panel panel-default">
+@using (Html.BeginForm("AddRole", "Manage", FormMethod.Post))
+{
+    <div class="form-group">
+        <input type="text" name="roleName" placeholder="Role name to add..." class="form-control" />
+        <br />
+        <input type="submit" value="Submit form" class="btn btn-default" />
+        <input type="button" value="Back" onclick="location.href='@Url.Action("Teams", "Team",new { page = 1 })'" class="btn btn-default" />
+    </div>
+}
+
+</div>

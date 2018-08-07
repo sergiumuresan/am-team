@@ -7,6 +7,7 @@ using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using AuthMVC.Models;
+using Microsoft.AspNet.Identity.EntityFramework;
 
 namespace AuthMVC.Controllers
 {
@@ -24,6 +25,43 @@ namespace AuthMVC.Controllers
         {
             UserManager = userManager;
             SignInManager = signInManager;
+        }
+        [HttpGet]
+        [Authorize(Roles = "Admin")]
+        public ActionResult AdminPage()
+        {
+            var rm = new RoleManager<IdentityRole>(new RoleStore<IdentityRole>(new ApplicationDbContext()));
+            var um = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(new ApplicationDbContext()));
+            ViewBag.Users = um.Users.ToList();
+            ViewBag.Roles = rm.Roles.ToList();
+                return View();
+        }
+        [Authorize(Roles = "Admin")]
+        [HttpPost]
+        public ActionResult SetRole(string userName, string roleName)
+        {
+            if (userName != null && roleName != null)
+            {
+                var currentUser = UserManager.FindByName(userName);
+
+                var roleresult = UserManager.AddToRole(currentUser.Id, roleName);
+            }
+            return RedirectToAction("Index");
+        }
+        [Authorize(Roles = "Admin")]
+        public ActionResult AddRole(string roleName)
+        {
+            var roleManager = new RoleManager<Microsoft.AspNet.Identity.EntityFramework.IdentityRole>(new RoleStore<IdentityRole>(new ApplicationDbContext()));
+
+
+            if (!roleManager.RoleExists(roleName))
+            {
+                var role = new Microsoft.AspNet.Identity.EntityFramework.IdentityRole();
+                role.Name = roleName;
+                roleManager.Create(role);
+
+            }
+            return RedirectToAction("Index");
         }
 
         public ApplicationSignInManager SignInManager

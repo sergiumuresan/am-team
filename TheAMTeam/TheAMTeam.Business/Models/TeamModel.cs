@@ -11,13 +11,13 @@ namespace TheAMTeam.Business.Models
     public class TeamModel
     {
         public int TeamId { get; set; }
-        [Required]
+        [Required(ErrorMessage ="Name required.")]
         [StringLength(15)]
         public string Name { get; set; }
-        [Required]
+        [Required(ErrorMessage ="City required")]
         [StringLength(15)]
         public string City { get; set; }
-        [Required]
+        [Required(ErrorMessage ="Coach required")]
         [StringLength(15)]
         public string Coach { get; set; }
 

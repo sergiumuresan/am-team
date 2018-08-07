@@ -19,40 +19,35 @@ namespace TheAMTeam.WebMVC.Controllers
         [Authorize]
         public ActionResult Index()
         {
-            return RedirectToAction("Teams", new { page = 1 });
-            //return View();
+            return RedirectToAction("GetAll");
+           
         }
+       
         [HttpGet]
         [Authorize]
-        public ActionResult Teams(int page)
+        public ActionResult GetAll()
         {
             var list = _teamComponent.GetAllTeams();
-            //foreach(var team in list)
-            //{
+           
+            return View(list);
+        }  
 
-            //    teams.Teams.Add(team);
-            //}
-            return View(list.Skip((page - 1) * 4).Take(4));
-            //var result = (from team in list
-            //              orderby team.TeamId descending
-            //              select team).Skip((page - 1) * 6).Take(6);
-            //return View(result);
-
-        }
         [HttpPost]
         [Authorize]
-        public ActionResult Teams(string search)
+        public ActionResult GetAll(string search)
         {
             var teams = _teamComponent.GetAllTeams();
 
             if (!String.IsNullOrEmpty(search))
             {
-                var result = teams.Where(s => s.Name.Contains(search));
+                var result = teams.Where(s => s.Name.ToLower().Contains(search.ToLower()) 
+                                        || s.City.ToLower().Contains(search.ToLower()) 
+                                        || s.Coach.ToLower().Contains(search.ToLower()));
 
 
                 return View(result);
             }
-            return RedirectToAction("Teams", new { page = 1 });
+            return RedirectToAction("GetAll");
         }
         [Authorize(Roles = "Admin")]
         public ActionResult AddTeam()
@@ -64,12 +59,30 @@ namespace TheAMTeam.WebMVC.Controllers
         [Authorize(Roles = "Admin")]
         public ActionResult AddTeamPostMethod(TeamModel model)
         {
+            if (string.IsNullOrEmpty(model.Name))
+            {
+                ModelState.AddModelError("Name", "Name is required");
+            }
+            if (string.IsNullOrEmpty(model.City))
+            {
+                ModelState.AddModelError("City", "City is required");
+            }
+            if (string.IsNullOrEmpty(model.Coach))
+            {
+                ModelState.AddModelError("Coach", "Coach is required");
+            }
             if (ModelState.IsValid)
             {
-                _teamComponent.AddTeam(model);
-            }
 
-            return RedirectToAction("Teams", new { page = 1 });
+                _teamComponent.AddTeam(model);
+                return RedirectToAction("GetAll");
+            }
+                
+                return View("AddTeam",model);
+            
+                
+
+            
         }
 
         [Authorize(Roles = "Admin")]
@@ -78,7 +91,7 @@ namespace TheAMTeam.WebMVC.Controllers
             var matchingTeam = _teamComponent.getTeamById(id);
             if (matchingTeam == null)
             {
-                return RedirectToAction("Teams", new { page = 1 });
+                return RedirectToAction("GetAll");
             }
             return View(matchingTeam);
         }
@@ -87,16 +100,31 @@ namespace TheAMTeam.WebMVC.Controllers
         [Authorize(Roles = "Admin")]
         public ActionResult EditTeamPostMethod(TeamModel model)
         {
-            var matchingTeam = _teamComponent.getTeamById(model.TeamId);
-            if (matchingTeam == null)
+            if (string.IsNullOrEmpty(model.Name))
             {
-                return RedirectToAction("Teams", new { page = 1 });
+                ModelState.AddModelError("Name", "Name is required");
             }
-
-            _teamComponent.UpdateTeam(model);
+            if (string.IsNullOrEmpty(model.City))
+            {
+                ModelState.AddModelError("City", "City is required");
+            }
+            if (string.IsNullOrEmpty(model.Coach))
+            {
+                ModelState.AddModelError("Coach", "Coach is required");
+            }
+            //var matchingTeam = _teamComponent.getTeamById(model.TeamId);
+            //if (matchingTeam == null)
+            //{
+            //    return RedirectToAction("GetAll");
+            //}
+            if (ModelState.IsValid)
+            {
+                _teamComponent.UpdateTeam(model);
+                return RedirectToAction("GetAll");
+            }
             
 
-            return RedirectToAction("Teams", new { page = 1 });
+            return View("EditTeam",model);
         }
         [Authorize(Roles = "Admin")]
         public ActionResult RemoveTeam(int id)
@@ -104,7 +132,7 @@ namespace TheAMTeam.WebMVC.Controllers
             var matchingTeam = _teamComponent.getTeamById(id);
             if (matchingTeam == null)
             {
-                return RedirectToAction("Teams", new { page = 1 });
+                return RedirectToAction("GetAll");
             }
             return View(matchingTeam);
         }
@@ -115,13 +143,13 @@ namespace TheAMTeam.WebMVC.Controllers
             var matchingTeam = _teamComponent.getTeamById(TeamId);
             if (matchingTeam == null)
             {
-                return RedirectToAction("Teams", new { page = 1 });
+                return RedirectToAction("GetAll");
             }
 
             _teamComponent.DeleteTeam(matchingTeam.TeamId);
 
 
-            return RedirectToAction("Teams", new { page = 1 });
+            return RedirectToAction("GetAll");
         }
 
         [Authorize(Roles = "Admin")]
@@ -148,7 +176,7 @@ namespace TheAMTeam.WebMVC.Controllers
 
                 _playerComponent.Update(playerId,player);
             }
-            return RedirectToAction("Teams", new { page = 1 });
+            return RedirectToAction("GetAll");
 
 
         }
