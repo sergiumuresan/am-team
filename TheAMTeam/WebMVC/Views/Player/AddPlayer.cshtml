@@ -33,7 +33,7 @@
     </div>
     <div>
         @Html.LabelFor(p => p.TeamId)
-        @Html.DropDownListFor(t => t.TeamId, new SelectList(Model.Teams, "TeamId", "Name"), new { @class = "form-control fix" })
+        @Html.DropDownListFor(t => t.TeamId, new SelectList(ViewBag.Teams, "TeamId", "Name"))
         @Html.ValidationMessageFor(p => p.TeamId)
     </div>
     <div>
