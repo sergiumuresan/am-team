@@ -100,7 +100,7 @@ namespace TheAMTeam.WebMVC.Controllers
             var article = articleComponent.GetById(editedArticle.ArticleId);
             editedArticle.PublishedDate = DateTime.Now;
             ViewBag.Categories = categoryComponent.GetAll();
-            if (editedArticle != null)
+            if (ModelState.IsValid)
             {
                 articleComponent.Update(editedArticle);
                 return RedirectToAction("Index");
