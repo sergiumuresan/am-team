@@ -65,6 +65,26 @@ namespace TheAMTeam.Business.Utils
             return category;
         }
 
+        public static DepartmentModel ToDepartmentModel(this Department department)
+        {
+            DepartmentModel departmentModel = new DepartmentModel
+            {
+                Id = department.Id,
+                Name = department.Name
+            };
 
+            return departmentModel;
+        }
+
+        public static Department ToDepartment(this DepartmentModel departmentModel)
+        {
+            Department department = new Department
+            {
+                Id = departmentModel.Id,
+                Name = departmentModel.Name
+            };
+
+            return department;
+        }
     }
 }

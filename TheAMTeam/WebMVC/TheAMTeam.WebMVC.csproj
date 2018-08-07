@@ -153,6 +153,7 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\ArticleController.cs" />
+    <Compile Include="Controllers\ContactUsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\TeamController.cs" />
     <Compile Include="Controllers\TestController.cs" />
@@ -219,6 +220,9 @@
     <Content Include="assets\sass\noscript.scss" />
     <None Include="Properties\PublishProfiles\InternshipAzureFootball - Web Deploy.pubxml" />
     <None Include="Properties\PublishProfiles\internshippaul - Web Deploy.pubxml" />
+    <None Include="Properties\PublishProfiles\TeodorDT - Web Deploy.pubxml" />
+    <None Include="Properties\PublishProfiles\teodortraining - Web Deploy.pubxml" />
+    <None Include="Properties\PublishProfiles\teodortrainingapp - Web Deploy.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
@@ -260,6 +264,12 @@
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Team\RemoveTeam.cshtml" />
     <Content Include="Views\Team\AsignPlayer.cshtml" />
+    <Content Include="Views\ContactUs\Index.cshtml" />
+    <Content Include="Views\ContactUs\Update.cshtml" />
+    <Content Include="Views\ContactUs\Edit.cshtml" />
+    <Content Include="Views\Shared\_LayoutTeo.cshtml" />
+    <Content Include="Views\ContactUs\Add.cshtml" />
+    <Content Include="Views\ContactUs\Delete.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -11,6 +11,7 @@ namespace TheAMTeam.Business.Utils
     public static class ContactMapping
     {
         public static ContactModel MapToModel(this Contact contact)
+
         {
             ContactModel contactModel = new ContactModel()
             {
@@ -42,6 +43,7 @@ namespace TheAMTeam.Business.Utils
 
                 Department = m.Department.MapToDepartmentModel()
             };
+
             return contact;
         }
         public static DepartmentModel MapToDepartment(this Department department)

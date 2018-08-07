@@ -1,0 +1,18 @@
+﻿@model TheAMTeam.Business.Models.ContactModel
+@{
+    ViewBag.Title = "Delete";
+    Layout = "~/Views/Shared/_LayoutTeo.cshtml";
+}
+
+@using (Html.BeginForm("DeleteTheContact", "ContactUs", FormMethod.Post))
+{
+    <h2>You deleted the registration with name @Model.Name</h2>
+
+    @Html.HiddenFor(x => x.Id)
+
+    <input type="submit" value="Go back" />
+}
+
+
+
+

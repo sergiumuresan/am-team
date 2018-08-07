@@ -1,0 +1,47 @@
+﻿@model TheAMTeam.Business.Models.ContactModel
+@{
+    Layout = "~/Views/Shared/_LayoutTeo.cshtml";
+}
+
+<h2>Add the new info</h2>
+@ViewBag.Test
+
+@using (Html.BeginForm("AddNewEntry", "ContactUs", FormMethod.Post))
+{
+    <div>
+        <label>Name</label>
+        @Html.TextBoxFor(x => x.Name)
+        @Html.ValidationMessageFor(x => x.Name)
+    </div>
+    <div>
+        <label>Phone Number</label>
+        @Html.TextBoxFor(x => x.Phone)
+        @Html.ValidationMessageFor(x => x.Phone)
+    </div>
+    <div>
+        <label>Email</label>
+        @Html.TextBoxFor(x => x.Email)
+        @Html.ValidationMessageFor(x => x.Email)
+    </div>
+    <div>
+        <label>Department ID</label>
+
+        @Html.DropDownListFor(x => x.DepartmentId, new SelectList(ViewBag.Departments, "Id", "Name"))
+
+    </div>
+    <div>
+        <label>User's message</label>
+        @Html.TextBoxFor(x => x.UserMessage)
+        @Html.ValidationMessageFor(x => x.UserMessage)
+    </div>
+    <div>
+        <label>Message's date (Month/Day/Year)</label>
+        @Html.TextBoxFor(x => x.MessageDate, "{0:MM-dd-yyyy}")
+        @Html.ValidationMessageFor(x => x.MessageDate)
+    </div>
+
+    <br>
+    <input type="submit" value="Submit form" />
+}
+
+<h5>@Html.ViewBag.ErrorMessage</h5>
