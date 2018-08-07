@@ -26,6 +26,5 @@ namespace TheAMTeam.Business.Models
 
         public virtual CategoryModel Category { get; set; }
 
-        public IEnumerable<CategoryModel> Categories { get; set; }
     }
 }

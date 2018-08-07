@@ -37,26 +37,30 @@ namespace TheAMTeam.WebMVC.Controllers
 
        public ActionResult Add()
         {
-                var categoryMod = new ArticleBussinessModel()
-                {
-                    Categories = categoryComponent.GetAll()
-                };
-                return View(categoryMod);
+            var categoryMod = new ArticleBussinessModel();
+                //{
+                //    Categories = categoryComponent.GetAll()
+                //};
+            ViewBag.Articles = categoryComponent.GetAll();
+            return View(categoryMod);
         } 
 
         [HttpPost]
        public ActionResult AddNew(ArticleBussinessModel fullArticle)
         {
+            
             fullArticle.PublishedDate = DateTime.Now;
             if (ModelState.IsValid)
             {
                 var add = articleComponent.Add(fullArticle);
                 return RedirectToAction("GetAll");
             }
-            return RedirectToAction("Add");
+            ViewBag.Articles = categoryComponent.GetAll();
+            return View("Add", fullArticle);
 
         }
 
+        
         public ActionResult Delete(int id)
         {
             var toDelete = articleComponent.GetById(id);
@@ -83,7 +87,6 @@ namespace TheAMTeam.WebMVC.Controllers
                 Content = toEdit.Content,
                 ImageURL = toEdit.ImageURL,
                 CategoryId = toEdit.CategoryId,
-                Categories = categoryComponent.GetAll()
             };
             return View(article);
         }
