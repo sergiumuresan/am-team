@@ -2,10 +2,12 @@
 using TheAMTeam.Business.Models;
 using TheAMTeam.Business.Utils;
 using TheAMTeam.DataAccessLayer.Repositories;
+using TheAMTeam.Business.Components.Interfaces;
+
 
 namespace TheAMTeam.Business.Components
 {
-    public class ContactComponent
+    public class ContactComponent : IContactComponent
     {
         private readonly ContactRepository _contactRepository;
 

@@ -4,12 +4,13 @@ using System.Linq;
 using System.Web;
 using TheAMTeam.Business.Models;
 using TheAMTeam.Business.Utils;
-using TheAMTeam.DataAccesLayer.Repositories;
 using TheAMTeam.DataAccessLayer.Entities;
+using TheAMTeam.Business.Components.Interfaces;
+using TheAMTeam.DataAccessLayer.Repositories;
 
-namespace TheAMTeam.Business.Components
+namespace TheAMTeam.Business.Components 
 {
-    public class TeamComponent
+    public class TeamComponent : ITeamComponent
     {
         private readonly TeamRepository _teamRepository;
 

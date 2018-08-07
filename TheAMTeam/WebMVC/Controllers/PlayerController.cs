@@ -9,38 +9,42 @@ namespace TheAMTeam.WebMVC.Controllers
 {
     public class PlayerController : Controller
     {
-        private static PlayerComp _playerComp = new PlayerComp();
-        private static TeamComponent _teamComp = new TeamComponent();
+        //private static PlayerComp _playerComp = new PlayerComp();
+        //private static TeamComponent _teamComp = new TeamComponent();
 
-        //private static IUnitOfWorkComponent _unitOfWork;
+        private static IUnitOfWorkComponent _unitOfWork;
 
-        public PlayerController() {
-
+        //public PlayerController(UnitOfWorkComponent unitOfWorkComponent) {
+        //    _unitOfWork = unitOfWorkComponent;
+        //}
+        public PlayerController()
+        {
+            _unitOfWork = new UnitOfWorkComponent();
         }
-
-
-
 
 
         [HttpGet]
         public ActionResult GetAll()
         {
-            var players1 = _playerComp.GetAllPlayers().OrderByDescending(p => p.PlayerId);
-            //var players = _unitOfWork.Players.GetAllPlayers();
+            //var players1 = _playerComp.GetAllPlayers().OrderByDescending(p => p.PlayerId);
+            var players = _unitOfWork.Players.GetAllPlayers();
 
-            return View(players1);
+            return View(players);
         }
 
         private ActionResult  GetAllPlayers()
         {
-            var players =  _playerComp.GetAllPlayers();
+            //var players =  _playerComp.GetAllPlayers();
+            var players = _unitOfWork.Players.GetAllPlayers();
             return View(players);
         }
 
         [HttpGet]
         public ActionResult GetPlayerById(int id)
         {
-            var getPlayer = _playerComp.Get(id);
+            //var getPlayer = _playerComp.Get(id);
+            var getPlayer = _unitOfWork.Players.Get(id);
+
             return View(getPlayer);
         }
 
@@ -49,7 +53,8 @@ namespace TheAMTeam.WebMVC.Controllers
         {
             var viewModel = new PlayerBusinessModel
             {
-                Teams = _teamComp.GetAllTeams()
+                //Teams = _teamComp.GetAllTeams()
+                Teams = _unitOfWork.Teams.GetAllTeams()
             };
 
             return View(viewModel);
@@ -62,8 +67,9 @@ namespace TheAMTeam.WebMVC.Controllers
 
             if (ModelState.IsValid)
             {
+                //_playerComp.Add(player);
+                _unitOfWork.Players.Add(player);
             }
-            _playerComp.Add(player);
 
             return RedirectToAction("GetAll");
         }
@@ -71,7 +77,8 @@ namespace TheAMTeam.WebMVC.Controllers
         [HttpGet]
         public ActionResult EditPlayer(int id)
         {
-            var player = _playerComp.Get(id);
+            //var player = _playerComp.Get(id);
+            var player = _unitOfWork.Players.Get(id);
 
             if (player == null)
                 return HttpNotFound();
@@ -83,8 +90,8 @@ namespace TheAMTeam.WebMVC.Controllers
                 BirthDate = player.BirthDate,
                 Name = player.Name,
                 NameAlias = player.NameAlias,
-                Teams = _teamComp.GetAllTeams(),
-                //Teams = _unitOfWork.Teams.GetAllTeams(),
+                //Teams = _teamComp.GetAllTeams(),
+                Teams = _unitOfWork.Teams.GetAllTeams(),
                 TeamId = player.TeamId
 
             };
@@ -98,14 +105,14 @@ namespace TheAMTeam.WebMVC.Controllers
         [HttpPost]
         public ActionResult EditPlayerPostMethod(PlayerBusinessModel model)
         {
-            var matchingPlayer = _playerComp.Get(model.PlayerId);
-            //var matchingPlayer = _unitOfWork.Players.Get(model.PlayerId);
+            //var matchingPlayer = _playerComp.Get(model.PlayerId);
+            var matchingPlayer = _unitOfWork.Players.Get(model.PlayerId);
             if (matchingPlayer == null)
             {
                 return RedirectToAction("GetAll");
             }
-            _playerComp.Update(model.PlayerId, model);
-            //_unitOfWork.Players.Update(model.PlayerId, model);
+            //_playerComp.Update(model.PlayerId, model);
+            _unitOfWork.Players.Update(model.PlayerId, model);
 
             return RedirectToAction("GetAll");
         }
@@ -113,8 +120,8 @@ namespace TheAMTeam.WebMVC.Controllers
         [HttpGet]
         public ActionResult DeletePlayer(int id)
         {
-            var matchingPlayer = _playerComp.Get(id);
-            //var matchingPlayer = _unitOfWork.Players.Get(id);
+            //var matchingPlayer = _playerComp.Get(id);
+            var matchingPlayer = _unitOfWork.Players.Get(id);
             if (matchingPlayer == null)
             {
                 return RedirectToAction("GettAll");
@@ -126,14 +133,14 @@ namespace TheAMTeam.WebMVC.Controllers
         [HttpPost]
         public ActionResult DeletePlayerPostMethod(int PlayerId)
         {
-            var matchingPlayer = _playerComp.Get(PlayerId);
-            //var matchingPlayer = _unitOfWork.Players.Get(PlayerId);
+            //var matchingPlayer = _playerComp.Get(PlayerId);
+            var matchingPlayer = _unitOfWork.Players.Get(PlayerId);
             if (matchingPlayer == null)
             {
                 return RedirectToAction("GetAll");
             }
-            _playerComp.Delete(matchingPlayer.PlayerId);
-            //_unitOfWork.Players.Delete(matchingPlayer.PlayerId);
+            //_playerComp.Delete(matchingPlayer.PlayerId);
+            _unitOfWork.Players.Delete(matchingPlayer.PlayerId);
 
             return RedirectToAction("GetAll");
         }

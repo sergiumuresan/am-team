@@ -6,7 +6,7 @@ using TheAMTeam.DataAccessLayer.Entities;
 
 namespace TheAMTeam.DataAccessLayer.Repositories.Interfaces.Repositories
 {
-    public interface IPlayersRepository
+    public interface IPlayerRepository
     {
         Player Create(Player playerEntity);
         Player GetById(int id);

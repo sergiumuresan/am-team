@@ -1,15 +1,23 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using TheAMTeam.DataAccessLayer.Entities;
 using AppContext = TheAMTeam.DataAccessLayer.Context.AppContext;
+using TheAMTeam.DataAccessLayer.Repositories.Interfaces.Repositories;
 
-namespace TheAMTeam.DataAccesLayer.Repositories
+namespace TheAMTeam.DataAccessLayer.Repositories
 {
-    public class TeamRepository
+    public class TeamRepository : ITeamRepository
     {
+        private readonly AppContext _context;
+        public TeamRepository(AppContext context)
+        {
+            _context = context;
+        }
+        public TeamRepository()
+        {
+
+        }
         public Team Add(Team team)
         {
             Team dbTeam;

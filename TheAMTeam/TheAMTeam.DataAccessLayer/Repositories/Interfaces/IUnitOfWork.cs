@@ -10,7 +10,7 @@ namespace TheAMTeam.Business.Interfaces
         IContactRepository Contacts { get; set; }
         IMatchRepository Matches { get; set; }
         INationalityRepository Nationalities { get; set; }
-        IPlayersRepository Players { get; set; }
+        IPlayerRepository Players { get; set; }
         ITeamRepository Teams { get; set; }
     }
 }

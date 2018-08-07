@@ -2,15 +2,25 @@
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
-
+using TheAMTeam.DataAccessLayer.Repositories.Interfaces.Repositories;
 using TheAMTeam.DataAccessLayer.Entities;
 using AppContext = TheAMTeam.DataAccessLayer.Context.AppContext;
 
 
 namespace TheAMTeam.DataAccessLayer.Repositories
 {
-    public class MatchRepository
+    public class MatchRepository : IMatchRepository
     {
+        private readonly AppContext _context;
+        public MatchRepository(AppContext context)
+        {
+            _context = context;
+        }
+        public MatchRepository()
+        {
+
+        }
+
         public Match Add(Match match)
         {
             Match dbMatch;

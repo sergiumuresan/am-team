@@ -5,11 +5,22 @@ using System.Text;
 using System.Threading.Tasks;
 using TheAMTeam.DataAccessLayer.Entities;
 using AppContext = TheAMTeam.DataAccessLayer.Context.AppContext;
+using TheAMTeam.DataAccessLayer.Repositories.Interfaces.Repositories;
+
 
 namespace TheAMTeam.DataAccessLayer.Repositories
 {
-    public class ContactRepository
+    public class ContactRepository : IContactRepository
     {
+        private readonly AppContext _context;
+        public ContactRepository(AppContext context)
+        {
+            _context = context;
+        }
+        public ContactRepository()
+        {
+
+        }
 
         public Contact Add(Contact contactUs)
         {

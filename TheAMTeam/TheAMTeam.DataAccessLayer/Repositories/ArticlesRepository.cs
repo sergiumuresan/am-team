@@ -2,12 +2,22 @@
 using System.Collections.Generic;
 using System.Linq;
 using TheAMTeam.DataAccessLayer.Entities;
+using TheAMTeam.DataAccessLayer.Repositories.Interfaces.Repositories;
 using AppContext = TheAMTeam.DataAccessLayer.Context.AppContext;
 
 namespace TheAMTeam.DataAccessLayer.Repositories
 {
-    public class ArticlesRepository
+    public class ArticlesRepository : IArticlesRepository
     {
+        private readonly AppContext _context;
+        public ArticlesRepository(AppContext context)
+        {
+            _context = context;
+        }
+        public ArticlesRepository()
+        {
+        }
+
         public Article Add(Article article)
         {
             Article dbArticle;

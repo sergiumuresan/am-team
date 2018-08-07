@@ -2,10 +2,12 @@
 using TheAMTeam.Business.Models;
 using TheAMTeam.DataAccessLayer.Repositories;
 using System.Collections.Generic;
+using TheAMTeam.Business.Components.Interfaces;
+
 
 namespace TheAMTeam.Business.Components
 {
-    public class NationalityComponent
+    public class NationalityComponent :INationalityComponent
     {
         private readonly NationalityRepository _nationalityRepository;
 

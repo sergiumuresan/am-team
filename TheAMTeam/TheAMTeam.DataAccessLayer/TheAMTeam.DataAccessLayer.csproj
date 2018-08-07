@@ -93,6 +93,7 @@
     <Compile Include="Repositories\TeamRepository.cs" />
     <Compile Include="Repositories\PlayersRepository.cs" />
     <Compile Include="Repositories\TestEntityRepository.cs" />
+    <Compile Include="Repositories\UnitOfWork.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

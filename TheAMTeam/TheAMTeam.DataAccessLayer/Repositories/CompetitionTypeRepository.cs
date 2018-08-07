@@ -3,11 +3,23 @@ using System.Collections.Generic;
 using System.Linq;
 using TheAMTeam.DataAccessLayer.Entities;
 using AppContext = TheAMTeam.DataAccessLayer.Context.AppContext;
+using TheAMTeam.DataAccessLayer.Repositories.Interfaces.Repositories;
+
 
 namespace TheAMTeam.DataAccessLayer.Repositories
 {
-    public class CompetitionTypeRepository
+    public class CompetitionTypeRepository : ICompetitionTypeRepository
     {
+        private readonly AppContext _context;
+        public CompetitionTypeRepository(AppContext context)
+        {
+            _context = context;
+        }
+        public CompetitionTypeRepository()
+        {
+
+        }
+
         public List<CompetitionType> getAll()
         {
             List<CompetitionType> matches;

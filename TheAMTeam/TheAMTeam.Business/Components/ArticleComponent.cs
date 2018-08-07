@@ -1,14 +1,15 @@
 ﻿using System.Collections.Generic;
 using TheAMTeam.Business.Models;
 using TheAMTeam.DataAccessLayer.Repositories;
-using TheAMTeam.DataAccessLayer.Entities;
 using TheAMTeam.Business.Utils;
+using TheAMTeam.Business.Components.Interfaces;
 
 namespace TheAMTeam.Business.Components
 {
-    public class ArticleComponent
+    public class ArticleComponent : IArticleComponent
     {
         private readonly ArticlesRepository _articlesRepository;
+
 
         public ArticleComponent()
         {

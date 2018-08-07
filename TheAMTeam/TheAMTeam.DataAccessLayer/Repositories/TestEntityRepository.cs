@@ -6,7 +6,7 @@ using AppContext = TheAMTeam.DataAccessLayer.Context.AppContext;
 
 namespace TheAMTeam.DataAccessLayer.Repositories
 {
-    public class TestEntityRepository
+    public class TestEntityRepository 
     {
         public TestEntity Create(TestEntity testEntity)
         {

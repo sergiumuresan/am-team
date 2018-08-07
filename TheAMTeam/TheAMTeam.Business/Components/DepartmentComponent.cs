@@ -1,11 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
+using TheAMTeam.Business.Components.Interfaces;
+
 
 namespace TheAMTeam.Business.Components
 {
-    public class DepartmentComponent
+    public class DepartmentComponent : IDepartmentComponent
     {
     }
 }

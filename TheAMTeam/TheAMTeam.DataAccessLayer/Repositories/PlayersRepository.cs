@@ -2,13 +2,22 @@
 using System.Collections.Generic;
 using System.Linq;
 using TheAMTeam.DataAccessLayer.Entities;
+using TheAMTeam.DataAccessLayer.Repositories.Interfaces.Repositories;
 using AppContext = TheAMTeam.DataAccessLayer.Context.AppContext;
 
 namespace TheAMTeam.DataAccessLayer.Repositories
 {
-    public class PlayersRepository
+    public class PlayersRepository : IPlayerRepository
     {
+        private readonly AppContext _context;
+        public PlayersRepository(AppContext context)
+        {
+            _context = context;
+        }
+        public PlayersRepository()
+        {
 
+        }
         public Player Create(Player playerEntity)
         {
             Player dbPlayer;

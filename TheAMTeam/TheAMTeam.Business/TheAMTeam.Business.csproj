@@ -118,6 +118,7 @@
     <Compile Include="Components\ContactComponent.cs" />
     <Compile Include="Components\DepartmentComponent.cs" />
     <Compile Include="Components\TestComponent.cs" />
+    <Compile Include="Components\UnitOfWorkComponent.cs" />
     <Compile Include="Models\CompetitionTypeModel.cs" />
     <Compile Include="Models\MatchModel.cs" />
     <Compile Include="Models\NationalityModel.cs" />
