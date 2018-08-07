@@ -1,0 +1,49 @@
+﻿@model TheAMTeam.Business.Models.ArticleBussinessModel
+@{
+    ViewBag.Title = "Add";
+    Layout = "~/Views/Shared/_LayoutArticle.cshtml";
+}
+
+
+<h2>Add Article</h2>
+
+
+@using (Html.BeginForm("AddNew", "Article", FormMethod.Post))
+{
+
+    <input type="submit" value="Add" /><input type="button" value="Back" onclick="location.href='@Url.Action("GetAll", "Article")'" />
+    <div>
+        <label>Title</label>
+        @Html.TextBoxFor(x => x.Title)
+        @Html.ValidationMessageFor(x => x.Title)
+    </div>
+    <div>
+        <label>Author</label>
+        @Html.TextBoxFor(x => x.Author)
+        @Html.ValidationMessageFor(x => x.Author)
+    </div>
+
+    <div>
+        <label>Content</label>
+        @Html.TextBoxFor(x => x.Content)
+        @Html.ValidationMessageFor(x => x.Content)
+    </div>
+    <div>
+        <label>Image URL</label>
+        @Html.TextBoxFor(x => x.ImageURL)
+    </div>
+    <div>
+        <label>Category id</label>
+        @Html.DropDownListFor(x => x.CategoryId, new SelectList(ViewBag.Articles, "CategoryId", "Name"))
+    </div>
+    <div>
+        <label>Content</label>
+        @Html.TextBoxFor(x => x.Content)
+        @Html.ValidationMessageFor(x => x.Content)
+    </div>
+    <div>
+        <label>Image URL</label>
+        @Html.TextBoxFor(x => x.ImageURL)
+    </div>
+}
+
