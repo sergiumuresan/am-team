@@ -33,7 +33,7 @@ namespace TheAMTeam.Business.Components
 
             var returnList = new List<PlayerBusinessModel>();
 
-            foreach(var item in result)
+            foreach (var item in result)
             {
                 PlayerBusinessModel player = item.toModel();
                 returnList.Add(player);
@@ -47,10 +47,10 @@ namespace TheAMTeam.Business.Components
             return result;
         }
 
-        public PlayerBusinessModel Update(int playerId,PlayerBusinessModel model)
+        public PlayerBusinessModel Update(int playerId, PlayerBusinessModel model)
         {
             var player = model.toPlayer();
-            _playerRepository.Update(playerId,player);
+            _playerRepository.Update(playerId, player);
 
             var returnPlayer = _playerRepository.GetById(playerId);
             return (returnPlayer.toModel());

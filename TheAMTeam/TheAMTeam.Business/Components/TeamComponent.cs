@@ -36,17 +36,17 @@ namespace TheAMTeam.Business.Components
             return teamList;
         }
 
-    
+
 
         public TeamModel getTeamById(int id)
         {
-           Team byId = _teamRepository.GetById(id);
+            Team byId = _teamRepository.GetById(id);
             return byId.mapToModel();
         }
 
         public TeamModel AddTeam(TeamModel team)
         {
-        _teamRepository.Add(team.mapToTeam());
+            _teamRepository.Add(team.mapToTeam());
             return team;
         }
 
@@ -57,7 +57,7 @@ namespace TheAMTeam.Business.Components
         }
 
         public bool DeleteTeam(int id)
-        {   
+        {
             return _teamRepository.Delete(id);
         }
     }
