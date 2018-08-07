@@ -14,19 +14,19 @@
     <div>
         <label>Name</label>
         @Html.TextBoxFor(x => x.Name)
-        @Html.ValidationMessageFor(x => x.Name)
+        @if (Model.Name == null) { @Html.ValidationMessageFor(x => x.Name)}
     </div>
     <br>
     <div>
         <label>Phone Number</label>
         @Html.TextBoxFor(x => x.Phone)
-        @Html.ValidationMessageFor(x => x.Phone)
+        @if (Model.Name == null) {@Html.ValidationMessageFor(x => x.Phone)}
     </div>
     <br>
     <div>
         <label>Email</label>
         @Html.TextBoxFor(x => x.Email)
-        @Html.ValidationMessageFor(x => x.Email)
+        @if (Model.Name == null) {@Html.ValidationMessageFor(x => x.Email)}
     </div>
     <br>
     <div>
@@ -37,13 +37,13 @@
     <div>
         <label>User's message</label>
         @Html.TextBoxFor(x => x.UserMessage)
-        @Html.ValidationMessageFor(x => x.UserMessage)
+        @if (Model.Name == null) {@Html.ValidationMessageFor(x => x.UserMessage)}
     </div>
     <br>
     <div>
         <label>Message's Date (Month/Day/Year)</label>
         @Html.TextBoxFor(x => x.MessageDate, "{0:MM-dd-yyyy}")
-        @Html.ValidationMessageFor(x => x.MessageDate)
+        @if (Model.Name == null) {@Html.ValidationMessageFor(x => x.MessageDate)}
     </div>
 
     <br>

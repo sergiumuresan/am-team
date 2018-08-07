@@ -85,7 +85,7 @@ namespace TheAMTeam.WebMVC.Controllers
         public ActionResult Update(ContactModel contactModelToUpdate)
         {
             ViewBag.Departments = departmentComponent.GetAll();
-
+     
             if (ModelState.IsValid)
             {
                 contactComponent.Update(contactModelToUpdate);
