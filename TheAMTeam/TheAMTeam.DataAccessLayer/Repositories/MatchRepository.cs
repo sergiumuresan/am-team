@@ -38,7 +38,6 @@ namespace TheAMTeam.DataAccessLayer.Repositories
                 using (var context = new AppContext())
                 {
                     idMatch = context.Matches.SingleOrDefault(m => m.MatchId == id);
-                    context.SaveChanges();
                 }
             }
             catch (Exception ex)

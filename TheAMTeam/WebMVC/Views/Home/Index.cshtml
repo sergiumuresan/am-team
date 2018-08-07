@@ -1,12 +1,10 @@
 ﻿@{
-    Layout = "~/Views/Shared/CompetitionLayout.cshtml";
+    ViewBag.Title = "Home Page";
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Competition</h2>
-
+<h1>Dimension</h1>
 <p>
-    <input type="button" value="See Competitions" onclick="location.href='@Url.Action("GetAll","Competition")'" />
-</p>
-<p>
-    <input type="button" value="Add Competition" onclick="location.href='@Url.Action("AddComp","Competition")'" />
+    A fully responsive site template designed by <a href="https://html5up.net">HTML5 UP</a> and released<br />
+    for free under the <a href="https://html5up.net/license">Creative Commons</a> license.
 </p>

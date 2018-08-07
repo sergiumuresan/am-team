@@ -24,7 +24,7 @@ namespace TheAMTeam.Business.Utils
                     NationalityId = player.NationalityId,
                     TeamId = player.TeamId,
 
-                    team = player.Team != null ? new TeamBusinessModel
+                    Team = player.Team != null ? new TeamBusinessModel
                     {
                         TeamId = player.Team.TeamId,
                         Name = player.Team?.Name,
@@ -54,11 +54,11 @@ namespace TheAMTeam.Business.Utils
                 NameAlias = player.NameAlias,
                 NationalityId = player.NationalityId,
                 TeamId = player.TeamId,
-                Team = player.team != null ? new Team {
-                    TeamId = player.team.TeamId,
-                    Name = player.team?.Name,
-                    City = player.team?.City,
-                    Coach = player.team?.Coach
+                Team = player.Team != null ? new Team {
+                    TeamId = player.Team.TeamId,
+                    Name = player.Team?.Name,
+                    City = player.Team?.City,
+                    Coach = player.Team?.Coach
                 } : null
 
                 };

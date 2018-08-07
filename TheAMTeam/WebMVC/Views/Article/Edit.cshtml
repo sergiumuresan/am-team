@@ -1,0 +1,39 @@
+﻿@model TheAMTeam.Business.Models.ArticleBussinessModel
+@{
+    ViewBag.Title = "Add";
+    Layout = "~/Views/Shared/_LayoutArticle.cshtml";
+}
+
+@using (Html.BeginForm("EditNew", "Article", FormMethod.Post))
+{
+    <div>
+        @Html.HiddenFor(x => x.ArticleId)
+    </div>
+    <div>
+        <label>Title</label>
+        @Html.TextBoxFor(x => x.Title)
+    </div>
+    <div>
+        <label>Author</label>
+        @Html.TextBoxFor(x => x.Author)
+
+    </div>
+
+    <div>
+        <label>Content</label>
+        @Html.TextBoxFor(x => x.Content)
+
+    </div>
+    <div>
+        <label>Image URL</label>
+        @Html.TextBoxFor(x => x.ImageURL)
+    </div>
+    <div>
+        <label>Category id</label>
+        @Html.DropDownListFor(x => x.CategoryId, new SelectList(Model.Categories, "CategoryId", "Name"))
+    </div>
+    <input type="submit" value="Save" />
+    <input type="button" value="Back" onclick="location.href='@Url.Action("GetAll", "Article")'" />
+}
+
+

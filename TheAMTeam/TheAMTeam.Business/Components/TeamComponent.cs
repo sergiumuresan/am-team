@@ -58,7 +58,6 @@ namespace TheAMTeam.Business.Components
 
         public bool DeleteTeam(int id)
         {   
-            _teamRepository.Delete(id);
             return _teamRepository.Delete(id);
         }
     }

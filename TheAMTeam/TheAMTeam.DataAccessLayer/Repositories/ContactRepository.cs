@@ -66,6 +66,7 @@ namespace TheAMTeam.DataAccessLayer.Repositories
                         dbContactUs.Phone = contact.Phone;
                         dbContactUs.UserMessage = contact.UserMessage;
                         dbContactUs.MessageDate = contact.MessageDate;
+                        dbContactUs.DepartmentId = contact.DepartmentId;
                         //context.Entry(contact).State = System.Data.Entity.EntityState.Modified;
                         //sau modificare atribute
                         context.SaveChanges();

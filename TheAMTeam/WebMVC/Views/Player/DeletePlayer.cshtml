@@ -1,0 +1,25 @@
+﻿@model  TheAMTeam.Business.Models.PlayerBusinessModel
+
+@{
+    ViewBag.Title = "Delete Player";
+    Layout = "~/Views/Shared/_LayoutPlayer.cshtml";
+}
+
+<h1>Add Player</h1>
+
+@using (Html.BeginForm("DeletePlayerPostMethod", "Player", FormMethod.Post))
+{
+    <div>
+        <label>@Model.PlayerId</label>
+        @Html.HiddenFor(x => x.PlayerId)
+    </div>
+    <div>
+        <label>Name</label>
+        @Html.TextBoxFor(x => x.Name)
+    </div>
+
+    <br />
+
+    <input type="submit" value="Delete" />
+    <input type="button" value="Back" onclick="location.href='@Url.Action("GetAll", "Player")'" />
+}

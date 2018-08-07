@@ -12,17 +12,21 @@ namespace TheAMTeam.Business.Utils
 
         public static TeamModel mapToModel(this Team team)
         {
-            TeamModel teamModel = new TeamModel()
+            if (team != null)
             {
-                Name = team.Name,
-                City = team.City,
-                Coach = team.Coach,
-                TeamId = team.TeamId,
+                TeamModel teamModel = new TeamModel()
+                {
+                    Name = team.Name,
+                    City = team.City,
+                    Coach = team.Coach,
+                    TeamId = team.TeamId,
 
-                PlayersModel =team.Players != null ? team.Players.Select(x => x.mapToPlayerModel()).ToList(): null
-            };
+                    PlayersModel = team.Players != null ? team.Players.Select(x => x.mapToPlayerModel()).ToList() : null
+                };
 
-            return teamModel;
+                return teamModel;
+            }
+            return null;
         }
 
         public static Team mapToTeam(this TeamModel t)

@@ -1,0 +1,50 @@
+﻿@model  TheAMTeam.Business.Models.PlayerBusinessModel
+
+@{
+    ViewBag.Title = "Edit Player";
+    Layout = "~/Views/Shared/_LayoutPlayer.cshtml";
+}
+
+<h1>Edit Player</h1>
+
+@using (Html.BeginForm("EditPlayerPostMethod", "Player", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+    @Html.HiddenFor(x => x.PlayerId)
+    <div>
+        @Html.LabelFor(p => p.Name)
+        @Html.TextBoxFor(x => x.Name, new { @class = "form-control", autofocus = "autofocus" })
+        @Html.ValidationMessageFor(p => p.Name)
+    </div>
+    <div>
+        @Html.LabelFor(p => p.TshirtNO)
+        @Html.TextBoxFor(x => x.TshirtNO, new { @class = "form-control" })
+        @Html.ValidationMessageFor(p => p.TshirtNO)
+    </div>
+    <div>
+        @Html.LabelFor(p => p.BirthDate)
+        @Html.TextBoxFor(x => x.BirthDate, new { @class = "form-control" })
+        @Html.ValidationMessageFor(p => p.BirthDate)
+    </div>
+    <div>
+        @Html.LabelFor(p => p.NationalityId)
+        @Html.TextBoxFor(x => x.NationalityId, new { @class = "form-control", placeholder = "2" })
+        @Html.ValidationMessageFor(p => p.NationalityId)
+    </div>
+    <div>
+        @Html.LabelFor(p => p.TeamId)
+        @Html.DropDownListFor(t => t.TeamId, new SelectList(Model.Teams, "TeamId", "Name"), new { @class = "form-control fix" })
+
+        @Html.ValidationMessageFor(p => p.TeamId)
+    </div>
+    <div>
+        @Html.LabelFor(p => p.NameAlias)
+        @Html.TextBoxFor(x => x.NameAlias, new { @class = "form-control", placeholder = "Messi" })
+        @Html.ValidationMessageFor(p => p.NameAlias)
+    </div>
+
+    <br />
+
+    <input type="submit" value="Save" />
+    <input type="button" value="Back" onclick="location.href='@Url.Action("GetAll", "Player")'" />
+}
