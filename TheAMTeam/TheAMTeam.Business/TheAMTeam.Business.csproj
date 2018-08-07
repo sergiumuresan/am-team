@@ -100,6 +100,7 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Components\CategoryComponent.cs" />
     <Compile Include="Components\CompetitionTypeComponent.cs" />
     <Compile Include="Components\NationalityComponent.cs" />
     <Compile Include="Components\PlayerComponent.cs" />
@@ -134,6 +135,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
+    <None Include="Properties\PublishProfiles\paulinternship - Web Deploy.pubxml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

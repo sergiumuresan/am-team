@@ -1,0 +1,55 @@
+﻿@model IEnumerable<TheAMTeam.Business.Models.TeamModel>
+@{
+    ViewBag.Title = "Teams";
+    Layout = "~/Views/Shared/_TeamLayout.cshtml";
+    int pages = 0;
+}
+<h2>Teams</h2>
+<form action="/Team/Teams" method="post">
+
+    <input type="text" name="search" placeholder="Search for a team..." />
+    <br />
+    <input type="submit" value="Search" />
+</form>
+<table>
+    <thead>
+    <th>Name</th>
+    <th>City</th>
+    <th>Coach</th>
+    <th>Players</th>
+    </thead>
+    <tbody>
+        @foreach (var team in Model)
+        {
+            pages++;
+            <tr>
+                <td>@team.Name</td>
+                <td>@team.City</td>
+                <td>@team.Coach</td>
+                <td>
+                    <select>
+                        @foreach (var item in team.PlayersModel)
+                        {
+                            <option>@item.Name</option>
+                        }
+                    </select>
+                </td>
+                <th>
+                    @Html.ActionLink("Asign Player", "AsignPlayer", "Team", new { teamId = team.TeamId }, null)
+                </th>
+                <th>
+                    @Html.ActionLink("Edit", "EditTeam", "Team", new { id = team.TeamId }, null)
+                </th>
+                <th>
+                    @Html.ActionLink("Delete", "RemoveTeam", "Team", new { id = team.TeamId }, null)
+                </th>
+            </tr>
+        }
+    </tbody>
+</table>
+@if (pages == 0)
+{
+    <p>No Teams Found!</p>
+}
+<input type="button" value="Back" onclick="location.href='@Url.Action("Teams", "Team", new { page = Request.QueryString["page"].AsInt()>1?  Request.QueryString["page"].AsInt()-1 : 1  })'" />
+<input type="button" value="Next" onclick="location.href='@Url.Action("Teams", "Team", new { page = Request.QueryString["page"].AsInt()<=pages/4+1? Request.QueryString["page"].AsInt() +1 :Request.QueryString["page"].AsInt() })'" />
