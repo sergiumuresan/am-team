@@ -32,10 +32,8 @@ namespace TheAMTeam.WebMVC.Controllers
         [HttpGet]
         public ActionResult AddPlayer()
         {
-            var viewModel = new PlayerBusinessModel
-            {
-                Teams = _teamComp.GetAllTeams()
-            };
+            var viewModel = new PlayerBusinessModel();
+            ViewBag.Teams = _teamComp.GetAllTeams();
 
             return View(viewModel);
         }
@@ -47,35 +45,25 @@ namespace TheAMTeam.WebMVC.Controllers
 
             if (ModelState.IsValid)
             {
+                _playerComp.Add(player);
+                return RedirectToAction("GetAll");
             }
-            _playerComp.Add(player);
+            
+            ViewBag.Teams = _teamComp.GetAllTeams();
 
-            return RedirectToAction("GetAll");
+            return View("AddPlayer", player);
         }
 
         [HttpGet]
         public ActionResult EditPlayer(int id)
         {
-            var player = _playerComp.Get(id);
-
-            if (player == null)
-                return HttpNotFound();
-
-            PlayerBusinessModel matchingPlayer = new PlayerBusinessModel
-            {
-                PlayerId = player.PlayerId,
-                TshirtNO = player.TshirtNO,
-                BirthDate = player.BirthDate,
-                Name = player.Name,
-                NameAlias = player.NameAlias,
-                Teams = _teamComp.GetAllTeams(),
-                TeamId = player.TeamId
-
-            };
+            var matchingPlayer = _playerComp.Get(id);
+            ViewBag.Teams = _teamComp.GetAllTeams();
             if (matchingPlayer == null)
             {
                 return RedirectToAction("GetAll");
             }
+
             return View(matchingPlayer);
         }
 
@@ -83,13 +71,19 @@ namespace TheAMTeam.WebMVC.Controllers
         public ActionResult EditPlayerPostMethod(PlayerBusinessModel model)
         {
             var matchingPlayer = _playerComp.Get(model.PlayerId);
+            ViewBag.Teams = _teamComp.GetAllTeams();
             if (matchingPlayer == null)
             {
                 return RedirectToAction("GetAll");
             }
-            _playerComp.Update(model.PlayerId, model);
 
-            return RedirectToAction("GetAll");
+            if (ModelState.IsValid)
+            {
+                _playerComp.Update(model.PlayerId, model);
+                return RedirectToAction("GetAll");
+            }
+
+            return View("EditPlayer", model);
         }
 
         [HttpGet]

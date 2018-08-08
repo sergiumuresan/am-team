@@ -5,7 +5,7 @@
     int pages = 0;
 }
 <h2>Teams</h2>
-<form action="/Team/Teams" method="post">
+<form action="/Team/GetAll" method="post">
 
     <input type="text" name="search" placeholder="Search for a team..." />
     <br />
@@ -51,5 +51,5 @@
 {
     <p>No Teams Found!</p>
 }
-<input type="button" value="Back" onclick="location.href='@Url.Action("Teams", "Team", new { page = Request.QueryString["page"].AsInt()>1?  Request.QueryString["page"].AsInt()-1 : 1  })'" />
-<input type="button" value="Next" onclick="location.href='@Url.Action("Teams", "Team", new { page = Request.QueryString["page"].AsInt()<=pages/4+1? Request.QueryString["page"].AsInt() +1 :Request.QueryString["page"].AsInt() })'" />
+<input type="button" value="Back" onclick="location.href='@Url.Action("GetAll", "Team", new { page = Request.QueryString["page"].AsInt()>1?  Request.QueryString["page"].AsInt()-1 : 1  })'" />
+<input type="button" value="Next" onclick="location.href='@Url.Action("GetAll", "Team", new { page = Request.QueryString["page"].AsInt()<=pages/5+1? Request.QueryString["page"].AsInt() +1 :Request.QueryString["page"].AsInt() })'" />

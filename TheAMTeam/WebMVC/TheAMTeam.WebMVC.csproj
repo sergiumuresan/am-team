@@ -268,7 +268,7 @@
     <Content Include="Views\Article\Index.cshtml" />
     <Content Include="Views\Shared\_TeamLayout.cshtml" />
     <Content Include="Views\Team\Index.cshtml" />
-    <Content Include="Views\Team\Teams.cshtml" />
+    <Content Include="Views\Team\GetAll.cshtml" />
     <Content Include="Views\Team\AddTeam.cshtml" />
     <Content Include="Views\Team\EditTeam.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
@@ -288,6 +288,7 @@
     <Content Include="Views\Shared\CompetitionLayout.cshtml" />
     <Content Include="Views\Competition\Edit.cshtml" />
     <Content Include="Views\Competition\getAllSearch.cshtml" />
+    <Content Include="Views\Competition\Index.cshtml" />
     <Content Include="Views\Player\Vote.cshtml" />
   </ItemGroup>
   <ItemGroup>

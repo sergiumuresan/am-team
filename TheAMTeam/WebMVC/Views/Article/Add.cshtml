@@ -36,14 +36,5 @@
         <label>Category id</label>
         @Html.DropDownListFor(x => x.CategoryId, new SelectList(ViewBag.Articles, "CategoryId", "Name"))
     </div>
-    <div>
-        <label>Content</label>
-        @Html.TextBoxFor(x => x.Content)
-        @Html.ValidationMessageFor(x => x.Content)
-    </div>
-    <div>
-        <label>Image URL</label>
-        @Html.TextBoxFor(x => x.ImageURL)
-    </div>
 }
 
