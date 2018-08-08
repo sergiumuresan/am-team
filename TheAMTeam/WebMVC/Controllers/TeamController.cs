@@ -27,7 +27,7 @@ namespace TheAMTeam.WebMVC.Controllers
 
             //    teams.Teams.Add(team);
             //}
-            return View(list.Skip((page - 1) * 4).Take(4));
+            return View(list.Skip((page - 1) * 5).Take(5));
             //var result = (from team in list
             //              orderby team.TeamId descending
             //              select team).Skip((page - 1) * 6).Take(6);
