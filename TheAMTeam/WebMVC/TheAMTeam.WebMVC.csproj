@@ -186,6 +186,7 @@
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
     <Content Include="images\bg.jpg" />
+    <Content Include="images\icon.png" />
     <Content Include="images\chelsea1.jpg" />
     <Content Include="images\chelsea2.jpg" />
     <Content Include="images\overlay.png" />
