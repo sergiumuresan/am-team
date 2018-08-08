@@ -4,12 +4,17 @@
 }
 <h2>Competition</h2>
 <p>
-    <form action="http://localhost:49705/Competition/GetAll">
+    <form action="/Competition/GetAll" method="get">
         <input type="submit" value="See Competitions" />
     </form>
 </p>
 <p>
-    <form action="http://localhost:49705/Competition/AddComp">
+    <form action="/Competition/AddComp" method="get">
         <input type="submit" value="Add Competition" />
+    </form>
+</p>
+<p>
+    <form action="/" method="get">
+        <input type="submit" value="Back to Main Page" />
     </form>
 </p>
