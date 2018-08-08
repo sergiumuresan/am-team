@@ -3,14 +3,13 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
-using TheAMTeam.DataAccessLayer.Entities;
 
-namespace TheAMTeam.Business.Models
+namespace TheAMTeam.WebMVC.Models
 {
-	public class CompetitionTypeModel
-	{
+    public class CompetitionModel
+    {
         [Required]
-        public int CompetitionTypeId { get; set; }
+        public int CompetitionId { get; set; }
 
         [Required]
         public string Name { get; set; }

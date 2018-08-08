@@ -1,0 +1,28 @@
+﻿@model TheAMTeam.Business.Models.CompetitionTypeModel
+
+@{
+    Layout = "~/Views/Shared/CompetitionLayout.cshtml";
+}
+
+<h1>Edit Competition </h1>
+
+@using (Html.BeginForm("EditCompetition", "Competition", FormMethod.Post))
+{
+    <div>
+        <label>Id</label>
+        @Html.TextBoxFor(x => x.CompetitionTypeId)
+    </div>
+    <div>
+        <p>
+            <label>Name</label>
+            @Html.TextBoxFor(x => x.Name)
+        </p>
+    </div>
+    <div>
+        <p>
+            <input type="submit" value="Submit form" /><button onclick="goBack()">Go Back</button>
+        </p>
+    </div>
+}
+
+<script src="~/assets/js/script.js"></script>
