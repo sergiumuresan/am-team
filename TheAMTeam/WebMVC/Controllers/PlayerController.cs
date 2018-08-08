@@ -131,5 +131,22 @@ namespace TheAMTeam.WebMVC.Controllers
             }
             return RedirectToAction("GetAll");
         }
+
+        //Vote player of the year
+
+        
+        public ActionResult Vote()
+        {
+            var players = _playerComp.GetAllPlayers();
+
+            return View(players);
+        }
+
+        [HttpPost]
+        public ActionResult Vote(PlayerBusinessModel player)
+        {
+            
+            return View();
+        }
     }
 }
