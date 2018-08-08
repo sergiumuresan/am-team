@@ -289,6 +289,7 @@
     <Content Include="Views\Competition\Edit.cshtml" />
     <Content Include="Views\Competition\getAllSearch.cshtml" />
     <Content Include="Views\Competition\Index.cshtml" />
+    <Content Include="Views\Player\Vote.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

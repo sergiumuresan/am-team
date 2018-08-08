@@ -1,0 +1,33 @@
+﻿@model  IEnumerable<TheAMTeam.Business.Models.PlayerBusinessModel>
+@{
+    ViewBag.Title = "Vote";
+    Layout = "~/Views/Shared/_LayoutPlayer.cshtml";
+}
+
+<h2>Vote your favourite player</h2>
+
+<table class="table"; height:300px; overflow:auto">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Team</th>
+            <th>Votes</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        @foreach (var player in Model)
+        {
+        <tr>
+            <td>@player.Name</td>
+            <td>@player.Team.Name</td>
+            <td></td>
+
+            <th>
+                @Html.ActionLink("Vote", "Vote", "Player")
+            </th>
+        </tr>            
+        }
+    </tbody>
+
+</table>
