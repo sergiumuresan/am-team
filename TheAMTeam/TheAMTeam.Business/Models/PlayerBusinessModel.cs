@@ -11,45 +11,43 @@ namespace TheAMTeam.Business.Models
 
         public int PlayerId { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "Name required.")]
         public string Name { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "TShirt required.")]
         public int TshirtNO { get; set; }
 
-        [Column(TypeName = "datetime2")]
         public DateTime? BirthDate { get; set; }
-
 
         public string NameAlias { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "nationality required.")]
         public int? NationalityId { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "Team required.")]
         public int TeamId { get; set; }
 
         public TeamBusinessModel Team { get; set; }
 
         public NationalityModel Nationality { get; set; }
 
-        public IEnumerable<TeamModel> Teams { get; set; }
+        //public IEnumerable<TeamModel> Teams { get; set; }
 
 
         //TODO
 
-        [Required]
-        [FutureDate]
-        public string Date { get; set; }
+        //[Required]
+        //[FutureDate]
+        //public string Date { get; set; }
 
-        [Required]
-        [ValidationTime]
-        public string Time { get; set; }
+        //[Required]
+        //[ValidationTime]
+        //public string Time { get; set; }
 
-        public DateTime getBirthDate()
-        {
-            return DateTime.Parse(string.Format("{0} {1}", Date, Time));
-        }
+        //public DateTime getBirthDate()
+        //{
+        //    return DateTime.Parse(string.Format("{0} {1}", Date, Time));
+        //}
 
     }
 }

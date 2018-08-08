@@ -13,6 +13,10 @@ namespace TheAMTeam.WebMVC.Controllers
         private ArticleComponent articleComponent = new ArticleComponent();
         private CategoryComponent categoryComponent = new CategoryComponent();
         // GET: Article
+        public ActionResult Index()
+        {
+            return RedirectToAction("GetAll");
+        }
 
             [HttpGet]
         public ActionResult getAll()
@@ -38,9 +42,6 @@ namespace TheAMTeam.WebMVC.Controllers
        public ActionResult Add()
         {
             var categoryMod = new ArticleBussinessModel();
-                //{
-                //    Categories = categoryComponent.GetAll()
-                //};
             ViewBag.Articles = categoryComponent.GetAll();
             return View(categoryMod);
         } 
@@ -73,6 +74,7 @@ namespace TheAMTeam.WebMVC.Controllers
         {
            
             var toEdit = articleComponent.GetById(id);
+            ViewBag.Categories = categoryComponent.GetAll();
             if(toEdit == null)
             {
                 return RedirectToAction("GetAll");
@@ -97,13 +99,13 @@ namespace TheAMTeam.WebMVC.Controllers
         {
             var article = articleComponent.GetById(editedArticle.ArticleId);
             editedArticle.PublishedDate = DateTime.Now;
-            
-            if(editedArticle != null)
+            ViewBag.Categories = categoryComponent.GetAll();
+            if (ModelState.IsValid)
             {
                 articleComponent.Update(editedArticle);
-          
+                return RedirectToAction("Index");
             }
-            return RedirectToAction("GetAll");
+            return View("Edit", editedArticle);
         }
 
         [HttpPost]

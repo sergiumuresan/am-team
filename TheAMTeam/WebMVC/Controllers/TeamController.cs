@@ -16,10 +16,10 @@ namespace TheAMTeam.WebMVC.Controllers
         // GET: Team
         public ActionResult Index()
         {
-            return View();
+            return RedirectToAction("GetAll", new { page = 1 });
         }
         [HttpGet]
-        public ActionResult Teams(int page)
+        public ActionResult GetAll(int page)
         {
             var list = _teamComponent.GetAllTeams();
             //foreach(var team in list)
@@ -27,7 +27,7 @@ namespace TheAMTeam.WebMVC.Controllers
 
             //    teams.Teams.Add(team);
             //}
-            return View(list.Skip((page - 1) * 4).Take(4));
+            return View(list.Skip((page - 1) * 5).Take(5));
             //var result = (from team in list
             //              orderby team.TeamId descending
             //              select team).Skip((page - 1) * 6).Take(6);
@@ -35,18 +35,22 @@ namespace TheAMTeam.WebMVC.Controllers
 
         }
         [HttpPost]
-        public ActionResult Teams(string search)
+        public ActionResult GetAll(string search)
         {
             var teams = _teamComponent.GetAllTeams();
 
             if (!String.IsNullOrEmpty(search))
             {
-                var result = teams.Where(s => s.Name.Contains(search));
+                var result = teams.Where(s => s.Name.ToLower().Contains(search.ToLower())
+                                        || s.City.ToLower().Contains(search.ToLower())
+                                        || s.Coach.ToLower().Contains(search.ToLower())
+                
+                                         );
 
 
-                return View(result);
+                return View(result.Take(5));
             }
-            return RedirectToAction("Teams", new { page = 1 });
+            return RedirectToAction("GetAll", new { page = 1 });
         }
 
         public ActionResult AddTeam()
@@ -57,12 +61,25 @@ namespace TheAMTeam.WebMVC.Controllers
         [HttpPost]
         public ActionResult AddTeamPostMethod(TeamModel model)
         {
+            if (string.IsNullOrEmpty(model.Name))
+            {
+                ModelState.AddModelError("Name", "Name is required");
+            }
+            if (string.IsNullOrEmpty(model.City))
+            {
+                ModelState.AddModelError("City", "City is required");
+            }
+            if (string.IsNullOrEmpty(model.Coach))
+            {
+                ModelState.AddModelError("Coach", "Coach is required");
+            }
             if (ModelState.IsValid)
             {
                 _teamComponent.AddTeam(model);
+                return RedirectToAction("GetAll", new { page = 1 });
             }
+            return View("AddTeam", model);
 
-            return RedirectToAction("Teams", new { page = 1 });
         }
 
         public ActionResult EditTeam(int id)
@@ -70,7 +87,7 @@ namespace TheAMTeam.WebMVC.Controllers
             var matchingTeam = _teamComponent.getTeamById(id);
             if (matchingTeam == null)
             {
-                return RedirectToAction("Teams", new { page = 1 });
+                return RedirectToAction("GetAll", new { page = 1 });
             }
             return View(matchingTeam);
         }
@@ -78,23 +95,32 @@ namespace TheAMTeam.WebMVC.Controllers
         [HttpPost]
         public ActionResult EditTeamPostMethod(TeamModel model)
         {
-            var matchingTeam = _teamComponent.getTeamById(model.TeamId);
-            if (matchingTeam == null)
+            if (string.IsNullOrEmpty(model.Name))
             {
-                return RedirectToAction("Teams", new { page = 1 });
+                ModelState.AddModelError("Name", "Name is required");
             }
+            if (string.IsNullOrEmpty(model.City))
+            {
+                ModelState.AddModelError("City", "City is required");
+            }
+            if (string.IsNullOrEmpty(model.Coach))
+            {
+                ModelState.AddModelError("Coach", "Coach is required");
+            }
+            if (ModelState.IsValid)
+            {
+                _teamComponent.UpdateTeam(model);
+                return RedirectToAction("GetAll", new { page = 1 });
+            }
+            return View("EditTeam", model);
 
-            _teamComponent.UpdateTeam(model);
-            
-
-            return RedirectToAction("Teams", new { page = 1 });
         }
         public ActionResult RemoveTeam(int id)
         {
             var matchingTeam = _teamComponent.getTeamById(id);
             if (matchingTeam == null)
             {
-                return RedirectToAction("Teams", new { page = 1 });
+                return RedirectToAction("GetAll", new { page = 1 });
             }
             return View(matchingTeam);
         }
@@ -104,13 +130,13 @@ namespace TheAMTeam.WebMVC.Controllers
             var matchingTeam = _teamComponent.getTeamById(TeamId);
             if (matchingTeam == null)
             {
-                return RedirectToAction("Teams", new { page = 1 });
+                return RedirectToAction("GetAll", new { page = 1 });
             }
 
             _teamComponent.DeleteTeam(matchingTeam.TeamId);
 
 
-            return RedirectToAction("Teams", new { page = 1 });
+            return RedirectToAction("GetAll", new { page = 1 });
         }
 
         public ActionResult AsignPlayer(int teamId)
@@ -135,7 +161,7 @@ namespace TheAMTeam.WebMVC.Controllers
 
                 _playerComponent.Update(playerId,player);
             }
-            return RedirectToAction("Teams", new { page = 1 });
+            return RedirectToAction("GetAll", new { page = 1 });
 
 
         }
