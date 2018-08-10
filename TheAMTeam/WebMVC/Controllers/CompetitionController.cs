@@ -72,5 +72,6 @@ namespace TheAMTeam.WebMVC.Controllers
             var searchResult = competition.Where(x => x.Name.Contains(search));
             return View(searchResult);
         }
+
     }
 }

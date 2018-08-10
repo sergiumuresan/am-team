@@ -1,0 +1,30 @@
+﻿
+@model IEnumerable<TheAMTeam.Business.Models.ArticleBussinessModel>
+@{
+    Layout = "/Views/Shared/_LayoutArticle.cshtml";
+}
+
+<h2>Blog</h2>
+
+<tbody>
+    @foreach (var article in Model)
+    {
+        <div style="width:70%">
+            <div align="left" style="border:1px solid white;">
+                <b>Title:</b> @article.Title
+            </div>
+
+            <div align="left" style="border:1px solid white;">
+                <p>@article.Content</p>
+            </div>
+
+            <div style="float:left">
+                <b>Author:</b> <i>@article.Author</i>
+            </div>
+
+            <div style="float:right">
+                <b>Published Date:</b> @article.PublishedDate
+            </div>
+        </div>
+    }
+</tbody>

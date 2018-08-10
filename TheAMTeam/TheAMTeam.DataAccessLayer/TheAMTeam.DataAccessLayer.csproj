@@ -59,6 +59,7 @@
     <Compile Include="Entities\Nationality.cs" />
     <Compile Include="Entities\Team.cs" />
     <Compile Include="Entities\TestEntity.cs" />
+    <Compile Include="Entities\Vote.cs" />
     <Compile Include="Migrations\201807200703030_Initial.cs" />
     <Compile Include="Migrations\201807200703030_Initial.Designer.cs">
       <DependentUpon>201807200703030_Initial.cs</DependentUpon>
@@ -74,6 +75,10 @@
     <Compile Include="Migrations\201807251529329_DeleteFieldCompIdFromEntityMatch.cs" />
     <Compile Include="Migrations\201807251529329_DeleteFieldCompIdFromEntityMatch.Designer.cs">
       <DependentUpon>201807251529329_DeleteFieldCompIdFromEntityMatch.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201808101118470_AddedVoteTable.cs" />
+    <Compile Include="Migrations\201808101118470_AddedVoteTable.Designer.cs">
+      <DependentUpon>201808101118470_AddedVoteTable.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -104,6 +109,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201807251529329_DeleteFieldCompIdFromEntityMatch.resx">
       <DependentUpon>201807251529329_DeleteFieldCompIdFromEntityMatch.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201808101118470_AddedVoteTable.resx">
+      <DependentUpon>201808101118470_AddedVoteTable.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
