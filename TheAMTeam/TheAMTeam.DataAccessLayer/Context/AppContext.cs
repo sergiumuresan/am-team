@@ -18,5 +18,6 @@ namespace TheAMTeam.DataAccessLayer.Context
         public DbSet<Nationality> Nationality { get; set; }
         public DbSet<Contact> Contacts { get; set; }
         public DbSet<Department> Departments { get; set; }
+        //public DbSet<Vote> Votes { get; set; }
     }
 }

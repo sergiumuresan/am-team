@@ -26,5 +26,7 @@ namespace TheAMTeam.DataAccessLayer.Entities
         
         [ForeignKey("TeamId")]
         public virtual Team Team { get; set; }
+        [Required]
+        public virtual Vote Vote { get; set; }
     }
 }
