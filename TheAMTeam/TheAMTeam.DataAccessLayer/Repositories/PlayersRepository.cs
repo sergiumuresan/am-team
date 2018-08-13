@@ -45,7 +45,7 @@ namespace TheAMTeam.DataAccessLayer.Repositories
             {
                 using (var context = new AppContext())
                 {
-                    dbPlayer = context.Players.Include("Team").SingleOrDefault(c => c.PlayerId == id);
+                    dbPlayer = context.Players.Include("Team").Include("Vote").SingleOrDefault(c => c.PlayerId == id);
                     context.SaveChanges();
                 }
             }
@@ -64,7 +64,7 @@ namespace TheAMTeam.DataAccessLayer.Repositories
             {
                 using (var context = new AppContext())
                 {
-                    Player dbPlayer = context.Players.Include("Team").SingleOrDefault(c => c.PlayerId == playerId);
+                    Player dbPlayer = context.Players.Include("Team").Include("Vote").SingleOrDefault(c => c.PlayerId == playerId);
 
 
                     dbPlayer.BirthDate = newPlayer.BirthDate;
@@ -77,6 +77,9 @@ namespace TheAMTeam.DataAccessLayer.Repositories
                     //dbPlayer.Team1 = newPlayer.Team1;
                     dbPlayer.TeamId = newPlayer.TeamId;
                     dbPlayer.TshirtNO = newPlayer.TshirtNO;
+                    dbPlayer.Vote.Id = newPlayer.Vote.Id;
+                    dbPlayer.Vote.NumOfVotes = newPlayer.Vote.NumOfVotes;
+
 
                     context.SaveChanges();
 

@@ -128,8 +128,7 @@ namespace TheAMTeam.WebMVC.Controllers
         }
 
         //Vote player of the year
-
-        
+       
         public ActionResult Vote()
         {
             var players = _playerComp.GetAllPlayers();
@@ -137,11 +136,25 @@ namespace TheAMTeam.WebMVC.Controllers
             return View(players);
         }
 
-        [HttpPost]
-        public ActionResult Vote(PlayerBusinessModel player)
+        public ActionResult ValidateVote(int id)
         {
-            
-            return View();
+            var player = _playerComp.Get(id);
+            return View(player);
+        }
+      
+
+        [HttpPost]
+        public ActionResult VotePlayer(int id)
+        {
+            var matchingPlayer = _playerComp.Get(id);
+
+            matchingPlayer.Vote.NumOfVotes++;
+
+             _playerComp.Update(matchingPlayer.PlayerId, matchingPlayer);
+
+            var players
+
+            return RedirectToAction("Vote", );
         }
     }
 }

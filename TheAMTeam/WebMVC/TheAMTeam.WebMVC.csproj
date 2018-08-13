@@ -294,6 +294,7 @@
     <Content Include="Views\Competition\Index.cshtml" />
     <Content Include="Views\Player\Vote.cshtml" />
     <Content Include="Views\Article\Blog.cshtml" />
+    <Content Include="Views\Player\ValidateVote.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
