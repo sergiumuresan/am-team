@@ -616,6 +616,7 @@ input, select, textarea {
 		}
 
 /* Image */
+    
 
 	.image {
 		border-radius: 4px;
@@ -1213,6 +1214,7 @@ input, select, textarea {
 		}
 
 /* Header */
+    
 
 	#header {
 		display: -moz-flex;
@@ -1284,7 +1286,7 @@ input, select, textarea {
 			border-color: #ffffff;
 			border-top-width: 1px;
 			border-bottom-width: 1px;
-			max-width: 100%;
+			max-width: 150%;
 		}
 
 			#header .content .inner {

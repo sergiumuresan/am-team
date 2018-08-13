@@ -185,6 +185,8 @@
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
     <Content Include="images\bg.jpg" />
+    <Content Include="images\chelsea1.jpg" />
+    <Content Include="images\chelsea2.jpg" />
     <Content Include="images\icon.png" />
     <Content Include="images\overlay.png" />
     <Content Include="images\pic01.jpg" />
@@ -291,6 +293,7 @@
     <Content Include="Views\Competition\getAllSearch.cshtml" />
     <Content Include="Views\Competition\Index.cshtml" />
     <Content Include="Views\Player\Vote.cshtml" />
+    <Content Include="Views\Article\Blog.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

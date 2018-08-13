@@ -122,5 +122,12 @@ namespace TheAMTeam.WebMVC.Controllers
             
         }
 
+        [HttpGet]
+        public ActionResult Blog()
+        {
+            var Blog = articleComponent.GetAll();
+
+            return View(Blog);
+        }
     }
 }
