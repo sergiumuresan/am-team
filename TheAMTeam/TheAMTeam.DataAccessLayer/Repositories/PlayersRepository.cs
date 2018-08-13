@@ -8,6 +8,8 @@ namespace TheAMTeam.DataAccessLayer.Repositories
 {
     public class PlayersRepository
     {
+        private object vote;
+
         public Player Create(Player playerEntity)
         {
             Player dbPlayer;
@@ -16,8 +18,17 @@ namespace TheAMTeam.DataAccessLayer.Repositories
                 using (var context = new AppContext())
                 {
                     //Create a new entry in table, and get the new object
+
                     dbPlayer = context.Players.Add(playerEntity);
+                    Vote vote = new Vote
+                    {
+                        Id = dbPlayer.PlayerId,
+                        NumOfVotes = 0
+                    };
+
+                    dbPlayer.Vote = vote;
                     context.SaveChanges();
+                    return dbPlayer;
                 }
             }
             catch (Exception ex)
@@ -25,8 +36,6 @@ namespace TheAMTeam.DataAccessLayer.Repositories
                 Console.WriteLine(ex);
                 throw ex;
             }
-
-            return dbPlayer;
         }
 
         public Player GetById(int id)
@@ -90,7 +99,8 @@ namespace TheAMTeam.DataAccessLayer.Repositories
                     if (context.Players.Find(id) != null)
                     {
                         Player dbPlayer = context.Players.SingleOrDefault(c => c.PlayerId == id);
-                        context.Players.Remove(dbPlayer);
+                        context.Votes.Remove(dbPlayer.Vote);
+                        context.Players.Remove(dbPlayer);                        
                         context.SaveChanges();
                         Console.WriteLine("Line {0} deleted!", id);
                         return true;
@@ -112,7 +122,7 @@ namespace TheAMTeam.DataAccessLayer.Repositories
             {
                 using (var context = new AppContext())
                 {
-                    var result = context.Players.Include("Team").ToList();
+                    var result = context.Players.Include("Team").Include("Vote").ToList();
                     return result;
                 }
             }

@@ -80,6 +80,10 @@
     <Compile Include="Migrations\201808101118470_AddedVoteTable.Designer.cs">
       <DependentUpon>201808101118470_AddedVoteTable.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201808101336333_FixedAppContext.cs" />
+    <Compile Include="Migrations\201808101336333_FixedAppContext.Designer.cs">
+      <DependentUpon>201808101336333_FixedAppContext.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\CategoryRepository.cs" />
@@ -112,6 +116,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201808101118470_AddedVoteTable.resx">
       <DependentUpon>201808101118470_AddedVoteTable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201808101336333_FixedAppContext.resx">
+      <DependentUpon>201808101336333_FixedAppContext.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

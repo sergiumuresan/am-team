@@ -35,6 +35,7 @@ namespace TheAMTeam.WebMVC.Controllers
             var viewModel = new PlayerBusinessModel();
             ViewBag.Teams = _teamComp.GetAllTeams();
 
+
             return View(viewModel);
         }
 
@@ -42,7 +43,7 @@ namespace TheAMTeam.WebMVC.Controllers
         [HttpPost]
         public ActionResult AddPlayerPostMethod(PlayerBusinessModel player)
         {
-
+            
             if (ModelState.IsValid)
             {
                 _playerComp.Add(player);

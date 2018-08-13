@@ -21,9 +21,8 @@ namespace TheAMTeam.Business.Components
         public PlayerBusinessModel Add(PlayerBusinessModel model)
         {
             Player player = model.toPlayer();
-            _playerRepository.Create(player);
-            var playerEntity = _playerRepository.GetById(player.PlayerId).toModel();
-
+            _playerRepository.Create(player);            
+            var playerEntity = _playerRepository.GetById(player.PlayerId).toModel();           
             return (playerEntity);
         }
 

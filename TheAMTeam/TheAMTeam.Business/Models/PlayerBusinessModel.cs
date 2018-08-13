@@ -31,23 +31,6 @@ namespace TheAMTeam.Business.Models
 
         public NationalityModel Nationality { get; set; }
 
-        //public IEnumerable<TeamModel> Teams { get; set; }
-
-
-        //TODO
-
-        //[Required]
-        //[FutureDate]
-        //public string Date { get; set; }
-
-        //[Required]
-        //[ValidationTime]
-        //public string Time { get; set; }
-
-        //public DateTime getBirthDate()
-        //{
-        //    return DateTime.Parse(string.Format("{0} {1}", Date, Time));
-        //}
-
+        public VoteModel Vote { get; set; }
     }
 }
