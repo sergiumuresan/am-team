@@ -4,7 +4,7 @@
     Layout = "~/Views/Shared/_LayoutPlayer.cshtml";
 }
 
-<h2>Vote your favourite player</h2>
+    <h2>Vote your favourite player</h2>
 
     <table class="table" ; height:300px; overflow:auto">
         <thead>
@@ -23,8 +23,8 @@
                     <td>@player.Team.Name</td>
                     <td>@player.Vote.NumOfVotes</td>
 
-                    <th>
-                        @Html.ActionLink("Vote", "ValidateVote", "Player", new { id = player.PlayerId }, null)
+                    <th>                        
+                        @Html.ActionLink("Vote", "VotePlayer", "Player", new { id = player.PlayerId }, null)
                     </th>
                 </tr>
             }
