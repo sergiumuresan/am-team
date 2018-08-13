@@ -152,7 +152,7 @@ namespace TheAMTeam.WebMVC.Controllers
 
              _playerComp.Update(matchingPlayer.PlayerId, matchingPlayer);
 
-            var players
+            
 
             return RedirectToAction("Vote", );
         }
