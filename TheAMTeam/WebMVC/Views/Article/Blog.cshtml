@@ -4,27 +4,25 @@
     Layout = "/Views/Shared/_LayoutArticle.cshtml";
 }
 
-<h2>Blog</h2>
+<h1>Blog</h1>
 
-<tbody>
     @foreach (var article in Model)
     {
-        <div style="width:70%">
-            <div align="left" style="border:1px solid white;">
+        <div style="font-size:1.4vw;padding-bottom:12%">
+            <div align="left" style="float:left;width:100%;text-align:left">
                 <b>Title:</b> @article.Title
             </div>
 
-            <div align="left" style="border:1px solid white;">
+            <div align="left" style="border:1px solid white;float:left;width:100%">
                 <p>@article.Content</p>
             </div>
 
-            <div style="float:left">
+            <div style="float:left;width: 73%;text-align:left;">
                 <b>Author:</b> <i>@article.Author</i>
             </div>
 
-            <div style="float:right">
+            <div style="float:right;display;width:26%;">
                 <b>Published Date:</b> @article.PublishedDate
             </div>
         </div>
     }
-</tbody>
