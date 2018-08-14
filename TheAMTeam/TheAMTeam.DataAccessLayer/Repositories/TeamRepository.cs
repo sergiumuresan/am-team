@@ -37,7 +37,9 @@ namespace TheAMTeam.DataAccesLayer.Repositories
             {
                 using (var context = new AppContext())
                 {
-                    dbTeam = context.Teams.Include("Players").SingleOrDefault(x => x.TeamId == Id);
+                    dbTeam = context.Teams
+                        .Include("Players")
+                        .SingleOrDefault(x => x.TeamId == Id);
                 }
                 
             }catch(Exception ex)
@@ -100,7 +102,9 @@ namespace TheAMTeam.DataAccesLayer.Repositories
             {
                 using (var context = new AppContext())
                 {
-                    list = context.Teams.Include("Players").ToList();
+                    list = context.Teams
+                        .Include("Players")
+                        .ToList();
                 }
             }catch(Exception ex)
             {

@@ -14,6 +14,21 @@ namespace TheAMTeam.Business.Utils
         {
             if (team != null)
             {
+                var players = new List<PlayerBusinessModel>();
+                foreach(var item in team.Players)
+                {
+                    PlayerBusinessModel player = new PlayerBusinessModel
+                    {
+                        PlayerId = item.PlayerId,
+                        Name = item.Name,
+                        TeamId = item.TeamId,
+                        TshirtNO = item.TshirtNO,
+                        BirthDate = item.BirthDate,
+                        NameAlias = item.NameAlias,
+                        NationalityId = item.NationalityId
+                    };
+                    players.Add(player);
+                }
                 TeamModel teamModel = new TeamModel()
                 {
                     Name = team.Name,
@@ -21,7 +36,9 @@ namespace TheAMTeam.Business.Utils
                     Coach = team.Coach,
                     TeamId = team.TeamId,
 
-                    PlayersModel = team.Players != null ? team.Players.Select(x => x.mapToPlayerModel()).ToList() : null
+                    Players = players
+                    
+                  
                 };
 
                 return teamModel;
@@ -29,48 +46,25 @@ namespace TheAMTeam.Business.Utils
             return null;
         }
 
-        public static Team mapToTeam(this TeamModel t)
+        public static Team mapToTeam(this TeamModel team)
         {
-            Team team = new Team()
+            var players = new List<Player>();
+            foreach (var item in team.Players)
             {
-                Name = t.Name,
-                City = t.City,
-                Coach = t.Coach,
-                TeamId = t.TeamId,
-                Players = t.PlayersModel !=null ? t.PlayersModel.Select(x=>x.mapToPlayer()).ToList(): null
+                players.Add(item.toPlayer());
+            }
+            Team teamEntity = new Team()
+            {
+                Name = team.Name,
+                City = team.City,
+                Coach = team.Coach,
+                TeamId = team.TeamId,
+                Players = players
             };
 
-            return team;
+            return teamEntity;
         }
 
-        public static Player mapToPlayer(this PlayerModel p)
-        {
-            Player player = new Player()
-            {
-                PlayerId = p.PlayerId,
-                Name = p.Name,
-                TeamId = p.TeamId,
-                TshirtNO = p.TshirtNO,
-                BirthDate = p.BirthDate,
-                NameAlias = p.NameAlias,
-                NationalityId = p.NationalityId
-            };
-            return player;
-        }
-
-        public static PlayerModel mapToPlayerModel(this Player p)
-        {
-            PlayerModel playerModel = new PlayerModel()
-            {
-                PlayerId = p.PlayerId,
-                Name = p.Name,
-                TeamId = p.TeamId,
-                TshirtNO = p.TshirtNO,
-                BirthDate = p.BirthDate,
-                NameAlias = p.NameAlias,
-                NationalityId = p.NationalityId
-            };
-            return playerModel;
-        }
+       
     }
 }

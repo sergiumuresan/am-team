@@ -1,7 +1,5 @@
-﻿using System;
+﻿using AutoMapper;
 using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 using TheAMTeam.Business.Models;
 using TheAMTeam.Business.Utils;
 using TheAMTeam.DataAccesLayer.Repositories;
@@ -12,51 +10,70 @@ namespace TheAMTeam.Business.Components
     public class TeamComponent
     {
         private readonly TeamRepository _teamRepository;
+        //private MapperConfiguration config = new MapperConfiguration(cfg => {
+
+        //    cfg.CreateMap<TeamModel, Team>();
+
+        //});
 
         public TeamComponent()
         {
             _teamRepository = new TeamRepository();
         }
 
-        public List<TeamModel> GetAllTeams()
+        public List<TeamModel> GetAll()
         {
             var teams = _teamRepository.GetAll();
             var teamList = new List<TeamModel>();
+            //IMapper iMapper = config.CreateMapper();
+
+
             foreach (var team in teams)
             {
-                teamList.Add(new TeamModel
-                {
-                    TeamId = team.TeamId,
-                    Name = team.Name,
-                    City = team.City,
-                    Coach = team.Coach,
-                    PlayersModel = team.mapToModel().PlayersModel
-                });
+                //var destination = iMapper.Map<Team,TeamModel>(team);
+                var destination = team.mapToModel();
+                teamList.Add(destination);
             }
             return teamList;
         }
 
     
 
-        public TeamModel getTeamById(int id)
+        public TeamModel GetById(int id)
         {
-           Team byId = _teamRepository.GetById(id);
-            return byId.mapToModel();
+           Team team = _teamRepository.GetById(id);
+            //IMapper iMapper = config.CreateMapper();
+            //var destination = iMapper.Map<Team, TeamModel>(team);
+            var destination = team.mapToModel();
+
+            return destination;
         }
 
-        public TeamModel AddTeam(TeamModel team)
+        public TeamModel Add(TeamModel team)
         {
-        _teamRepository.Add(team.mapToTeam());
+            //IMapper iMapper = config.CreateMapper();
+            //var destination = iMapper.Map<TeamModel, Team>(team);
+            var destination = team.mapToTeam();
+            _teamRepository.Add(destination);
             return team;
         }
 
-        public TeamModel UpdateTeam(TeamModel team)
+        public TeamModel Update(TeamModel model)
         {
-            _teamRepository.Update(team.mapToTeam());
-            return team;
+
+            //IMapper iMapper = config.CreateMapper();
+            // var destination = iMapper.Map<TeamModel, Team>(model);
+            var destination = model.mapToTeam();
+            _teamRepository.Update(destination);
+
+            var result = _teamRepository.GetById(model.TeamId);
+            //var ret = iMapper.Map<Team,TeamModel>(result);
+            var ret = result.mapToModel();
+
+            return ret;
         }
 
-        public bool DeleteTeam(int id)
+        public bool Delete(int id)
         {   
             return _teamRepository.Delete(id);
         }

@@ -92,7 +92,7 @@ namespace TheAMTeam.DataAccessLayer.Repositories
             }
         }
 
-        public List<Match> getAll()
+        public List<Match> GetAll()
         {
             List<Match> matches;
             try

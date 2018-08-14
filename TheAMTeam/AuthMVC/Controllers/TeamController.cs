@@ -11,7 +11,7 @@ namespace TheAMTeam.WebMVC.Controllers
     public class TeamController : Controller
     {
         private TeamComponent _teamComponent = new TeamComponent();
-        private PlayerComp _playerComponent = new PlayerComp();
+        private PlayerComponent _playerComponent = new PlayerComponent();
 
 
 
@@ -27,7 +27,7 @@ namespace TheAMTeam.WebMVC.Controllers
         [Authorize]
         public ActionResult GetAll()
         {
-            var list = _teamComponent.GetAllTeams();
+            var list = _teamComponent.GetAll();
            
             return View(list);
         }  
@@ -36,7 +36,7 @@ namespace TheAMTeam.WebMVC.Controllers
         [Authorize]
         public ActionResult GetAll(string search)
         {
-            var teams = _teamComponent.GetAllTeams();
+            var teams = _teamComponent.GetAll();
 
             if (!String.IsNullOrEmpty(search))
             {
@@ -74,7 +74,7 @@ namespace TheAMTeam.WebMVC.Controllers
             if (ModelState.IsValid)
             {
 
-                _teamComponent.AddTeam(model);
+                _teamComponent.Add(model);
                 return RedirectToAction("GetAll");
             }
                 
@@ -88,7 +88,7 @@ namespace TheAMTeam.WebMVC.Controllers
         [Authorize(Roles = "Admin")]
         public ActionResult EditTeam(int id)
         {
-            var matchingTeam = _teamComponent.getTeamById(id);
+            var matchingTeam = _teamComponent.GetById(id);
             if (matchingTeam == null)
             {
                 return RedirectToAction("GetAll");
@@ -119,7 +119,7 @@ namespace TheAMTeam.WebMVC.Controllers
             //}
             if (ModelState.IsValid)
             {
-                _teamComponent.UpdateTeam(model);
+                _teamComponent.Update(model);
                 return RedirectToAction("GetAll");
             }
             
@@ -129,7 +129,7 @@ namespace TheAMTeam.WebMVC.Controllers
         [Authorize(Roles = "Admin")]
         public ActionResult RemoveTeam(int id)
         {
-            var matchingTeam = _teamComponent.getTeamById(id);
+            var matchingTeam = _teamComponent.GetById(id);
             if (matchingTeam == null)
             {
                 return RedirectToAction("GetAll");
@@ -140,13 +140,13 @@ namespace TheAMTeam.WebMVC.Controllers
         [Authorize(Roles = "Admin")]
         public ActionResult RemoveTeamMethod(int TeamId)
         {
-            var matchingTeam = _teamComponent.getTeamById(TeamId);
+            var matchingTeam = _teamComponent.GetById(TeamId);
             if (matchingTeam == null)
             {
                 return RedirectToAction("GetAll");
             }
 
-            _teamComponent.DeleteTeam(matchingTeam.TeamId);
+            _teamComponent.Delete(matchingTeam.TeamId);
 
 
             return RedirectToAction("GetAll");
@@ -155,7 +155,7 @@ namespace TheAMTeam.WebMVC.Controllers
         [Authorize(Roles = "Admin")]
         public ActionResult AsignPlayer(int teamId)
         {
-            var players = _playerComponent.GetAllPlayers();
+            var players = _playerComponent.GetAll();
             PlayerAsignModel playerAsignModel = new PlayerAsignModel()
             {
                 teamId = teamId,
@@ -172,9 +172,9 @@ namespace TheAMTeam.WebMVC.Controllers
             {
                 var player = _playerComponent.Get(playerId);
 
-                player.TeamId = teamId;
+                player.Team.TeamId = teamId;
 
-                _playerComponent.Update(playerId,player);
+                _playerComponent.Update(player);
             }
             return RedirectToAction("GetAll");
 

@@ -20,7 +20,7 @@ namespace TheAMTeam.WebApi.Controllers
         {
             try
             {
-                var getResult = _teamComponent.GetAllTeams();
+                var getResult = _teamComponent.GetAll();
                 return Request.CreateResponse(HttpStatusCode.OK, getResult);
             }catch(Exception ex)
             {
@@ -35,7 +35,7 @@ namespace TheAMTeam.WebApi.Controllers
         {
             try
             {
-                var result = _teamComponent.getTeamById(teamId);
+                var result = _teamComponent.GetById(teamId);
                 return Request.CreateResponse(HttpStatusCode.OK, result);
             }catch(Exception ex)
             {
@@ -50,7 +50,7 @@ namespace TheAMTeam.WebApi.Controllers
         {
             try
             {
-                _teamComponent.AddTeam(team);
+                _teamComponent.Add(team);
                 return Request.CreateResponse(HttpStatusCode.OK, team);
             }catch(Exception ex)
             {
@@ -65,7 +65,7 @@ namespace TheAMTeam.WebApi.Controllers
         {
             try
             {
-                var updated = _teamComponent.UpdateTeam(team);
+                var updated = _teamComponent.Update(team);
                 return Request.CreateResponse(HttpStatusCode.OK, updated);
             }
             catch(Exception ex)
@@ -82,7 +82,7 @@ namespace TheAMTeam.WebApi.Controllers
             try
             {
                 
-                var deleted = _teamComponent.DeleteTeam(id);
+                var deleted = _teamComponent.Delete(id);
                 return Request.CreateResponse(HttpStatusCode.OK, deleted);
             }catch(Exception ex)
             {

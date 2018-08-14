@@ -36,8 +36,8 @@ namespace TheAMTeam.DataAccessLayer.Repositories
             {
                 using (var context = new AppContext())
                 {
-                    dbPlayer = context.Players.Include("Team").SingleOrDefault(c => c.PlayerId == id);
-                    context.SaveChanges();
+                    dbPlayer = context.Players.Include("Team").Include("Nationality").SingleOrDefault(c => c.PlayerId == id);
+                   // context.SaveChanges();
                 }
             }
             catch (Exception ex)
@@ -49,24 +49,23 @@ namespace TheAMTeam.DataAccessLayer.Repositories
             return dbPlayer;
         }
 
-        public Player Update(int playerId,Player newPlayer)
+        public Player Update(Player newPlayer)
         {
             try
             {
                 using (var context = new AppContext())
                 {
-                    Player dbPlayer = context.Players.Include("Team").SingleOrDefault(c => c.PlayerId == playerId);
+                    Player dbPlayer = context.Players.Include("Team").Include("Nationality").SingleOrDefault(c => c.PlayerId == newPlayer.PlayerId);
 
 
                     dbPlayer.BirthDate = newPlayer.BirthDate;
                     dbPlayer.Name = newPlayer.Name;
                     dbPlayer.NameAlias = newPlayer.NameAlias;
-                    //dbPlayer.Nationality = newPlayer.Nationality;
                     dbPlayer.NationalityId = newPlayer.NationalityId;
-                    //dbPlayer.PlayerId = newPlayer.PlayerId;
-                    //dbPlayer.Team = newPlayer.Team;
-                    //dbPlayer.Team1 = newPlayer.Team1;
+                    dbPlayer.Nationality = context.Nationality.SingleOrDefault(n => n.NationalityId == newPlayer.NationalityId);
+                    
                     dbPlayer.TeamId = newPlayer.TeamId;
+                    dbPlayer.Team = context.Teams.SingleOrDefault(t => t.TeamId == newPlayer.TeamId);
                     dbPlayer.TshirtNO = newPlayer.TshirtNO;
 
                     context.SaveChanges();
@@ -112,7 +111,7 @@ namespace TheAMTeam.DataAccessLayer.Repositories
             {
                 using (var context = new AppContext())
                 {
-                    var result = context.Players.Include("Team").ToList();
+                    var result = context.Players.Include("Team").Include("Nationality").ToList();
                     return result;
                 }
             }

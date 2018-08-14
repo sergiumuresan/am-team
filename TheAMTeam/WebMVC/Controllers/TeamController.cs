@@ -12,7 +12,7 @@ namespace TheAMTeam.WebMVC.Controllers
     public class TeamController : Controller
     {
         private TeamComponent _teamComponent = new TeamComponent();
-        private PlayerComp _playerComponent = new PlayerComp();
+        private PlayerComponent _playerComponent = new PlayerComponent();
         // GET: Team
         public ActionResult Index()
         {
@@ -21,7 +21,7 @@ namespace TheAMTeam.WebMVC.Controllers
         [HttpGet]
         public ActionResult Teams(int page)
         {
-            var list = _teamComponent.GetAllTeams();
+            var list = _teamComponent.GetAll();
             //foreach(var team in list)
             //{
 
@@ -37,7 +37,7 @@ namespace TheAMTeam.WebMVC.Controllers
         [HttpPost]
         public ActionResult Teams(string search)
         {
-            var teams = _teamComponent.GetAllTeams();
+            var teams = _teamComponent.GetAll();
 
             if (!String.IsNullOrEmpty(search))
             {
@@ -59,7 +59,7 @@ namespace TheAMTeam.WebMVC.Controllers
         {
             if (ModelState.IsValid)
             {
-                _teamComponent.AddTeam(model);
+                _teamComponent.GetById(model.TeamId);
             }
 
             return RedirectToAction("Teams", new { page = 1 });
@@ -67,7 +67,7 @@ namespace TheAMTeam.WebMVC.Controllers
 
         public ActionResult EditTeam(int id)
         {
-            var matchingTeam = _teamComponent.getTeamById(id);
+            var matchingTeam = _teamComponent.GetById(id);
             if (matchingTeam == null)
             {
                 return RedirectToAction("Teams", new { page = 1 });
@@ -78,20 +78,20 @@ namespace TheAMTeam.WebMVC.Controllers
         [HttpPost]
         public ActionResult EditTeamPostMethod(TeamModel model)
         {
-            var matchingTeam = _teamComponent.getTeamById(model.TeamId);
+            var matchingTeam = _teamComponent.GetById(model.TeamId);
             if (matchingTeam == null)
             {
                 return RedirectToAction("Teams", new { page = 1 });
             }
 
-            _teamComponent.UpdateTeam(model);
+            _teamComponent.Update(model);
             
 
             return RedirectToAction("Teams", new { page = 1 });
         }
         public ActionResult RemoveTeam(int id)
         {
-            var matchingTeam = _teamComponent.getTeamById(id);
+            var matchingTeam = _teamComponent.GetById(id);
             if (matchingTeam == null)
             {
                 return RedirectToAction("Teams", new { page = 1 });
@@ -101,13 +101,13 @@ namespace TheAMTeam.WebMVC.Controllers
         [HttpPost]
         public ActionResult RemoveTeamMethod(int TeamId)
         {
-            var matchingTeam = _teamComponent.getTeamById(TeamId);
+            var matchingTeam = _teamComponent.GetById(TeamId);
             if (matchingTeam == null)
             {
                 return RedirectToAction("Teams", new { page = 1 });
             }
 
-            _teamComponent.DeleteTeam(matchingTeam.TeamId);
+            _teamComponent.Delete(matchingTeam.TeamId);
 
 
             return RedirectToAction("Teams", new { page = 1 });
@@ -115,7 +115,7 @@ namespace TheAMTeam.WebMVC.Controllers
 
         public ActionResult AsignPlayer(int teamId)
         {
-            var players = _playerComponent.GetAllPlayers();
+            var players = _playerComponent.GetAll();
             PlayerAsignModel playerAsignModel = new PlayerAsignModel()
             {
                 teamId = teamId,
@@ -133,7 +133,7 @@ namespace TheAMTeam.WebMVC.Controllers
 
                 player.TeamId = teamId;
 
-                _playerComponent.Update(playerId,player);
+                _playerComponent.Update(player);
             }
             return RedirectToAction("Teams", new { page = 1 });
 

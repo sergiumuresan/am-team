@@ -7,17 +7,17 @@ using TheAMTeam.Business.Models;
 
 namespace TheAMTeam.WebApi.Controllers
 {
-    public class PlayerController : ApiController
+    public class MatchController : ApiController
     {
-        private PlayerComponent _playerComponent = new PlayerComponent();
+        private MatchComponent _matchComponent = new MatchComponent();
 
         [HttpPost]
-        [Route("api/player")]
-        public HttpResponseMessage Add([FromBody]PlayerBusinessModel player)
+        [Route("api/match")]
+        public HttpResponseMessage Add([FromBody]MatchModel match)
         {
             try
             {
-                var result = _playerComponent.Add(player);
+                var result = _matchComponent.Add(match);
                 return Request.CreateResponse(HttpStatusCode.OK, result);
             }
             catch (Exception ex)
@@ -26,12 +26,12 @@ namespace TheAMTeam.WebApi.Controllers
             }
         }
         [HttpGet]
-        [Route("api/players")]
+        [Route("api/matches")]
         public HttpResponseMessage Get()
         {
             try
             {
-                var result = _playerComponent.GetAll();
+                var result = _matchComponent.GetAll();
                 return Request.CreateResponse(HttpStatusCode.OK, result);
             }
             catch (Exception ex)
@@ -40,12 +40,12 @@ namespace TheAMTeam.WebApi.Controllers
             }
         }
         [HttpGet]
-        [Route("api/player/{playerId}")]
-        public HttpResponseMessage Get(int playerId)
+        [Route("api/match/{matchId}")]
+        public HttpResponseMessage Get(int matchId)
         {
             try
             {
-                var result = _playerComponent.Get(playerId);
+                var result = _matchComponent.Get(matchId);
                 return Request.CreateResponse(HttpStatusCode.OK, result);
             }
             catch(Exception ex)
@@ -56,12 +56,12 @@ namespace TheAMTeam.WebApi.Controllers
 
         }
         [HttpPut]
-        [Route("api/player/{playerId}")]
-        public HttpResponseMessage Update(int playerId,[FromBody]PlayerBusinessModel player)
+        [Route("api/match/{matchId}")]
+        public HttpResponseMessage Update(int matchId,[FromBody]MatchModel match)
         {
             try
             {
-                var result = _playerComponent.Update(player);
+                var result = _matchComponent.Update(match);
                 return Request.CreateResponse(HttpStatusCode.OK, result);
             }
             catch (Exception ex)
@@ -70,12 +70,12 @@ namespace TheAMTeam.WebApi.Controllers
             }
         }
         [HttpDelete]
-        [Route("api/player/{playerId}")]
-        public HttpResponseMessage Delete(int playerId)
+        [Route("api/match/{matchId}")]
+        public HttpResponseMessage Delete(int matchId)
         {
             try
             {
-                var result = _playerComponent.Delete(playerId);
+                var result = _matchComponent.Delete(matchId);
                 return Request.CreateResponse(HttpStatusCode.OK, result);
             }
             catch (Exception ex)

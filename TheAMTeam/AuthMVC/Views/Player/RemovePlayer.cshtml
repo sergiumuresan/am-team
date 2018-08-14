@@ -1,0 +1,28 @@
+﻿@model TheAMTeam.Business.Models.PlayerBusinessModel
+@{
+    ViewBag.Title = "Player";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<h2>Teams</h2>
+
+@using (Html.BeginForm("RemovePlayerMethod", "Player", FormMethod.Post))
+{
+    <div>
+        @Html.HiddenFor(x => x.PlayerId)
+       
+    </div>
+    <br />
+    <div>
+        <label>@Model.Name</label>
+
+    </div>
+    <div>
+        <label>@Model.NameAlias</label>
+
+    </div>
+    
+    <br />
+
+
+    <input type="submit" value="Delete Team" class="btn btn-danger"/>
+    <input type="button" value="Back" onclick="location.href='@Url.Action("GetAll", "Player")'" class="btn btn-default" />}

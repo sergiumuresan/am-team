@@ -1,14 +1,20 @@
-﻿using System.Collections.Generic;
+﻿using AutoMapper;
+using System.Collections.Generic;
 using TheAMTeam.Business.Models;
-using TheAMTeam.Business.Utils;
+using TheAMTeam.DataAccessLayer.Entities;
 using TheAMTeam.DataAccessLayer.Repositories;
-
+using TheAMTeam.Business.Utils;
 namespace TheAMTeam.Business.Components
 {
     public class CompetitionTypeComponent
     {
         private readonly CompetitionTypeRepository _competitionTypeRepository;
+        //private MapperConfiguration config = new MapperConfiguration(cfg => {
 
+        //    cfg.CreateMap<CompetitionTypeModel, CompetitionType>();
+
+        //});
+        
 
         public CompetitionTypeComponent()
         {
@@ -17,23 +23,30 @@ namespace TheAMTeam.Business.Components
 
         
         public CompetitionTypeModel Add(CompetitionTypeModel competitionTypeModel)
-        {   
+        {
+            //IMapper iMapper = config.CreateMapper();
 
-            _competitionTypeRepository.Add(competitionTypeModel.mapToCompetiotionType());
+            //var destination = iMapper.Map<CompetitionTypeModel, CompetitionType>(competitionTypeModel);
+
+            var destination = competitionTypeModel.mapToCompetiotionType();
+            _competitionTypeRepository.Add(destination);
             return competitionTypeModel;
         }
 
         
         public CompetitionTypeModel GetById(int id)
         {
-            var result =  _competitionTypeRepository.GetById(id);
-            return result?.mapToModel();
+            var result = _competitionTypeRepository.GetById(id);
+
+            //IMapper iMapper = config.CreateMapper();
+            //var destination = iMapper.Map<CompetitionType,CompetitionTypeModel>(result);
+            
+            return result.mapToModel();
         }
 
         public List<CompetitionTypeModel> GetAllCompetionType()
         {
             var result = _competitionTypeRepository.getAll();
-           
 
             var returnList = new List<CompetitionTypeModel>();
 
@@ -42,8 +55,7 @@ namespace TheAMTeam.Business.Components
                 returnList.Add(new CompetitionTypeModel
                 {
                     CompetitionTypeId = item.CompetionId,
-                    Name = item.Name,
-                    MatchesModels = item.mapToModel().MatchesModels
+                    Name = item.Name
                 });
             }
 
@@ -53,7 +65,11 @@ namespace TheAMTeam.Business.Components
 
         public CompetitionTypeModel Update(CompetitionTypeModel competitionTypeModel)
         {
-            _competitionTypeRepository.Update(competitionTypeModel.mapToCompetiotionType());
+
+            //IMapper iMapper = config.CreateMapper();
+            //var destination = iMapper.Map<CompetitionTypeModel, CompetitionType>(competitionTypeModel);
+            var destination = competitionTypeModel.mapToCompetiotionType();
+            _competitionTypeRepository.Update(destination);
             return competitionTypeModel;
         }
 
