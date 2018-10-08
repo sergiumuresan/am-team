@@ -4,23 +4,25 @@ using System.Linq;
 using System.Web;
 using TheAMTeam.Business.Models;
 using TheAMTeam.Business.Utils;
-using TheAMTeam.DataAccesLayer.Repositories;
+using TheAMTeam.DataAccessLayer.Repositories;
 using TheAMTeam.DataAccessLayer.Entities;
+using TheAMTeam.Business.Components.Interface.Components;
+using TheAMTeam.DataAccessLayer.Repositories.Interfaces;
 
 namespace TheAMTeam.Business.Components
 {
-    public class TeamComponent
+    public class TeamComponent : ITeamComponent
     {
-        private readonly TeamRepository _teamRepository;
+        private readonly IUnitOfWorkRepository _unitOfWorkRepository;
 
-        public TeamComponent()
+        public TeamComponent(IUnitOfWorkRepository unitOfWorkRepository)
         {
-            _teamRepository = new TeamRepository();
+            _unitOfWorkRepository = unitOfWorkRepository;
         }
 
         public List<TeamModel> GetAllTeams()
         {
-            var teams = _teamRepository.GetAll();
+            var teams = _unitOfWorkRepository.Teams.GetAll();
             var teamList = new List<TeamModel>();
             foreach (var team in teams)
             {
@@ -36,29 +38,27 @@ namespace TheAMTeam.Business.Components
             return teamList;
         }
 
-
-
         public TeamModel getTeamById(int id)
         {
-            Team byId = _teamRepository.GetById(id);
+            Team byId = _unitOfWorkRepository.Teams.GetById(id);
             return byId.mapToModel();
         }
 
         public TeamModel AddTeam(TeamModel team)
         {
-            _teamRepository.Add(team.mapToTeam());
+            _unitOfWorkRepository.Teams.Add(team.mapToTeam());
             return team;
         }
 
         public TeamModel UpdateTeam(TeamModel team)
         {
-            _teamRepository.Update(team.mapToTeam());
+            _unitOfWorkRepository.Teams.Update(team.mapToTeam());
             return team;
         }
 
         public bool DeleteTeam(int id)
         {
-            return _teamRepository.Delete(id);
+            return _unitOfWorkRepository.Teams.Delete(id);
         }
     }
 }

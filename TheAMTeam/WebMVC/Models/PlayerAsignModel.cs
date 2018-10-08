@@ -9,6 +9,6 @@ namespace TheAMTeam.WebMVC.Models
     public class PlayerAsignModel
     {
         public int teamId { get; set; }
-        public List<PlayerBusinessModel> playerModels { get; set; }
+        public List<PlayerModel> playerModels { get; set; }
     }
 }

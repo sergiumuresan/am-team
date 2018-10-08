@@ -12,21 +12,26 @@ namespace TheAMTeam.Business.Models
     {
         public int PlayerId { get; set; }
 
-        [StringLength(20, ErrorMessage = "Name Length can not exceed 20")]
+        [Required(ErrorMessage = "Name required.")]
         public string Name { get; set; }
 
-        public int TeamId { get; set; }
-
+        [Required(ErrorMessage = "TShirt required.")]
         public int TshirtNO { get; set; }
 
         public DateTime? BirthDate { get; set; }
 
-        [StringLength(20, ErrorMessage = "NameAlias Length can not exceed 20")]
         public string NameAlias { get; set; }
 
+        [Required(ErrorMessage = "nationality required.")]
         public int? NationalityId { get; set; }
 
-        [ForeignKey("TeamId")]
-        public virtual Team Team { get; set; }
+        [Required(ErrorMessage = "Team required.")]
+        public int TeamId { get; set; }
+
+        public TeamModel Team { get; set; }
+
+        public NationalityModel Nationality { get; set; }
+
+        public VoteModel Vote { get; set; }
     }
 }

@@ -14,6 +14,9 @@ namespace TheAMTeam.Business.Models
 
         [Required]
         public string Name { get; set; }
+		
+		public virtual ICollection<Article> Articles { get; set; }
+
 
         //public virtual ICollection<MatchModel> MatchesModels { get; set; }
     }

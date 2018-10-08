@@ -6,8 +6,6 @@ namespace TheAMTeam.DataAccessLayer.Entities
 {
     public class CompetitionType
     {
-        [Key]
-        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int CompetionId { get; set; }
         public string Name { get; set; }
 

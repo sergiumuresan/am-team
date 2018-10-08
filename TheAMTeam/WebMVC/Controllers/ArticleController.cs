@@ -4,14 +4,20 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using TheAMTeam.Business.Components;
+using TheAMTeam.Business.Components.Interface;
 using TheAMTeam.Business.Models;
 
 namespace TheAMTeam.WebMVC.Controllers
 {
     public class ArticleController : Controller
     {
-        private ArticleComponent articleComponent = new ArticleComponent();
-        private CategoryComponent categoryComponent = new CategoryComponent();
+        private readonly IUnitOfWorkComponent _unitOfWorkComponent;
+
+        public ArticleController(IUnitOfWorkComponent unitOfWorkComponent)
+        {
+            _unitOfWorkComponent = unitOfWorkComponent;
+        }
+
         // GET: Article
         public ActionResult Index()
         {
@@ -21,42 +27,42 @@ namespace TheAMTeam.WebMVC.Controllers
             [HttpGet]
         public ActionResult getAll()
         {
-            var getAll = articleComponent.GetAll();
+            var getAll = _unitOfWorkComponent.Articles.GetAll();
             
             return View(getAll);
         }
 
         public  ActionResult getAllCategoryId()
         {
-            var getAllCategory = categoryComponent.GetAll();
+            var getAllCategory = _unitOfWorkComponent.Categories.GetAll();
             return View(getAllCategory);
         }
 
         public ActionResult getById(int id)
         {
-            var getById = articleComponent.GetById(id);
+            var getById = _unitOfWorkComponent.Articles.GetById(id);
             return View(getById);
         }
 
 
        public ActionResult Add()
         {
-            var categoryMod = new ArticleBussinessModel();
-            ViewBag.Articles = categoryComponent.GetAll();
+            var categoryMod = new ArticleModel();
+            ViewBag.Articles = _unitOfWorkComponent.Articles.GetAll();
             return View(categoryMod);
         } 
 
         [HttpPost]
-       public ActionResult AddNew(ArticleBussinessModel fullArticle)
+       public ActionResult AddNew(ArticleModel fullArticle)
         {
             
             fullArticle.PublishedDate = DateTime.Now;
             if (ModelState.IsValid)
             {
-                var add = articleComponent.Add(fullArticle);
+                var add = _unitOfWorkComponent.Articles.Add(fullArticle);
                 return RedirectToAction("GetAll");
             }
-            ViewBag.Articles = categoryComponent.GetAll();
+            ViewBag.Articles = _unitOfWorkComponent.Categories.GetAll();
             return View("Add", fullArticle);
 
         }
@@ -64,8 +70,8 @@ namespace TheAMTeam.WebMVC.Controllers
         
         public ActionResult Delete(int id)
         {
-            var toDelete = articleComponent.GetById(id);
-            var deleted = toDelete != null ? articleComponent.Delete(toDelete.ArticleId) : false;
+            var toDelete = _unitOfWorkComponent.Articles.GetById(id);
+            var deleted = toDelete != null ? _unitOfWorkComponent.Articles.Delete(toDelete.ArticleId) : false;
 
             return RedirectToAction("GetAll");
         }
@@ -73,14 +79,14 @@ namespace TheAMTeam.WebMVC.Controllers
         public ActionResult Edit(int id)
         {
            
-            var toEdit = articleComponent.GetById(id);
-            ViewBag.Categories = categoryComponent.GetAll();
+            var toEdit = _unitOfWorkComponent.Articles.GetById(id);
+            ViewBag.Categories = _unitOfWorkComponent.Categories.GetAll();
             if(toEdit == null)
             {
                 return RedirectToAction("GetAll");
             }
            
-            var article = new ArticleBussinessModel()
+            var article = new ArticleModel()
             {
                 ArticleId = toEdit.ArticleId,
                 Title = toEdit.Title,
@@ -95,14 +101,14 @@ namespace TheAMTeam.WebMVC.Controllers
 
 
         [HttpPost]
-        public ActionResult EditNew(ArticleBussinessModel editedArticle)
+        public ActionResult EditNew(ArticleModel editedArticle)
         {
-            var article = articleComponent.GetById(editedArticle.ArticleId);
+            var article = _unitOfWorkComponent.Articles.GetById(editedArticle.ArticleId);
             editedArticle.PublishedDate = DateTime.Now;
-            ViewBag.Categories = categoryComponent.GetAll();
+            ViewBag.Categories = _unitOfWorkComponent.Categories.GetAll();
             if (ModelState.IsValid)
             {
-                articleComponent.Update(editedArticle);
+                _unitOfWorkComponent.Articles.Update(editedArticle);
                 return RedirectToAction("Index");
             }
             return View("Edit", editedArticle);
@@ -112,7 +118,7 @@ namespace TheAMTeam.WebMVC.Controllers
         public ActionResult getAll(String search)
         {
             
-                var getAll = articleComponent.GetAll();
+                var getAll = _unitOfWorkComponent.Articles.GetAll();
                 var searchResult = getAll.Where(x => x.Category.Name.Contains(search) || x.Title.Contains(search) || x.Author.Contains(search));
                 if(searchResult.Count(x=>x.ArticleId > 0) == 0)
             {
@@ -122,5 +128,12 @@ namespace TheAMTeam.WebMVC.Controllers
             
         }
 
+        [HttpGet]
+        public ActionResult Blog()
+        {
+            var Blog = _unitOfWorkComponent.Articles.GetAll();
+
+            return View(Blog);
+        }
     }
 }

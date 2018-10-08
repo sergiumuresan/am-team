@@ -3,24 +3,30 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using TheAMTeam.DataAccessLayer.Context;
 using TheAMTeam.DataAccessLayer.Entities;
+using TheAMTeam.DataAccessLayer.Repositories.Interfaces.Repositories;
 using AppContext = TheAMTeam.DataAccessLayer.Context.AppContext;
 
 namespace TheAMTeam.DataAccessLayer.Repositories
 {
-    public class ContactRepository
+    public class ContactRepository : IContactRepository
     {
+        private readonly IAppContext _context;
+
+        public ContactRepository(IAppContext context)
+        {
+            _context = context;
+        }
 
         public Contact Add(Contact contactUs)
         {
             Contact dbContactEntity;
             try
             {
-                using (var context = new AppContext())
-                {
-                    dbContactEntity = context.Contacts.Add(contactUs);
-                    context.SaveChanges();
-                }
+                dbContactEntity = _context.Contacts.Add(contactUs);
+                _context.SaveChanges();
+             
             }
             catch (Exception ex)
             {
@@ -36,11 +42,8 @@ namespace TheAMTeam.DataAccessLayer.Repositories
             Contact dbContactUs;
             try
             {
-                using (var context = new AppContext())
-                {
-                    dbContactUs = context.Contacts.Include("Department").SingleOrDefault(c => c.Id == id);
-                    context.SaveChanges();
-                }
+                dbContactUs = _context.Contacts.Include("Department").SingleOrDefault(c => c.Id == id);
+                _context.SaveChanges();
             }
             catch (Exception ex)
             {
@@ -55,9 +58,7 @@ namespace TheAMTeam.DataAccessLayer.Repositories
             Contact dbContactUs;
             try
             {
-                using (var context = new AppContext())
-                {
-                    dbContactUs = context.Contacts.Include("Department").SingleOrDefault(c => c.Id == contact.Id);
+                    dbContactUs = _context.Contacts.Include("Department").SingleOrDefault(c => c.Id == contact.Id);
                     if (dbContactUs != null)
                     {
                         //context.Contacts.Attach(contact);
@@ -69,10 +70,9 @@ namespace TheAMTeam.DataAccessLayer.Repositories
                         dbContactUs.DepartmentId = contact.DepartmentId;
                         //context.Entry(contact).State = System.Data.Entity.EntityState.Modified;
                         //sau modificare atribute
-                        context.SaveChanges();
                     }
-                    context.SaveChanges();
-                }
+                    _context.SaveChanges();
+                
             }
             catch (Exception ex)
             {
@@ -87,14 +87,10 @@ namespace TheAMTeam.DataAccessLayer.Repositories
             Contact dbContact;
             try
             {
-                using (var context = new AppContext())
-                {
-                    dbContact = context.Contacts.Include("Department").SingleOrDefault(c => c.Id == id);
+                  dbContact = _context.Contacts.Include("Department").SingleOrDefault(c => c.Id == id);
 
-                    context.Contacts.Remove(dbContact);
-                    context.SaveChanges();
-
-                }
+                    _context.Contacts.Remove(dbContact);
+                    _context.SaveChanges();          
             }
             catch (Exception ex)
             {
@@ -108,15 +104,14 @@ namespace TheAMTeam.DataAccessLayer.Repositories
             List<Contact> dbContactUs;
             try
             {
-                using (var context = new AppContext())
-                {
-                    dbContactUs = context.Contacts.Include("Department").ToList();
-                    context.SaveChanges();
-                }
+                dbContactUs = _context.Contacts.Include("Department").ToList();
+                _context.SaveChanges();
             }
             catch (Exception ex)
             {
                 Console.Write(ex);
+                Console.WriteLine("We don't have contacts in DB");
+
                 throw ex;
             }
             return dbContactUs;

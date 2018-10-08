@@ -1,0 +1,14 @@
+﻿@model TheAMTeam.Business.Models.PlayerBusinessModel
+@{
+    ViewBag.Title = "ValidateVote";
+    Layout = "~/Views/Shared/_LayoutPlayer.cshtml";
+}
+
+<h2>Are you sure you want to vote with @Model.Name?</h2>
+
+<br>
+
+<input type="button" value="YES" onclick="location.href='@Url.Action("VotePlayer", "Player")'" />
+<input type="button" value="NO" onclick="location.href='@Url.Action("Vote", "Player")'" />
+
+

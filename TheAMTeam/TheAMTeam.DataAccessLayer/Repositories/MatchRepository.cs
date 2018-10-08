@@ -2,25 +2,30 @@
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
-
+using TheAMTeam.DataAccessLayer.Context;
 using TheAMTeam.DataAccessLayer.Entities;
+using TheAMTeam.DataAccessLayer.Repositories.Interfaces.Repositories;
 using AppContext = TheAMTeam.DataAccessLayer.Context.AppContext;
 
 
 namespace TheAMTeam.DataAccessLayer.Repositories
 {
-    public class MatchRepository
+    public class MatchRepository : IMatchRepository
     {
+        private readonly IAppContext _context;
+
+        public MatchRepository(AppContext context)
+        {
+            _context = context;
+        }
+
         public Match Add(Match match)
         {
             Match dbMatch;
             try
             {
-                using (var context = new AppContext())
-                {
-                    dbMatch = context.Matches.Add(match);
-                    context.SaveChanges();
-                }
+                dbMatch = _context.Matches.Add(match);
+                _context.SaveChanges();
             } catch (Exception ex)
             {
                 Console.WriteLine(ex);
@@ -34,11 +39,8 @@ namespace TheAMTeam.DataAccessLayer.Repositories
         {
             Match idMatch;
             try
-            {
-                using (var context = new AppContext())
-                {
-                    idMatch = context.Matches.SingleOrDefault(m => m.MatchId == id);
-                }
+            { 
+                idMatch = _context.Matches.SingleOrDefault(m => m.MatchId == id);
             }
             catch (Exception ex)
             {
@@ -53,16 +55,12 @@ namespace TheAMTeam.DataAccessLayer.Repositories
         {
             try
             {
-                using (var context = new AppContext())
+                if (match != null)
                 {
-                    
-                    if (match != null)
-                    {
-                        context.Matches.Attach(match);
-                        context.Entry(match).State = EntityState.Modified;
-                        context.SaveChanges();
-                    }
-                }
+                    _context.Matches.Attach(match);
+                    _context.Entry(match).State = EntityState.Modified;
+                    _context.SaveChanges();
+                } 
             } catch (Exception ex)
             {
                 Console.WriteLine(ex);
@@ -77,13 +75,10 @@ namespace TheAMTeam.DataAccessLayer.Repositories
             Match dbMatch;
             try
             {
-                using (var context = new AppContext())
-                {
-                    dbMatch = context.Matches.SingleOrDefault(m => m.MatchId == id);
-                    context.Matches.Remove(dbMatch);
-                    context.SaveChanges();
-                    return true;
-                }
+                dbMatch = _context.Matches.SingleOrDefault(m => m.MatchId == id);
+                _context.Matches.Remove(dbMatch);
+                _context.SaveChanges();
+                return true;
             } catch (Exception ex)
             {
                 Console.WriteLine(ex);
@@ -96,12 +91,24 @@ namespace TheAMTeam.DataAccessLayer.Repositories
             List<Match> matches;
             try
             {
-                using (var context = new AppContext())
-                {
-                    matches = context.Matches.ToList();
-                }
-
+                matches = _context.Matches.ToList();
             }catch(Exception ex)
+            {
+                Console.WriteLine(ex);
+                throw;
+            }
+
+            return matches;
+        }
+
+        public IEnumerable<Match> GetUpcomingMatches()
+        {
+            List<Match> matches;
+            try
+            {
+                 matches = _context.Matches.ToList();
+            }
+            catch (Exception ex)
             {
                 Console.WriteLine(ex);
                 throw;

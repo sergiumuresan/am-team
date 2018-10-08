@@ -1,25 +1,33 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using TheAMTeam.DataAccessLayer.Context;
 using TheAMTeam.DataAccessLayer.Entities;
+using TheAMTeam.DataAccessLayer.Repositories.Interfaces.Repositories;
 using AppContext = TheAMTeam.DataAccessLayer.Context.AppContext;
 
-namespace TheAMTeam.DataAccesLayer.Repositories
+namespace TheAMTeam.DataAccessLayer.Repositories
 {
-    public class TeamRepository
+    public class TeamRepository : ITeamRepository
     {
+        private readonly IAppContext _context;
+
+        public TeamRepository(IAppContext context)
+        {
+            _context = context;
+        }
+
+        public TeamRepository()
+        {
+        }
+
         public Team Add(Team team)
         {
             Team dbTeam;
             try
             {
-                using (var context = new AppContext())
-                {
-                    dbTeam = context.Teams.Add(team);
-                    context.SaveChanges();
-                }
+                dbTeam = _context.Teams.Add(team);
+                _context.SaveChanges();
             }
             catch (Exception ex)
             {
@@ -35,33 +43,24 @@ namespace TheAMTeam.DataAccesLayer.Repositories
             Team dbTeam;
             try
             {
-                using (var context = new AppContext())
-                {
-                    dbTeam = context.Teams.Include("Players").SingleOrDefault(x => x.TeamId == Id);
-                }
-                
-            }catch(Exception ex)
+                dbTeam = _context.Teams.Include("Players").SingleOrDefault(x => x.TeamId == Id);       
+            }
+            catch (Exception ex)
             {
                 throw ex;
             }
 
             return dbTeam;
-
         }
 
         public Team Update(Team changedTeam)
         {
 
             try
-            {
-                using (var context = new AppContext())
-                {
-                    
-                    context.Teams.Attach(changedTeam);
-                    context.Entry(changedTeam).State = System.Data.Entity.EntityState.Modified;
-                    context.SaveChanges();
-                }
-            
+            {    
+                _context.Teams.Attach(changedTeam);
+                _context.Entry(changedTeam).State = System.Data.Entity.EntityState.Modified;
+                _context.SaveChanges();
   
             }catch(Exception ex)
             {
@@ -78,13 +77,10 @@ namespace TheAMTeam.DataAccesLayer.Repositories
 
             try
             {
-                using (var context = new AppContext())
-                {
-                    dbFindTeam = context.Teams.Find(id);
-                    context.Teams.Remove(dbFindTeam);
-                    context.SaveChanges();
-                    return true;
-                }
+                dbFindTeam = _context.Teams.Find(id);
+                _context.Teams.Remove(dbFindTeam);
+                _context.SaveChanges();
+                return true;
             }
             catch(Exception ex)
             {
@@ -98,10 +94,7 @@ namespace TheAMTeam.DataAccesLayer.Repositories
 
             try
             {
-                using (var context = new AppContext())
-                {
-                    list = context.Teams.Include("Players").ToList();
-                }
+               list = _context.Teams.Include("Players").ToList();
             }catch(Exception ex)
             {
                 throw ex;

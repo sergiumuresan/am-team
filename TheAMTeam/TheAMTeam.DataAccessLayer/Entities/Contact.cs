@@ -10,10 +10,7 @@ namespace TheAMTeam.DataAccessLayer.Entities
 {
     public class Contact
     {
-        [Key]
-        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
-        [Required]
         public string Name { get; set; }
         public string Email { get; set; }
         public string Phone { get; set; }
@@ -21,7 +18,6 @@ namespace TheAMTeam.DataAccessLayer.Entities
         public DateTime MessageDate { get; set; }
 
         public int DepartmentId { get; set; }
-        [ForeignKey("DepartmentId")]
         public Department Department { get; set; }
     }
 }

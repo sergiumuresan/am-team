@@ -1,39 +1,41 @@
 ﻿using System.Collections.Generic;
 using TheAMTeam.Business.Models;
-using TheAMTeam.DataAccessLayer.Repositories;
-using TheAMTeam.DataAccessLayer.Entities;
+
 using TheAMTeam.Business.Utils;
+using TheAMTeam.Business.Components.Interface.Components;
+using TheAMTeam.DataAccessLayer.Repositories.Interfaces;
 
 namespace TheAMTeam.Business.Components
 {
-    public class ArticleComponent
+    public class ArticleComponent : IArticleComponent
     {
-        private readonly ArticlesRepository _articlesRepository;
+        private readonly IUnitOfWorkRepository _unitOfWorkRepository;
 
-        public ArticleComponent()
+        public ArticleComponent(IUnitOfWorkRepository unitOfWorkRepository)
         {
-            _articlesRepository = new ArticlesRepository();
+            _unitOfWorkRepository = unitOfWorkRepository;
+            
         }
 
-        public ArticleBussinessModel Add(ArticleBussinessModel articleModel)
+        public ArticleModel Add(ArticleModel articleModel)
         {
-            var addedArticle = _articlesRepository.Add(articleModel.ToArticle());
+            var addedArticle = _unitOfWorkRepository.Articles.Add(articleModel.ToArticle());
 
             return addedArticle.ToArticleModel();
         }
 
-        public ArticleBussinessModel GetById(int id)
+        public ArticleModel GetById(int id)
         {
-            ArticleBussinessModel result;
-            result = _articlesRepository.GetById(id).ToArticleModel();
+            ArticleModel result;
+            result = _unitOfWorkRepository.Articles.GetById(id).ToArticleModel();
             return result;
         }
 
-        public List<ArticleBussinessModel> GetAll()
+        public List<ArticleModel> GetAll()
         {
-            var result = _articlesRepository.GetAll();
+            var result = _unitOfWorkRepository.Articles.GetAll();
 
-            var returnList = new List<ArticleBussinessModel>();
+            var returnList = new List<ArticleModel>();
 
             foreach (var item in result)
             {
@@ -43,16 +45,16 @@ namespace TheAMTeam.Business.Components
             return returnList;
         }
 
-        public ArticleBussinessModel Update(ArticleBussinessModel articleModelToUpdate)
+        public ArticleModel Update(ArticleModel articleModelToUpdate)
         {
-            var updated =_articlesRepository.Update(articleModelToUpdate.ToArticle());
+            var updated =_unitOfWorkRepository.Articles.Update(articleModelToUpdate.ToArticle());
 
             return updated.ToArticleModel();
         }
 
         public bool Delete(int id)
         {
-            var deletedArticle = _articlesRepository.Delete(id);
+            var deletedArticle = _unitOfWorkRepository.Articles.Delete(id);
 
             return deletedArticle;
         }
