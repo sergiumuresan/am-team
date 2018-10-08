@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using TheAMTeam.Business.Components;
+using TheAMTeam.Business.Components.Interface;
 using TheAMTeam.Business.Models;
 using TheAMTeam.WebMVC.Models;
 
@@ -11,8 +12,13 @@ namespace TheAMTeam.WebMVC.Controllers
 {
     public class TeamController : Controller
     {
-        private TeamComponent _teamComponent = new TeamComponent();
-        private PlayerComp _playerComponent = new PlayerComp();
+        private readonly IUnitOfWorkComponent _unitOfWorkComponent;
+
+        public TeamController(IUnitOfWorkComponent unitOfWorkComponent)
+        {
+            _unitOfWorkComponent = unitOfWorkComponent;
+        }
+
         // GET: Team
         public ActionResult Index()
         {
@@ -21,32 +27,22 @@ namespace TheAMTeam.WebMVC.Controllers
         [HttpGet]
         public ActionResult GetAll(int page)
         {
-            var list = _teamComponent.GetAllTeams();
-            //foreach(var team in list)
-            //{
-
-            //    teams.Teams.Add(team);
-            //}
+            var list = _unitOfWorkComponent.Teams.GetAllTeams();
+           
             return View(list.Skip((page - 1) * 5).Take(5));
-            //var result = (from team in list
-            //              orderby team.TeamId descending
-            //              select team).Skip((page - 1) * 6).Take(6);
-            //return View(result);
-
+      
         }
         [HttpPost]
         public ActionResult GetAll(string search)
         {
-            var teams = _teamComponent.GetAllTeams();
+            var teams = _unitOfWorkComponent.Teams.GetAllTeams();
 
             if (!String.IsNullOrEmpty(search))
             {
                 var result = teams.Where(s => s.Name.ToLower().Contains(search.ToLower())
                                         || s.City.ToLower().Contains(search.ToLower())
                                         || s.Coach.ToLower().Contains(search.ToLower())
-                
                                          );
-
 
                 return View(result.Take(5));
             }
@@ -75,7 +71,7 @@ namespace TheAMTeam.WebMVC.Controllers
             }
             if (ModelState.IsValid)
             {
-                _teamComponent.AddTeam(model);
+                _unitOfWorkComponent.Teams.AddTeam(model);
                 return RedirectToAction("GetAll", new { page = 1 });
             }
             return View("AddTeam", model);
@@ -84,7 +80,7 @@ namespace TheAMTeam.WebMVC.Controllers
 
         public ActionResult EditTeam(int id)
         {
-            var matchingTeam = _teamComponent.getTeamById(id);
+            var matchingTeam = _unitOfWorkComponent.Teams.getTeamById(id);
             if (matchingTeam == null)
             {
                 return RedirectToAction("GetAll", new { page = 1 });
@@ -109,7 +105,7 @@ namespace TheAMTeam.WebMVC.Controllers
             }
             if (ModelState.IsValid)
             {
-                _teamComponent.UpdateTeam(model);
+                _unitOfWorkComponent.Teams.UpdateTeam(model);
                 return RedirectToAction("GetAll", new { page = 1 });
             }
             return View("EditTeam", model);
@@ -117,7 +113,7 @@ namespace TheAMTeam.WebMVC.Controllers
         }
         public ActionResult RemoveTeam(int id)
         {
-            var matchingTeam = _teamComponent.getTeamById(id);
+            var matchingTeam = _unitOfWorkComponent.Teams.getTeamById(id);
             if (matchingTeam == null)
             {
                 return RedirectToAction("GetAll", new { page = 1 });
@@ -127,44 +123,43 @@ namespace TheAMTeam.WebMVC.Controllers
         [HttpPost]
         public ActionResult RemoveTeamMethod(int TeamId)
         {
-            var matchingTeam = _teamComponent.getTeamById(TeamId);
+            var matchingTeam = _unitOfWorkComponent.Teams.getTeamById(TeamId);
             if (matchingTeam == null)
             {
                 return RedirectToAction("GetAll", new { page = 1 });
             }
 
-            _teamComponent.DeleteTeam(matchingTeam.TeamId);
+            _unitOfWorkComponent.Teams.DeleteTeam(matchingTeam.TeamId);
 
 
             return RedirectToAction("GetAll", new { page = 1 });
         }
 
-        public ActionResult AsignPlayer(int teamId)
-        {
-            var players = _playerComponent.GetAllPlayers();
-            PlayerAsignModel playerAsignModel = new PlayerAsignModel()
-            {
-                teamId = teamId,
-                playerModels = players
-            };
-            return View(playerAsignModel);
-        }
+        //public ActionResult AsignPlayer(int teamId)
+        //{
+        //    var players = _playerComponent.GetAllPlayers();
+        //    PlayerAsignModel playerAsignModel = new PlayerAsignModel()
+        //    {
+        //        teamId = teamId,
+        //        playerModels = players
+        //    };
+        //    return View(playerAsignModel);
+        //}
 
-        [HttpPost]
-        public ActionResult AsignPlayerPost(int teamId,int playerId)
-        {
-            if (teamId != null && playerId != null)
-            {
-                var player = _playerComponent.Get(playerId);
+        //[HttpPost]
+        //public ActionResult AsignPlayerPost(int teamId,int playerId)
+        //{
+        //    if (teamId != null && playerId != null)
+        //    {
+        //        var player = _playerComponent.Get(playerId);
 
-                player.TeamId = teamId;
+        //        player.TeamId = teamId;
 
-                _playerComponent.Update(playerId,player);
-            }
-            return RedirectToAction("GetAll", new { page = 1 });
+        //        _playerComponent.Update(playerId,player);
+        //    }
+        //    return RedirectToAction("GetAll", new { page = 1 });
 
 
-        }
 
-    }
+    } 
 }

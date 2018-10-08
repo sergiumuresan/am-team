@@ -2,13 +2,26 @@
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
+using TheAMTeam.DataAccessLayer.Context;
 using TheAMTeam.DataAccessLayer.Entities;
+using TheAMTeam.DataAccessLayer.Repositories.Interfaces.Repositories;
 using AppContext = TheAMTeam.DataAccessLayer.Context.AppContext;
 
 namespace TheAMTeam.DataAccessLayer.Repositories
 {
-    public class NationalityRepository
+    public class NationalityRepository : INationalityRepository
     {
+        private readonly AppContext _context;
+
+        public NationalityRepository(AppContext context)
+        {
+            _context = context;
+        }
+
+        public NationalityRepository()
+        {
+        }
+
         public Nationality Add(Nationality nationality)
         {
             Nationality dbNationality;

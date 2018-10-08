@@ -2,37 +2,36 @@
 using TheAMTeam.Business.Models;
 using TheAMTeam.Business.Utils;
 using TheAMTeam.DataAccessLayer.Repositories;
+using TheAMTeam.Business.Components.Interface.Components;
+using TheAMTeam.DataAccessLayer.Repositories.Interfaces;
 
 namespace TheAMTeam.Business.Components
 {
-    public class CompetitionTypeComponent
+    public class CompetitionTypeComponent : ICompetitionTypeComponent
     {
-        private readonly CompetitionTypeRepository _competitionTypeRepository;
+        private readonly IUnitOfWorkRepository _unitOfWorkRepository;
 
-
-        public CompetitionTypeComponent()
+        public CompetitionTypeComponent(IUnitOfWorkRepository unitOfWorkRepository)
         {
-            _competitionTypeRepository = new CompetitionTypeRepository();
+            _unitOfWorkRepository = unitOfWorkRepository;
         }
-
         
         public CompetitionTypeModel Add(CompetitionTypeModel competitionTypeModel)
         {   
-
-            _competitionTypeRepository.Add(competitionTypeModel.mapToCompetiotionType());
+            _unitOfWorkRepository.CompetitionTypes.Add(competitionTypeModel.mapToCompetiotionType());
             return competitionTypeModel;
         }
 
         
         public CompetitionTypeModel GetById(int id)
         {
-            var result =  _competitionTypeRepository.GetById(id);
+            var result =  _unitOfWorkRepository.CompetitionTypes.GetById(id);
             return result?.mapToModel();
         }
 
         public List<CompetitionTypeModel> GetAllCompetionType()
         {
-            var result = _competitionTypeRepository.getAll();
+            var result = _unitOfWorkRepository.CompetitionTypes.getAll();
            
 
             var returnList = new List<CompetitionTypeModel>();
@@ -53,14 +52,13 @@ namespace TheAMTeam.Business.Components
 
         public CompetitionTypeModel Update(CompetitionTypeModel competitionTypeModel)
         {
-            _competitionTypeRepository.Update(competitionTypeModel.mapToCompetiotionType());
+            _unitOfWorkRepository.CompetitionTypes.Update(competitionTypeModel.mapToCompetiotionType());
             return competitionTypeModel;
         }
 
-       
         public bool Delete(int id)
         {
-            var result = _competitionTypeRepository.Delete(id);
+            var result = _unitOfWorkRepository.CompetitionTypes.Delete(id);
             return result;
         }
 

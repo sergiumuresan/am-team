@@ -1,23 +1,28 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using TheAMTeam.DataAccessLayer.Context;
 using TheAMTeam.DataAccessLayer.Entities;
+using TheAMTeam.DataAccessLayer.Repositories.Interfaces.Repositories;
 using AppContext = TheAMTeam.DataAccessLayer.Context.AppContext;
 
 namespace TheAMTeam.DataAccessLayer.Repositories
 {
-    public class CompetitionTypeRepository
+    public class CompetitionTypeRepository : ICompetitionTypeRepository
     {
+        private readonly IAppContext _context;
+
+        public CompetitionTypeRepository(IAppContext context)
+        {
+            _context = context;
+        }
+
         public List<CompetitionType> getAll()
         {
             List<CompetitionType> matches;
             try
             {
-                using (var context = new AppContext())
-                {
-                    matches = context.CompetitionTypes.Include("Matches").ToList();
-                }
-
+                matches = _context.CompetitionTypes.Include("Matches").ToList();
             }
             catch (Exception ex)
             {
@@ -33,11 +38,8 @@ namespace TheAMTeam.DataAccessLayer.Repositories
             CompetitionType dbCompetition;
             try
             {
-                using (var context = new AppContext())
-                {
-                    dbCompetition = context.CompetitionTypes.Add(competitionType);
-                    context.SaveChanges();
-                }
+                dbCompetition = _context.CompetitionTypes.Add(competitionType);
+                _context.SaveChanges();
             }
             catch (Exception ex)
             {
@@ -53,10 +55,7 @@ namespace TheAMTeam.DataAccessLayer.Repositories
             CompetitionType dbCompetition;
             try
             {
-                using (var context = new AppContext())
-                {
-                    dbCompetition = context.CompetitionTypes.Include("Matches").SingleOrDefault(c => c.CompetionId == Id);
-                }
+                dbCompetition = _context.CompetitionTypes.Include("Matches").SingleOrDefault(c => c.CompetionId == Id);
             }
             catch (Exception ex)
             {
@@ -71,14 +70,11 @@ namespace TheAMTeam.DataAccessLayer.Repositories
         {
             try
             {
-                using (var context = new AppContext())
+                if (competitionType != null)
                 {
-                    if (competitionType != null)
-                    {
-                        context.CompetitionTypes.Attach(competitionType);
-                        context.Entry(competitionType).State = System.Data.Entity.EntityState.Modified;
-                        context.SaveChanges();
-                    }
+                    _context.CompetitionTypes.Attach(competitionType);
+                    _context.Entry(competitionType).State = System.Data.Entity.EntityState.Modified;
+                    _context.SaveChanges();
                 }
             }
             catch (Exception ex)
@@ -94,12 +90,9 @@ namespace TheAMTeam.DataAccessLayer.Repositories
             CompetitionType dbCompetition;
             try
             {
-                using (var context = new AppContext())
-                {
-                    dbCompetition = context.CompetitionTypes.FirstOrDefault(c => c.CompetionId == id);
-                    context.CompetitionTypes.Remove(dbCompetition);
-                    context.SaveChanges();
-                }
+                dbCompetition = _context.CompetitionTypes.FirstOrDefault(c => c.CompetionId == id);
+                _context.CompetitionTypes.Remove(dbCompetition);
+                _context.SaveChanges();
             }
             catch (Exception ex)
             {

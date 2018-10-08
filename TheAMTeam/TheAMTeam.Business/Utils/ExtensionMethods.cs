@@ -9,9 +9,9 @@ namespace TheAMTeam.Business.Utils
 {
     public static class ExtensionMethods
     {
-        public static ArticleBussinessModel ToArticleModel(this Article article)
+        public static ArticleModel ToArticleModel(this Article article)
         {
-            ArticleBussinessModel articleModel = new ArticleBussinessModel
+            ArticleModel articleModel = new ArticleModel
             {
                 ArticleId = article.ArticleId,
                 Author = article.Author,
@@ -26,7 +26,7 @@ namespace TheAMTeam.Business.Utils
             return articleModel;
         }
 
-        public static Article ToArticle(this ArticleBussinessModel articleModel)
+        public static Article ToArticle(this ArticleModel articleModel)
         {
             Article article = new Article
             {

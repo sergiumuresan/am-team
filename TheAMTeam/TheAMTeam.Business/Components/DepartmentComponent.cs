@@ -6,10 +6,12 @@ using TheAMTeam.Business.Models;
 using TheAMTeam.Business.Utils;
 using TheAMTeam.DataAccessLayer.Entities;
 using TheAMTeam.DataAccessLayer.Repositories;
+using TheAMTeam.Business.Components.Interface.Components;
+
 
 namespace TheAMTeam.Business.Components
 {
-    public class DepartmentComponent
+    public class DepartmentComponent : IDepartmentComponent
     {
         readonly DepartmentRepository _departmentRepository;
 

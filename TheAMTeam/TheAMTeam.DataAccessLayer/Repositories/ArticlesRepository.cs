@@ -1,23 +1,29 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using TheAMTeam.DataAccessLayer.Context;
 using TheAMTeam.DataAccessLayer.Entities;
+using TheAMTeam.DataAccessLayer.Repositories.Interfaces;
 using AppContext = TheAMTeam.DataAccessLayer.Context.AppContext;
 
 namespace TheAMTeam.DataAccessLayer.Repositories
 {
-    public class ArticlesRepository
+    public class ArticlesRepository : IArticleRepository
     {
+        private readonly IAppContext _context;
+
+        public ArticlesRepository(IAppContext context)
+        {
+            _context = context;
+        }
+
         public Article Add(Article article)
         {
             Article dbArticle;
             try
             {
-                using (var context = new AppContext())
-                {
-                    dbArticle = context.Articles.Add(article);
-                    context.SaveChanges();
-                }
+                dbArticle = _context.Articles.Add(article);
+                _context.SaveChanges();
             }
             catch (Exception ex)
             {
@@ -33,11 +39,13 @@ namespace TheAMTeam.DataAccessLayer.Repositories
             try
             {
                 Article dbArticle;
-                using (var context = new AppContext())
-                {
-                    dbArticle = context.Articles.Include("Category").SingleOrDefault(c => c.ArticleId == id);
-                    context.SaveChanges();
-                }
+
+                dbArticle = _context.Articles
+                    .Include("Category")
+                    .SingleOrDefault(c => c.ArticleId == id);
+
+                _context.SaveChanges();
+
                 return dbArticle;
             }
             catch (Exception ex)
@@ -51,13 +59,11 @@ namespace TheAMTeam.DataAccessLayer.Repositories
         {
             try
             {
-                using (var context = new AppContext())
-                {
-                    //var unUpdate = context.Articles.FirstOrDefault(c => c.Author == upd.Author);
-                    context.Articles.Attach(article);
-                    context.Entry(article).State = System.Data.Entity.EntityState.Modified;
-                    context.SaveChanges();                    
-                }
+                //var unUpdate = context.Articles.FirstOrDefault(c => c.Author == upd.Author);
+                _context.Articles.Attach(article);
+                _context.Entry(article).State = System.Data.Entity.EntityState.Modified;
+                _context.SaveChanges();                    
+                
             }
             catch (Exception ex)
             {
@@ -72,13 +78,9 @@ namespace TheAMTeam.DataAccessLayer.Repositories
             Article dbArticle;
             try
             {
-                using (var context = new AppContext())
-                {
-                    dbArticle = context.Articles.FirstOrDefault(c => c.ArticleId == id);
-                    context.Articles.Remove(dbArticle);
-                    context.SaveChanges();
-                    
-                }
+                dbArticle = _context.Articles.FirstOrDefault(c => c.ArticleId == id);
+                _context.Articles.Remove(dbArticle);
+                _context.SaveChanges();    
             }
             catch (Exception ex)
             {
@@ -92,10 +94,7 @@ namespace TheAMTeam.DataAccessLayer.Repositories
         {
             try
             {
-                using (var context = new AppContext())
-                {
-                    return context.Articles.Include("Category").ToList();
-                }
+                return _context.Articles.Include("Category").ToList();   
             }
             catch (Exception ex)
             {

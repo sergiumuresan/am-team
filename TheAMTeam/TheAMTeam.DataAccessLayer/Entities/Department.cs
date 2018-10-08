@@ -10,10 +10,9 @@ namespace TheAMTeam.DataAccessLayer.Entities
 {
     public class Department
     {
-        [Key]
-        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
-        [Required]
         public string Name { get; set; }
+
+        public ICollection<Contact> Contacts { get; set; }
     }
 }
